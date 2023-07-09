@@ -1,0 +1,13 @@
+﻿global using CommunityToolkit.Maui;
+global using CommunityToolkit.Maui.Views;
+global using LIN.Access;
+global using System.Text;
+global using LIN.Controls;
+global using LIN.React.Models;
+global using LIN.React.Observers;
+global using LIN.Services;
+global using LIN.Shared.Enumerations;
+global using LIN.Shared.Models;
+global using LIN.UI.Controls;
+global using LIN.UI.Views;
+global using Microsoft.Maui.LifecycleEvents;
