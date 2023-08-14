@@ -1,11 +1,11 @@
-using LIN.Services;
+using CommunityToolkit.Maui.Storage;
 using LIN.Shared.Responses;
 using LIN.UI.Popups;
 
 namespace LIN.UI.Views.Inventorys;
 
 
-public partial class IntegrantsAdd : ContentPage
+public partial class Informes : ContentPage
 {
 
 
@@ -19,9 +19,9 @@ public partial class IntegrantsAdd : ContentPage
 
 
     /// <summary>
-    /// Modelo del inventario
+    /// ID del inventario
     /// </summary>
-    private InventoryDataModel Inventario { get; set; } = new();    
+    private int Inventario { get; set; } = new();
 
 
 
@@ -29,7 +29,7 @@ public partial class IntegrantsAdd : ContentPage
     /// <summary>
     /// Constructor
     /// </summary>
-    public IntegrantsAdd(InventoryDataModel modelo)
+    public Informes(int modelo)
     {
         InitializeComponent();
         this.Appearing += Add_Appearing;
@@ -45,9 +45,6 @@ public partial class IntegrantsAdd : ContentPage
     /// </summary>
     private void Render()
     {
-        displayNombre.Text = Inventario.Nombre;
-        displayDireccion.Text = Inventario.Direccion;
-        displayRol.Text = Inventario.MyRol.Humanize();
     }
 
 
@@ -61,7 +58,7 @@ public partial class IntegrantsAdd : ContentPage
 
         // Organiza la vista
         lbInfo.Hide();
-        btn.Hide();
+
         indicador.Show();
         await Task.Delay(10);
 
@@ -69,7 +66,7 @@ public partial class IntegrantsAdd : ContentPage
         if (Participantes.Count <= 0)
         {
             ShowMessage("Debe haber almenos 1 nuevo integrante");
-            btn.Show();
+
             return;
         }
 
@@ -80,7 +77,7 @@ public partial class IntegrantsAdd : ContentPage
         // Creacion del modelo
         var modelo = new InventoryDataModel
         {
-            ID = Inventario.ID,
+            ID = Inventario,
             UsersAccess = new()
         };
 
@@ -100,7 +97,7 @@ public partial class IntegrantsAdd : ContentPage
 
 
 
-       
+
 
         // Respuesta del controlador
         var response = await LIN.Access.Controllers.Inventories.GenerateInvitaciones(modelo, Sesion.Instance.Token);
@@ -109,7 +106,7 @@ public partial class IntegrantsAdd : ContentPage
         if (response.Response != Responses.Success)
         {
             ShowMessage("Hubo un error");
-            btn.Show();
+
             return;
         }
 
@@ -123,8 +120,7 @@ public partial class IntegrantsAdd : ContentPage
         await this.ShowPopupAsync(new DefaultPopup());
 
         indicador.Hide();
-        btn.Show();
-        
+
         Participantes.Clear();
 
     }
@@ -157,15 +153,97 @@ public partial class IntegrantsAdd : ContentPage
         if (xx == null)
             return;
 
-        foreach(var modelo in xx)
+        foreach (var modelo in xx)
         {
             var usercontrol = new Controls.UserForPick(modelo);
-            conte.Add(usercontrol);
             usercontrol.Show();
             Participantes.Add(modelo);
         }
 
-        
-    
+
+
     }
+
+    private async void BtnInformeMensual(object sender, EventArgs e)
+    {
+
+
+#if WINDOWS
+
+        Content.Hide();
+        lbInfo.Hide();
+        indicador.Show();
+
+        var tipo = inpTipo.SelectedIndex;
+        var mes = inpMonth.SelectedIndex;
+        var year = inpYear.SelectedIndex;
+
+
+        if (mes == -1 || year == -1 || tipo == -1)
+        {
+            indicador.Hide();
+            lbInfo.Show();
+            lbInfo.Text = "Completa todos los campos";
+            Content.Show();
+            return;
+        }
+
+
+        mes++;
+        year = 2020 + year;
+
+        var user = LIN.Access.Sesion.Instance.Informacion.ID;
+
+
+        ReadOneResponse<List<byte>> res;
+
+        if (tipo == 0)
+            res = await LIN.Access.Controllers.Inflows.InformeMonth(user, Inventario, mes, year);
+        
+        else
+            res = await LIN.Access.Controllers.Outflows.InformeMonth(user, Inventario, mes, year);
+        
+
+        if (res.Response != Responses.Success)
+        {
+
+            await DisplayAlert("Error", "Actualmente el generador de PDF no esta disponible, intentalo mas tarde, si el problema persiste comunicate con soporte.", "Ok");
+
+            Content.Show();
+            indicador.Hide();
+            return;
+        }
+
+
+        CancellationToken token = new();
+        var result = await FolderPicker.Default.PickAsync(token);
+        if (!result.IsSuccessful)
+        {
+            Content.Show();
+            indicador.Hide();
+            return;
+        }
+
+        var folderBase = result.Folder.Path;
+
+        File.WriteAllBytes($"{folderBase}\\month_{DateTime.Now:yyyy_MM_dd_HH_mm}.pdf", res.Model.ToArray());
+
+
+        await DisplayAlert("Reporte", "Reporte generado exitosamente", "OK");
+
+        Content.Show();
+        indicador.Hide();
+
+
+#elif ANDROID
+
+        _ = DisplayAlert("Error", "Para generar un informe necesitas conectarte desde un dispositivo Windows", "Ok");
+
+#endif
+
+
+
+    }
+
+
 }

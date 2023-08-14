@@ -84,6 +84,9 @@ public partial class Index : ContentPage
     /// </summary>
     private void SuscribeToHub()
     {
+        if (AppShell.Hub == null)
+            return;
+
         AppShell.Hub.OnReceiveContact += HubConnection_On;
     }
 

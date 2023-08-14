@@ -35,7 +35,7 @@ public static class ContextPageExtensions
     }
 
 
-
+    public static List<ContentPage> Pages = new();
     /// <summary>
     /// Abre una nueva pagina
     /// </summary>
@@ -55,6 +55,7 @@ public static class ContextPageExtensions
             newPage.Title = string.Empty;
 
             // Muestra la nueva pagina
+            Pages.Add(newPage);
             await actualPage.Navigation.PushAsync(newPage, true);
         }
         catch
@@ -74,6 +75,7 @@ public static class ContextPageExtensions
     {
         try
         {
+            Pages.Remove(context);
             context?.Navigation.RemovePage(context);
         }
         catch { }

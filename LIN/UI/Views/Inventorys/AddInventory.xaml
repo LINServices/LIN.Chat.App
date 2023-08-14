@@ -58,17 +58,17 @@
 
                         <StackLayout Padding="14" Orientation="Horizontal">
 
-                           
+
 
                             <!--  Informacion del inventario  -->
-                            <VerticalStackLayout HorizontalOptions="Start" Margin="5,0,0,0">
+                            <VerticalStackLayout Margin="5,0,0,0" HorizontalOptions="Start">
 
                                 <!--  txt Nombre  -->
                                 <Custom:EntryControl
                                     x:Name="txtName"
-                                    WidthRequest="300"
                                     HorizontalOptions="Center"
-                                    Placeholder="Nombre"/>
+                                    Placeholder="Nombre"
+                                    WidthRequest="300" />
 
                                 <!--  Descripcion  -->
                                 <Editor
@@ -113,8 +113,8 @@
 
 
                                 <Custom:ToggleButton
+                                    Clicked="ContactMini_Clicked"
                                     ColorBG="{StaticResource Black}"
-                                  Clicked="ContactMini_Clicked"
                                     HeightRequest="{OnPlatform Android=35,
                                                                WinUI=30}"
                                     HorizontalOptions="Center"
@@ -178,15 +178,15 @@
                     <!--  Crear  -->
                     <Button
                         x:Name="btn"
-                        Text="Crear inventario"
-                        Clicked="Button_Clicked"
                         Margin="{OnPlatform WinUI='0,15,0,0',
                                             Android='20,15,20,0'}"
-                        BackgroundColor="{StaticResource  Black}"
+                        BackgroundColor="{StaticResource Black}"
+                        Clicked="Button_Clicked"
                         FontFamily="{OnPlatform Android='QSB',
                                                 WinUI='QSSB'}"
                         FontSize="{OnPlatform WinUI=12,
                                               Android=14}"
+                        Text="Crear inventario"
                         WidthRequest="350" />
 
                 </VerticalStackLayout>

@@ -115,6 +115,14 @@
 
 
 
+                <Custom:EntryControl
+                    x:Name="txtCode"
+                    Margin="0,10,0,0"
+                    HorizontalOptions="Center"
+                    Placeholder="Codigo"
+                    WidthRequest="300" />
+
+
 
                 <!--  proveedor y cantidad  -->
                 <HorizontalStackLayout

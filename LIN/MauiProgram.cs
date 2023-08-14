@@ -17,11 +17,18 @@ public static class MauiProgram
     /// <summary>
     /// Abre una nueva pagina
     /// </summary>
-    public static void ShowOnTop(this ContentPage newPage)
+    public static void ShowOnTop(this Page newPage)
     {
-        var npage = new NavigationPage(newPage);
-        NavigationPage.SetHasNavigationBar(newPage, false);
-        App.Current!.MainPage = npage;
+        try
+        {
+            var npage = new NavigationPage(newPage);
+            NavigationPage.SetHasNavigationBar(newPage, false);
+            App.Current!.MainPage = npage;
+        }
+        catch (Exception ex)
+        {
+            App.Current!.MainPage.DisplayAlert("Error", ex.Message, "Ok");
+        }
     }
 
 
@@ -64,26 +71,27 @@ public static class MauiProgram
             {
                 essentials.UseMapServiceToken("gCUbfMPXmCnDH2WR6uPk~JduHoZNxfxpNPxPihSH2aw~AoCRe2_PQIXYtX5u3x9BV03jFM3RE0zir7_M0c6laIIfdlNdgYeFhmohu_6bIQIp");
             })
+
+
             .ConfigureLifecycleEvents(events =>
             {
 #if ANDROID
                 events.AddAndroid(android => android
+
+
                     .OnActivityResult((activity, requestCode, resultCode, data) =>
                     {
                     })
 
-                    .OnStart((activity) =>
-                    {
+                    // Evento (Al iniciar)
+                    .OnStart(LifecycleEvent.Events.OnStart)
 
-                        // Battery.Default.BatteryInfoChanged += Default_BatteryInfoChanged;
-
-                        if (Sesion.IsOpen)
-                        {
-                            AppShell.Hub.ReconnectAndUpdate();
-                        }
+                    // Evento (Al finalizar)
+                    .OnStop(LifecycleEvent.Events.OnStop)
 
 
-                    })
+
+
 
                     .OnCreate((activity, bundle) =>
                     {
@@ -100,19 +108,10 @@ public static class MauiProgram
                     })
 
 
-                       .OnStop((activity) =>
-                       {
-                           try
-                           {
-                               AppShell.Hub.CloseSesion();
-                           }
-                           catch
-                           {
 
-                           }
 
-                       }
-                       ));
+
+                       );
 #endif
 
 
@@ -170,7 +169,7 @@ public static class MauiProgram
 
 
         // Servicios de LIN
-        Services.BatteryService.Initialize();
+        BatteryService.Initialize();
 
         return builder.Build();
     }

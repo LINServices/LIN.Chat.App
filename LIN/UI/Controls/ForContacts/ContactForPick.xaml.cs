@@ -7,7 +7,7 @@ public partial class ContactForPick : Grid
     //========= Eventos =========//
 
     /// <summary>
-    /// Evento Click sonbre el control
+    /// Evento Click sobre el control
     /// </summary>
     public event EventHandler<EventArgs>? Clicked;
 
@@ -52,7 +52,7 @@ public partial class ContactForPick : Grid
         lbMail.Text = Modelo.Mail;
         lbTelefono.Text = Modelo.Phone;
 
-        // Si no hay imagen que mostar
+        // Si no hay imagen que mostrar
         if (Modelo.Picture.Length == 0)
         {
             img.Hide();

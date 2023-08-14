@@ -72,7 +72,6 @@ internal class Scripts
             if (!can)
                 return;
 
-
             var model = await Access.Controllers.Inflows.Read(id);
             var form = new UI.Views.Inflows.ViewItem(model.Model, true);
 
@@ -110,8 +109,8 @@ internal class Scripts
             if (!can)
                 return;
 
-            var model = await Access.Controllers.Inflows.Read(id);
 
+            var model = await Access.Controllers.Inflows.Read(id);
             var form = new UI.Views.Inflows.ViewItem(model.Model);
 
             form.Show();
@@ -160,6 +159,22 @@ internal class Scripts
         Actions.Add("disconnect", (param) =>
         {
             Services.Login.Logout.Start();
+        });
+
+
+        // Pantalla de informes
+        Actions.Add("openInformesScreen", (param) =>
+        {
+
+            // Convierte el valor
+            bool can = int.TryParse(param, out int id);
+
+            if (!can)
+                return;
+
+            var form = new UI.Views.Inventorys.Informes(id);
+
+            form.Show();
         });
 
     }

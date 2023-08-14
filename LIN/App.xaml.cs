@@ -10,6 +10,7 @@ public partial class App : Application
 
         var form = new UI.Views.Login();
         NavigationPage.SetHasNavigationBar(form, false);
+
         MainPage = new NavigationPage(form);
         NavigationPage.SetHasNavigationBar(MainPage, false);
 

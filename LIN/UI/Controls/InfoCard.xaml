@@ -53,7 +53,8 @@
                     <Label
                         Margin="7,0,0,0"
                         FontFamily="QSB"
-                        FontSize="{OnPlatform WinUI=10, Android=12}"
+                        FontSize="{OnPlatform WinUI=10,
+                                              Android=12}"
                         Text="{Binding Source={x:Reference this}, Path=ChartText}"
                         TextColor="{Binding Source={x:Reference this}, Path=TextColor}"
                         VerticalOptions="Center" />

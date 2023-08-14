@@ -220,7 +220,6 @@ public partial class AddItem : ContentPage
         if (Tipo == LIN.Shared.Enumerations.InflowsTypes.Ajuste)
             return true;
 
-
         // Rellena los detalles
         foreach (var control in Models)
         {

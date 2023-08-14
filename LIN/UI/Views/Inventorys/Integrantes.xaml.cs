@@ -1,4 +1,5 @@
 using LIN.Shared.Responses;
+using LIN.UI.Popups;
 
 namespace LIN.UI.Views.Inventorys;
 
@@ -389,6 +390,32 @@ public partial class Integrantes : ContentPage
     private void btnUpdate_Clicked(object sender, EventArgs e)
     {
         Reload();
+    }
+
+
+    /// <summary>
+    /// Boton de 
+    /// </summary>
+    private async void btnInformes_Clicked(object sender, EventArgs e)
+    {
+#if WINDOWS
+        new Informes(Inventory.ID).Show();
+#elif ANDROID
+
+        var deviceSelector = new DeviceSelector($"openInformesScreen({Inventory.ID})", new(false, true)
+        {
+            App = new[]
+          {
+                LINApps.Inventory
+            },
+            Plataformas = new[]
+          {
+                Platforms.Windows
+            }
+        });
+
+        var response = await deviceSelector.Show();
+#endif
     }
 
 

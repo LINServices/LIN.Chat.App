@@ -109,7 +109,7 @@ public partial class ViewItem : ContentPage
             return;
 
         var folderBase = result.Folder.Path;
-        PDFService.RenderInflow(Modelo, Sesion.Instance.Informacion.Usuario, Creador.Usuario, tranfers, folderBase);
+        await PDFService.RenderInflow(Modelo, Sesion.Instance.Informacion.Usuario, Creador.Usuario, tranfers, folderBase);
 
         await DisplayAlert("Reporte", "Reporte generado exitosamente", "OK");
 
@@ -130,6 +130,7 @@ public partial class ViewItem : ContentPage
         var response = await deviceSelector.Show();
 
 #endif
+
     }
 
 

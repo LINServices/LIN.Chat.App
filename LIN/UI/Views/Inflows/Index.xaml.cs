@@ -106,7 +106,6 @@ public partial class Index : ContentPage
         if (modelos.Response != Responses.Success)
             return modelos.Response;
 
-
         // Modelos
         Modelos = new();
         Modelos.AddRange(modelos.Models);

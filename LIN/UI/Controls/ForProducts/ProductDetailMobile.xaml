@@ -31,9 +31,9 @@
 
 
         <Grid RowDefinitions="*,*">
-            
+
             <HorizontalStackLayout Grid.Row="0">
-                
+
                 <!--  Proveedor  -->
                 <Personalized:ContactSquare
                     x:Name="displayContacto"
@@ -102,12 +102,12 @@
                         Titulo="Venta" />
 
                 </VerticalStackLayout>
-                
-                
+
+
             </HorizontalStackLayout>
-            
+
             <HorizontalStackLayout Grid.Row="1">
-                
+
                 <!--  Estadisticas  -->
                 <Custom:Border
                     Grid.Row="0"

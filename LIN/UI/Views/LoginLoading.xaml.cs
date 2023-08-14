@@ -110,7 +110,7 @@ public partial class LoginLoading : ContentPage
                 if (!IsCompleted)
                 {
                     new Login(message).ShowOnTop();
-                    this.Close();
+                    //this.Close();
                 }
             });
 
@@ -122,7 +122,7 @@ public partial class LoginLoading : ContentPage
         {
             // Abre la nueva ventana
             App.Current!.MainPage = new AppShell();
-            this.Close();
+            //this.Close();
         }
 
 
@@ -155,7 +155,7 @@ public partial class LoginLoading : ContentPage
         await this.Dispatcher.DispatchAsync(() =>
         {
             lbMessage.Text = "Iniciando";
-            lbMessageBlue.Text = "Sesion";
+            lbMessageBlue.Text = "Sesión";
         });
 
         await Task.Delay(5);
@@ -180,12 +180,12 @@ public partial class LoginLoading : ContentPage
                     break;
 
                 case PassKeyStatus.Rejected:
-                    new Login("Sesion de passkey rechazada").ShowOnTop();
+                    new Login("Sesión de passkey rechazada").ShowOnTop();
                     this.Close();
                     return;
 
                 case PassKeyStatus.Expired:
-                    new Login("La sesion expiro").ShowOnTop();
+                    new Login("La sesión expiro").ShowOnTop();
                     this.Close();
                     return;
 
@@ -211,24 +211,24 @@ public partial class LoginLoading : ContentPage
             if (login.Response == LIN.Shared.Responses.Responses.Success)
             {
                 // Abre la nueva ventana
-                App.Current!.MainPage = new AppShell();
-                this.Close();
+                new AppShell().ShowOnTop();
+               // this.Close();
             }
 
             else if (login.Response == LIN.Shared.Responses.Responses.InvalidPassword)
             {
-                new Login("La sesion expiro").ShowOnTop();
-                this.Close();
+                new Login("La sesión expiro").ShowOnTop();
+                //this.Close();
             }
             else if (login.Response == LIN.Shared.Responses.Responses.NotExistAccount)
             {
                 new Login("No existe este usuario").ShowOnTop();
-                this.Close();
+                //this.Close();
             }
             else
             {
-                new Login("Intentalo mas tarde").ShowOnTop();
-                this.Close();
+                new Login("Inténtalo mas tarde").ShowOnTop();
+                //this.Close();
             }
         });
     }

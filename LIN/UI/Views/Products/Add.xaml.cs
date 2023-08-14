@@ -186,7 +186,7 @@ public partial class Add : ContentPage
                 Category = TextShortener.ToProductCategory((string)inpCategoria.SelectedItem ?? ""),
                 Image = await imagen,
                 Inventory = InventoryID,
-                Code = "",
+                Code = txtCode.Text,
                 Description = txtDescripcion.Text,
                 Provider = contacto.Modelo.ID,
                 Estado = ProductBaseStatements.Normal,

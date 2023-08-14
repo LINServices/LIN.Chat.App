@@ -1,6 +1,5 @@
-using CommunityToolkit.Maui.Animations;
-
 namespace LIN.Controls.UI;
+
 
 public partial class Card : ContentView
 {

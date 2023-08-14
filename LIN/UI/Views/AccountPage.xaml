@@ -56,7 +56,7 @@
                             FontSize="16"
                             Text="Alexander Giraldo"
                             VerticalOptions="Center" />
-                        
+
                         <Image
                             x:Name="displayInsignia"
                             Margin="3,2,0,0"
@@ -64,7 +64,7 @@
                             Source="verificado.png"
                             VerticalOptions="Center"
                             WidthRequest="11" />
-                        
+
                     </HorizontalStackLayout>
 
 
@@ -194,6 +194,7 @@
                 x:Name="cardLayout"
                 Margin="0,10,0,0"
                 HorizontalOptions="FillAndExpand"
+                IsVisible="false"
                 Orientation="Horizontal"
                 Scrolled="ScrollView_Scrolled">
 

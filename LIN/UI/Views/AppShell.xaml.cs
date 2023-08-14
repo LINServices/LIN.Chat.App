@@ -51,7 +51,7 @@ public partial class AppShell : Shell
     private void BatteryService_StatusChange(object? sender, BatteryStatus e)
     {
 
-        if (Hub.DeviceModel == null)
+        if (Hub?.DeviceModel == null)
             return;
 
         if (Hub.DeviceModel.BateryLevel != e.Percent || Hub.DeviceModel.BateryConected != e.IsChargin)

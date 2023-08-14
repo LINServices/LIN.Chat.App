@@ -6,7 +6,7 @@ public partial class ContactMini : Grid
     //========= Eventos =========//
 
     /// <summary>
-    /// Evento Click sonbre el control
+    /// Evento Click sobre el control
     /// </summary>
     public event EventHandler<EventArgs>? Clicked;
 
@@ -96,7 +96,7 @@ public partial class ContactMini : Grid
         lbName.Text = Modelo.Name;
         lbMail.Text = Modelo.Mail;
 
-        // Si no hay imagen que mostar
+        // Si no hay imagen que mostrar
         if (Modelo.Picture.Length ==0)
         {
             img.Hide();

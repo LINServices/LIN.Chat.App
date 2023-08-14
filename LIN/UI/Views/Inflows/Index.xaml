@@ -53,7 +53,7 @@
                     WidthRequest="{OnPlatform Android=37,
                                               WinUI=35}" />
 
-                
+
 
 
             </HorizontalStackLayout>

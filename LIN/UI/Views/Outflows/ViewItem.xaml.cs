@@ -120,7 +120,9 @@ public partial class ViewItem : ContentPage
     private async void Export(object sender, EventArgs e)
     {
 
+
 #if WINDOWS
+
         CancellationToken token = new();
         var result = await FolderPicker.Default.PickAsync(token);
         if (!result.IsSuccessful)
@@ -128,12 +130,12 @@ public partial class ViewItem : ContentPage
 
         var folderBase = result.Folder.Path;
 
-        PDFService.RenderOutflow(Modelo, Sesion.Instance.Informacion.Usuario, Creador.Usuario, Transfers, folderBase);
+        await PDFService.RenderOutflow(Modelo, Sesion.Instance.Informacion.Usuario, Creador.Usuario, Transfers, folderBase);
         await DisplayAlert("Reporte", "Reporte generado exitosamente", "OK");
 
-#elif ANDROID        
+#elif ANDROID
 
-        var deviceSelector = new DeviceSelector($"exportOutflow({Modelo.ID})", new(false, false)
+        var deviceSelector = new DeviceSelector($"exportInflow({Modelo.ID})", new(false, false)
         {
             App = new[]
             {
@@ -148,6 +150,9 @@ public partial class ViewItem : ContentPage
         var response = await deviceSelector.Show();
 
 #endif
+
+
+
 
     }
 

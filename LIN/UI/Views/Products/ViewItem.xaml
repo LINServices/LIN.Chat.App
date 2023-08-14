@@ -146,6 +146,7 @@
 
                     <!--  Codigo de barras  -->
                     <Custom:Label
+                        x:Name="barcode"
                         Margin="0,15,0,0"
                         FontFamily="Barcode"
                         FontSize="45"

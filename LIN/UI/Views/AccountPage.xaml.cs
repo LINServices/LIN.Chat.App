@@ -346,6 +346,9 @@ public partial class AccountPage : ContentPage
     private async void AccountPage_Appearing(object? sender, EventArgs e)
     {
 
+        if (AppShell.Hub == null)
+            return;
+
         AppShell.Hub.SendTest();
         AppShell.ActualPage = this;
 

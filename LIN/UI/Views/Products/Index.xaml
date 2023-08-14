@@ -55,17 +55,7 @@
                                               WinUI=35}" />
 
 
-                <Custom:ToggleButton
-                    x:Name="btnIntegrantes"
-                    Clicked="btnIntegrantes_Clicked"
-                    ColorBG="Transparent"
-                    HeightRequest="{OnPlatform Android=37,
-                                               WinUI=35}"
-                    Picture="group_black.png"
-                    ToolTipProperties.Text="Integrantes"
-                    VerticalOptions="Center"
-                    WidthRequest="{OnPlatform Android=37,
-                                              WinUI=35}" />
+
 
                 <Custom:ToggleButton
                     x:Name="btnAdd"
@@ -84,8 +74,22 @@
                     ColorBG="Transparent"
                     HeightRequest="{OnPlatform Android=37,
                                                WinUI=35}"
+                    IsVisible="false"
                     Picture="lupa.png"
                     ToolTipProperties.Text="Buscar"
+                    VerticalOptions="Center"
+                    WidthRequest="{OnPlatform Android=37,
+                                              WinUI=35}" />
+
+
+                <Custom:ToggleButton
+                    x:Name="btnIntegrantes"
+                    Clicked="btnIntegrantes_Clicked"
+                    ColorBG="Transparent"
+                    HeightRequest="{OnPlatform Android=37,
+                                               WinUI=35}"
+                    Picture="setting_gray.png"
+                    ToolTipProperties.Text="Integrantes e informes"
                     VerticalOptions="Center"
                     WidthRequest="{OnPlatform Android=37,
                                               WinUI=35}" />

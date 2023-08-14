@@ -27,6 +27,17 @@
                 VerticalOptions="Center">
 
 
+                <Custom:ToggleButton
+                    Clicked="btnInformes_Clicked"
+                    ColorBG="Transparent"
+                    HeightRequest="{OnPlatform Android=37,
+                                               WinUI=35}"
+                    Picture="pdf.png"
+                    ToolTipProperties.Text="Informes"
+                    VerticalOptions="Center"
+                    WidthRequest="{OnPlatform Android=37,
+                                              WinUI=35}" />
+
 
                 <Custom:ToggleButton
                     Clicked="btnUpdate_Clicked"

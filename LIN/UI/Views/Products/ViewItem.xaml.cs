@@ -100,6 +100,7 @@ public partial class ViewItem : ContentPage, IProductViewer
         displayName.Text = Modelo.Name;
         displayCategory.Text = Modelo.Category.Humanize();
         displayDescripcion.Text = Modelo.Description;
+        barcode.Text = Modelo.Code;
 
         // Imagen
         displayImagen.Source = (Modelo.Image.Length <= 0) ? ImageSource.FromFile("caja.png") : ImageEncoder.Decode(Modelo.Image);

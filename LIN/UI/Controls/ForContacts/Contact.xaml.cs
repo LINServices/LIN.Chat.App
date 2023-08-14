@@ -56,7 +56,7 @@ public partial class Contact : Grid, IContactViewer
         lbMail.Text = Modelo.Mail;
         lbTelefono.Text = Modelo.Phone;
 
-        // Si no hay imagen que mostar
+        // Si no hay imagen que mostrar
         if (Modelo.Picture.Length == 0)
         {
             img.Hide();
@@ -77,7 +77,7 @@ public partial class Contact : Grid, IContactViewer
 
 
     /// <summary>
-    /// Envia el evento click
+    /// Envía el evento click
     /// </summary>
     private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
     {

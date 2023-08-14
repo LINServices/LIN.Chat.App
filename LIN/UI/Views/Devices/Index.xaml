@@ -192,7 +192,6 @@
                                   Android=0}"
             Grid.Column="{OnPlatform WinUI=1,
                                      Android=0}"
-            
             VerticalOptions="FillAndExpand">
             <Custom:Map
                 x:Name="mapa"

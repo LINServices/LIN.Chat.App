@@ -3,7 +3,6 @@ using CommunityToolkit.Maui.Core;
 using Android.Views;
 #endif
 
-
 namespace LIN.UI.Views;
 
 

@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		
-		<TargetFrameworks>net7.0-android;</TargetFrameworks>
+		<TargetFrameworks>;net7.0-android33.0</TargetFrameworks>
 		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
 		<!-- <TargetFrameworks>$(TargetFrameworks);net7.0-tizen</TargetFrameworks> -->
@@ -27,8 +27,18 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">24.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
-		<Configurations>Debug;Release;Build</Configurations>
-		<Platforms>AnyCPU;x86</Platforms>
+		<Configurations>Debug;Release;</Configurations>
+		<Platforms>AnyCPU;x86;ARM32</Platforms>
+		<NeutralLanguage>es-CO</NeutralLanguage>
+		<GenerateAppInstallerFile>False</GenerateAppInstallerFile>
+		<AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+		<AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
+		<GenerateTestArtifacts>True</GenerateTestArtifacts>
+		<HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
+		<AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
+		<PackageCertificateThumbprint>86AECE1E9FCF630FCD4EAC6B3C5E7DF523D48E5B</PackageCertificateThumbprint>
+		<AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
+		<SignAssembly>False</SignAssembly>
 	</PropertyGroup>
 
 
@@ -40,6 +50,16 @@
 	
 	
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-android|AnyCPU'">
+	  <WarningLevel>9999</WarningLevel>
+	  <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+	  <JavaMaximumHeapSize>5G</JavaMaximumHeapSize>
+	  <AndroidKeyStore>False</AndroidKeyStore>
+	</PropertyGroup>
+	
+	
+	
+	
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-android|ARM32'">
 	  <WarningLevel>9999</WarningLevel>
 	  <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
 	  <JavaMaximumHeapSize>5G</JavaMaximumHeapSize>
@@ -64,6 +84,14 @@
 	  <AndroidKeyStore>False</AndroidKeyStore>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-android|ARM32'">
+	  <WarningLevel>9999</WarningLevel>
+	  <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+	  <AndroidPackageFormat>apk</AndroidPackageFormat>
+	  <JavaMaximumHeapSize>5G</JavaMaximumHeapSize>
+	  <AndroidKeyStore>False</AndroidKeyStore>
+	</PropertyGroup>
+
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-android|x86'">
 	  <WarningLevel>9999</WarningLevel>
 	  <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
@@ -73,6 +101,11 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-windows10.0.19041.0|AnyCPU'">
+	  <WarningLevel>9999</WarningLevel>
+	  <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-windows10.0.19041.0|ARM32'">
 	  <WarningLevel>9999</WarningLevel>
 	  <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
 	</PropertyGroup>
@@ -87,29 +120,76 @@
 	  <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-windows10.0.19041.0|ARM32'">
+	  <WarningLevel>9999</WarningLevel>
+	  <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+	</PropertyGroup>
+
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-windows10.0.19041.0|x86'">
 	  <WarningLevel>9999</WarningLevel>
 	  <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Build|net7.0-android|AnyCPU'">
-	  <Optimize>True</Optimize>
-	  <JavaMaximumHeapSize>5G</JavaMaximumHeapSize>
+
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-android33.0|AnyCPU'">
+	  <PublishTrimmed>True</PublishTrimmed>
+	  <AndroidPackageFormat>apk</AndroidPackageFormat>
+	  <EnableLLVM>True</EnableLLVM>
+	  <RunAOTCompilation>True</RunAOTCompilation>
+	  <AndroidEnableProfiledAot>False</AndroidEnableProfiledAot>
+	  <AndroidLinkTool>r8</AndroidLinkTool>
+	  <AndroidStoreUncompressedFileExtensions>.dll</AndroidStoreUncompressedFileExtensions>
+	  <JavaMaximumHeapSize>2G</JavaMaximumHeapSize>
 	  <AndroidKeyStore>False</AndroidKeyStore>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Build|net7.0-android|x86'">
-	  <Optimize>True</Optimize>
-	  <JavaMaximumHeapSize>5G</JavaMaximumHeapSize>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-android33.0|ARM32'">
+	  <PublishTrimmed>True</PublishTrimmed>
+	  <AndroidPackageFormat>apk</AndroidPackageFormat>
+	  <EnableLLVM>True</EnableLLVM>
+	  <RunAOTCompilation>True</RunAOTCompilation>
+	  <AndroidEnableProfiledAot>False</AndroidEnableProfiledAot>
+	  <AndroidLinkTool>r8</AndroidLinkTool>
+	  <AndroidStoreUncompressedFileExtensions>.dll</AndroidStoreUncompressedFileExtensions>
+	  <JavaMaximumHeapSize>2G</JavaMaximumHeapSize>
 	  <AndroidKeyStore>False</AndroidKeyStore>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Build|net7.0-windows10.0.19041.0|AnyCPU'">
-	  <Optimize>True</Optimize>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-android33.0|x86'">
+	  <PublishTrimmed>True</PublishTrimmed>
+	  <AndroidPackageFormat>apk</AndroidPackageFormat>
+	  <EnableLLVM>True</EnableLLVM>
+	  <RunAOTCompilation>True</RunAOTCompilation>
+	  <AndroidEnableProfiledAot>False</AndroidEnableProfiledAot>
+	  <AndroidLinkTool>r8</AndroidLinkTool>
+	  <AndroidStoreUncompressedFileExtensions>.dll</AndroidStoreUncompressedFileExtensions>
+	  <JavaMaximumHeapSize>2G</JavaMaximumHeapSize>
+	  <AndroidKeyStore>False</AndroidKeyStore>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Build|net7.0-windows10.0.19041.0|x86'">
-	  <Optimize>True</Optimize>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-android33.0|AnyCPU'">
+	  <EnableLLVM>True</EnableLLVM>
+	  <AndroidStoreUncompressedFileExtensions>.dll</AndroidStoreUncompressedFileExtensions>
+	  <JavaMaximumHeapSize>2G</JavaMaximumHeapSize>
+	  <AndroidKeyStore>False</AndroidKeyStore>
+	  <PublishTrimmed>False</PublishTrimmed>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-android33.0|ARM32'">
+	  <EnableLLVM>True</EnableLLVM>
+	  <AndroidStoreUncompressedFileExtensions>.dll</AndroidStoreUncompressedFileExtensions>
+	  <JavaMaximumHeapSize>2G</JavaMaximumHeapSize>
+	  <AndroidKeyStore>False</AndroidKeyStore>
+	  <PublishTrimmed>False</PublishTrimmed>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-android33.0|x86'">
+	  <EnableLLVM>True</EnableLLVM>
+	  <AndroidStoreUncompressedFileExtensions>.dll</AndroidStoreUncompressedFileExtensions>
+	  <JavaMaximumHeapSize>2G</JavaMaximumHeapSize>
+	  <AndroidKeyStore>False</AndroidKeyStore>
+	  <PublishTrimmed>False</PublishTrimmed>
 	</PropertyGroup>
 
 	
@@ -119,11 +199,9 @@
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
 
-		
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#3b82f6" BaseSize="128,128" />
 	
-
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
 		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
@@ -138,6 +216,12 @@
 
 	
 	<ItemGroup>
+	  <Content Remove="C:\Users\giral\.nuget\packages\select.htmltopdf.netcore\23.1.0\contentFiles\any\any\Select.Html.dep" />
+	</ItemGroup>
+
+	
+	<ItemGroup>
+	  <None Remove=".cfg" />
 	  <None Remove="Resources\Images\bf.jpg" />
 	  <None Remove="Resources\Images\bg4.png" />
 	  <None Remove="Resources\Images\lock.png" />
@@ -151,8 +235,14 @@
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Maui" Version="5.2.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
-		<PackageReference Include="Select.HtmlToPdf.NetCore" Version="23.1.0" />
 		<PackageReference Include="System.Runtime.InteropServices.NFloat.Internal" Version="6.0.1" />
+	</ItemGroup>
+
+	
+
+
+	<ItemGroup>
+	  <ProguardConfiguration Include=".cfg" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -204,6 +294,9 @@
 	  </Compile>
 	  <Compile Update="UI\Views\Inflows\AddItem.xaml.cs">
 	    <DependentUpon>%(Filename)</DependentUpon>
+	  </Compile>
+	  <Compile Update="UI\Views\Inventorys\Informes.xaml.cs">
+	    <DependentUpon>Informes.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="UI\Views\Inventorys\IntegrantsAdd.xaml.cs">
 	    <DependentUpon>IntegrantsAdd.xaml</DependentUpon>
@@ -346,6 +439,9 @@
 	  <MauiXaml Update="UI\Views\Inventorys\AddInventory.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="UI\Views\Inventorys\Informes.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="UI\Views\Outflows\AddItem.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -388,6 +484,10 @@
 	  <MauiXaml Update="UI\Views\Singin.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Properties\PublishProfiles\" />
 	</ItemGroup>
 
 </Project>

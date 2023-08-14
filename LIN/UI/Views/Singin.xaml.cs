@@ -17,7 +17,7 @@ public partial class Singin : ContentPage
 
 
     /// <summary>
-    /// Evento cuando se escribe sobre los txts
+    /// Evento cuando se escribe sobre los textbox
     /// </summary>
     private void TxtChanged(object sender, TextChangedEventArgs e)
     {
@@ -52,7 +52,7 @@ public partial class Singin : ContentPage
         string name = txtName.Text ?? "";
         string pass = txtPassword.Text ?? "";
 
-        // Campos vacios
+        // Campos vacíos
         if (string.IsNullOrEmpty(user.Trim()) || string.IsNullOrEmpty(name.Trim()) || string.IsNullOrEmpty(pass.Trim()))
         {
             DisableChargeMode();
@@ -62,11 +62,11 @@ public partial class Singin : ContentPage
         }
 
 
-        // Contraseña Lenght
+        // Contraseña Length
         if (pass.Length < 4)
         {
             DisableChargeMode();
-            lbInfo.Text = "La contraseña debe de tener minimo 4 digitos";
+            lbInfo.Text = "La contraseña debe de tener mínimo 4 dígitos";
             lbInfo.Show();
             return;
         }
@@ -81,7 +81,7 @@ public partial class Singin : ContentPage
             Perfil = await inpImg.GetBytes()
         };
 
-        // Creacion
+        // Creación
         var res = await LIN.Access.Controllers.User.CreateAsync(modelo);
 
 
@@ -94,7 +94,7 @@ public partial class Singin : ContentPage
 
             case Responses.NotConnection:
                 DisableChargeMode();
-                lbInfo.Text = "Error conexion";
+                lbInfo.Text = "Error conexión";
                 lbInfo.IsVisible = true;
                 return;
 
