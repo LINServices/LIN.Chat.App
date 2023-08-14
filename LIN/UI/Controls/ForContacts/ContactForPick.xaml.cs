@@ -18,14 +18,14 @@ public partial class ContactForPick : Grid
     /// <summary>
     /// Modelo
     /// </summary>
-    public Shared.Models.ContactDataModel Modelo { get; set; }
+    public ContactDataModel Modelo { get; set; }
 
 
 
     /// <summary>
     /// Constructor
     /// </summary>
-    public ContactForPick(Shared.Models.ContactDataModel modelo)
+    public ContactForPick(ContactDataModel modelo)
     {
         InitializeComponent();
         this.Modelo = modelo;

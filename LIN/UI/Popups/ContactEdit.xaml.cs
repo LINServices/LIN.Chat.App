@@ -1,6 +1,3 @@
-using LIN.Shared.Responses;
-using LIN.UI.Views;
-
 namespace LIN.UI.Popups;
 
 
@@ -81,7 +78,7 @@ public partial class ContactEdit : Popup
 
         if (response.Response == Responses.Success)
         {
-            AppShell.Hub.SendContactModel(Sesion.Instance.Informacion.ID, Modelo.ID);
+            AppShell.Hub.SendContactModel(Session.Instance.Informacion.ID, Modelo.ID);
             ContactObserver.Update(Modelo);
         }
 

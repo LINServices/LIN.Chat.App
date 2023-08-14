@@ -17,7 +17,7 @@ public partial class ContactSquare : Grid
     /// <summary>
     /// Model del contacto
     /// </summary>
-    public LIN.Shared.Models.ContactDataModel Modelo { get; set; }
+    public ContactDataModel Modelo { get; set; }
 
 
     public string Text { get => lbName.Text; set => lbName.Text = value; }
@@ -26,7 +26,7 @@ public partial class ContactSquare : Grid
     /// <summary>
     /// Constructor con modelo
     /// </summary>
-    public ContactSquare(LIN.Shared.Models.ContactDataModel modelo)
+    public ContactSquare(ContactDataModel modelo)
     {
         InitializeComponent();
         this.Modelo = modelo;

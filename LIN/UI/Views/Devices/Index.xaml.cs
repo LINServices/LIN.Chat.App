@@ -1,5 +1,3 @@
-using LIN.Shared.Models;
-
 namespace LIN.UI.Views.Devices;
 
 public partial class Index : ContentPage

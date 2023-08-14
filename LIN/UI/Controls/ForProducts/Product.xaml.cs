@@ -15,7 +15,7 @@ public partial class Product : Grid, IProductViewer
     /// <summary>
     /// Modelo del producto
     /// </summary>
-    public Shared.Models.ProductDataTransfer Modelo { get; set; }
+    public ProductDataTransfer Modelo { get; set; }
 
 
     public string? ContextKey { get; init; }

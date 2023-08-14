@@ -1,5 +1,5 @@
-using LIN.Access.Hubs;
-using LIN.Shared.Responses;
+
+
 
 namespace LIN.UI.Views.Inflows;
 
@@ -373,7 +373,7 @@ public partial class Index : ContentPage
     /// <summary>
     /// Cuando se recibe una nueva entrada (Realtime)
     /// </summary>
-    private void Hub_OnReciveInflow(object? sender, Shared.Models.InflowDataModel e)
+    private void Hub_OnReciveInflow(object? sender, InflowDataModel e)
     {
         Dispatcher.DispatchAsync(() =>
         {

@@ -10,10 +10,10 @@ public partial class Notificacion : Grid
     public event EventHandler<EventArgs>? Clicked;
 
 
-    public LIN.Shared.Models.Notificacion Modelo { get; set; }
+    public Notificacion Modelo { get; set; }
 
 
-    public Notificacion(LIN.Shared.Models.Notificacion modelo)
+    public Notificacion(Notificacion modelo)
     {
         InitializeComponent();
         this.Modelo = modelo;

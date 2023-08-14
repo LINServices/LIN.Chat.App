@@ -68,7 +68,7 @@ public partial class Add : ContentPage
 
 
         // Model
-        var modelo = new LIN.Shared.Models.ContactDataModel()
+        var modelo = new ContactDataModel()
         {
             Mail = txtMail.Text ?? "Sin definir",
             Name = txtName.Text ?? "Unamed",

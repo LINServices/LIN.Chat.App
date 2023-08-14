@@ -98,7 +98,7 @@ public partial class ProductTemplateSelector : Popup
     /// <summary>
     /// Renderiza una lista de modelos
     /// </summary>
-    private void RenderModels(List<Shared.Models.ProductDataTransfer> models)
+    private void RenderModels(List<ProductDataTransfer> models)
     {
         // Recorre los modelos
         foreach (var item in models)
@@ -157,7 +157,7 @@ public partial class ProductTemplateSelector : Popup
     /// </summary>
     private void BtnCancelClick(object sender, EventArgs e)
     {
-        this.Close(new Shared.Models.UserDataModel());
+        this.Close(new UserDataModel());
     }
 
 

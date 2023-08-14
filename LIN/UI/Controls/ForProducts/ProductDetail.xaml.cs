@@ -7,14 +7,14 @@ public partial class ProductDetail : Grid
     /// <summary>
     /// Model del detalle
     /// </summary>
-    public LIN.Shared.Models.ProductDataTransfer Detalle { get; set; } = new();
+    public ProductDataTransfer Detalle { get; set; } = new();
 
 
 
     /// <summary>
     /// Constructor
     /// </summary>
-    public ProductDetail(LIN.Shared.Models.ProductDataTransfer detalle)
+    public ProductDetail(ProductDataTransfer detalle)
     {
         InitializeComponent();
         this.Detalle = detalle;

@@ -1,5 +1,4 @@
-using LIN.Access.Hubs;
-using LIN.Shared.Responses;
+using LIN.Access.Inventory.Hubs;
 
 namespace LIN.UI.Popups;
 
@@ -15,13 +14,13 @@ public partial class ProductEdit : Popup, IProductViewer
 
     public string? ContextKey { get; init; } = "";
 
-    ProductAccessHub? Hub;
+    InventoryAccessHub? Hub;
 
 
     /// <summary>
     /// Constructor
     /// </summary>
-    public ProductEdit(ProductDataTransfer product, ProductAccessHub? hub)
+    public ProductEdit(ProductDataTransfer product, InventoryAccessHub? hub)
     {
         InitializeComponent();
         this.CanBeDismissedByTappingOutsideOfPopup = false;
@@ -87,7 +86,7 @@ public partial class ProductEdit : Popup, IProductViewer
             case ProductCategories.Servicios:
                 inpCategoria.SelectedIndex = 7;
                 break;
-            case ProductCategories.Tecnologia:
+            case ProductCategories.Tecnología:
                 inpCategoria.SelectedIndex = 1;
                 break;
             case ProductCategories.Undefined:

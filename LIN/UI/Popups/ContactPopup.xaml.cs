@@ -4,7 +4,7 @@ public partial class ContactPopup : Popup
 {
 
 
-    public LIN.Shared.Models.ContactDataModel Modelo { get; set; }
+    public ContactDataModel Modelo { get; set; }
 
 
 

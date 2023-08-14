@@ -1,4 +1,4 @@
-using LIN.Shared.Responses;
+
 using LIN.UI.Views;
 
 namespace LIN.UI.Popups;
@@ -56,14 +56,13 @@ public partial class UserPassEdit : Popup
 
         var modelo = new UpdatePasswordModel
         {
-            Account = Sesion.Instance.Informacion.ID,
+            Account = Session.Instance.Account.ID,
             NewPassword = newPassword,
             OldPassword = oldPassword
         };
 
 
-        var response = await LIN.Access.Controllers.User.UpdatePassword(modelo);
-
+        var response = await LIN.Access.Auth.Controllers.Account.UpdatePassword(modelo);
 
         if (response.Response != Responses.Success)
         {

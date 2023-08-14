@@ -1,4 +1,4 @@
-using LIN.Access.Hubs;
+
 
 namespace LIN.UI.Views.Products;
 
@@ -12,7 +12,7 @@ public partial class ViewItem : ContentPage, IProductViewer
     /// <summary>
     /// Modelo del producto
     /// </summary>
-    public LIN.Shared.Models.ProductDataTransfer Modelo { get; set; }
+    public ProductDataTransfer Modelo { get; set; }
 
 
     public string? ContextKey { get; init; } = "VI";

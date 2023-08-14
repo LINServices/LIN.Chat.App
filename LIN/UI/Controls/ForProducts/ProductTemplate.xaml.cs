@@ -31,14 +31,14 @@ public partial class ProductTemplate : Grid
     /// <summary>
     /// Model del contacto
     /// </summary>
-    public LIN.Shared.Models.ProductDataTransfer Modelo { get; set; }
+    public ProductDataTransfer Modelo { get; set; }
 
     public bool IsSelected { get; private set; } = false;
 
     /// <summary>
     /// Constructor
     /// </summary>
-    public ProductTemplate(LIN.Shared.Models.ProductDataTransfer modelo)
+    public ProductTemplate(ProductDataTransfer modelo)
     {
         InitializeComponent();
         this.Modelo = modelo;

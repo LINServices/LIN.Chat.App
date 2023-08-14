@@ -14,7 +14,7 @@ public partial class Inflow : Grid
     /// <summary>
     /// Modelo del producto
     /// </summary>
-    public Shared.Models.InflowDataModel Modelo { get; set; }
+    public InflowDataModel Modelo { get; set; }
 
 
 
@@ -22,7 +22,7 @@ public partial class Inflow : Grid
     /// <summary>
     /// Constructor
     /// </summary>
-    public Inflow(LIN.Shared.Models.InflowDataModel modelo)
+    public Inflow(InflowDataModel modelo)
     {
         InitializeComponent();
         this.Modelo = modelo;

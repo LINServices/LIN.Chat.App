@@ -1,4 +1,4 @@
-using LIN.Shared.Responses;
+
 
 namespace LIN.UI.Views.Contacts;
 
@@ -87,7 +87,7 @@ public partial class Index : ContentPage
         if (AppShell.Hub == null)
             return;
 
-        AppShell.Hub.OnReceiveContact += HubConnection_On;
+       // AppShell.Hub.OnReceiveContact += HubConnection_On;
     }
 
 
@@ -106,7 +106,7 @@ public partial class Index : ContentPage
     {
 
         // respuesta desde la API
-        var contactos = await Access.Inventory.Controllers.Contact.ReadAll(Sesion.Instance.Informacion.ID);
+        var contactos = await Access.Inventory.Controllers.Contact.ReadAll(Session.Instance.Informacion.ID);
 
         // Validacion
         if (contactos.Response != Responses.Success)
@@ -399,7 +399,7 @@ public partial class Index : ContentPage
             return;
         }
 
-        var count = Controles.Where(T => T.Modelo.State == LIN.Shared.Enumerations.ContactStatus.OnTrash).Count();
+        var count = Controles.Where(T => T.Modelo.State == ContactStatus.OnTrash).Count();
         displayPapelera.Contenido = $"{count} elementos";
         cardCantidad.Contenido = $"{Modelos.Count}";
         cardCantidad.ChartText = $"{Modelos.Where(T => T.State == ContactStatus.OnTrash).Count()} en papelera";

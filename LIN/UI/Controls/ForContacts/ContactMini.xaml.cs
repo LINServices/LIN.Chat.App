@@ -17,7 +17,7 @@ public partial class ContactMini : Grid
     /// <summary>
     /// Modelo
     /// </summary>
-    public Shared.Models.ContactDataModel Modelo { get; set; }
+    public ContactDataModel Modelo { get; set; }
 
 
     public string Text { get => lbName.Text; set => lbName.Text = value; }
@@ -26,7 +26,7 @@ public partial class ContactMini : Grid
     /// <summary>
     /// Constructor con modelo
     /// </summary>
-    public ContactMini(LIN.Shared.Models.ContactDataModel modelo)
+    public ContactMini(ContactDataModel modelo)
     {
         InitializeComponent();
         this.Modelo = modelo;

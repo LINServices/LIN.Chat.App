@@ -14,7 +14,7 @@ public partial class Outflow : Grid
     /// <summary>
     /// Modelo del producto
     /// </summary>
-    public Shared.Models.OutflowDataModel Modelo { get; set; }
+    public OutflowDataModel Modelo { get; set; }
 
 
 
@@ -22,7 +22,7 @@ public partial class Outflow : Grid
     /// <summary>
     /// Constructor
     /// </summary>
-    public Outflow(LIN.Shared.Models.OutflowDataModel modelo)
+    public Outflow(OutflowDataModel modelo)
     {
         InitializeComponent();
         this.Modelo = modelo;

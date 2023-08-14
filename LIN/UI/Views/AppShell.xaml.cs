@@ -14,7 +14,7 @@ public partial class AppShell : Shell
     /// <summary>
     /// Hub de ViewON
     /// </summary>
-    public static Access.Hubs.AccountHub Hub = new(BuildHub());
+    public static dynamic Hub = null;//new(BuildHub());
 
 
 
@@ -33,11 +33,11 @@ public partial class AppShell : Shell
         InitializeComponent();
         Instance = this;
 
-        Hub ??= new(BuildHub());
+        //Hub ??= new(BuildHub());
         
-        // Eventos del HUB
-        Hub.OnReceiveCommand += Hub_OnRecieve;
-        Hub.OnChange += Hub_OnChange;
+        //// Eventos del HUB
+        //Hub.OnReceiveCommand += Hub_OnRecieve;
+        //Hub.OnChange += Hub_OnChange;
 
         BatteryService.StatusChange += BatteryService_StatusChange;
 
@@ -68,13 +68,13 @@ public partial class AppShell : Shell
     /// Abre nueva ventana de ViewON
     /// </summary>
     /// <param name="command">Comando SILF</param>
-    public static async void OnViewON(string command, LINApps app = LINApps.Inventory)
+    public static async void OnViewON(string command, Applications app = Applications.Inventory)
     {
 
         // Filtro de ViewON
         var filtro = new DeviceFilterModel()
         {
-            App = new[] { LINApps.Inventory, app },
+            App = new[] { Applications.Inventory, app },
             AutoSelect = false,
             HasMe = false
         };
@@ -136,16 +136,16 @@ public partial class AppShell : Shell
         var model = new DeviceModel()
         {
             Name = MauiProgram.GetDeviceName(),
-            Cuenta = Sesion.Instance.Informacion.ID,
+            Cuenta = Session.Instance.Account.ID,
             Modelo = DeviceInfo.Current.Model,
             BateryConected = BatteryService.IsChargin,
             BateryLevel = BatteryService.Percent,
             Manufacter = DeviceInfo.Current.Manufacturer,
             OsVersion = DeviceInfo.Current.VersionString,
             Platform = MauiProgram.GetPlatform(),
-            App = LINApps.Inventory,
+            App = Applications.Inventory,
             DeviceKey = MauiProgram.DeviceSesionKey,
-            Token = Sesion.Instance.Token
+            Token = Session.Instance.AccountToken
         };
 
         // Locacion
@@ -170,7 +170,7 @@ public partial class AppShell : Shell
     {
         Dispatcher.DispatchAsync(new Action(() =>
         {
-            Hub.GetDevicesList(Sesion.Instance.Informacion.ID);
+            Hub.GetDevicesList(Session.Instance.Account.ID);
         }));
     }
 

@@ -14,10 +14,10 @@ public partial class ProductDetail : Grid
     /// <summary>
     /// Modelo del producto
     /// </summary>
-    public Shared.Models.AbstractDetailsDataModel Modelo { get; set; }
+    public AbstractDetailsDataModel Modelo { get; set; }
 
 
-    public Shared.Models.ProductDataTransfer Producto { get; set; }
+    public ProductDataTransfer Producto { get; set; }
 
 
     List<ProductDataTransfer> Tranfers;
@@ -27,7 +27,7 @@ public partial class ProductDetail : Grid
     /// <summary>
     /// Constructor
     /// </summary>
-    public ProductDetail(LIN.Shared.Models.AbstractDetailsDataModel modelo, List<ProductDataTransfer> tranfers, Action? OnFinish = null)
+    public ProductDetail(AbstractDetailsDataModel modelo, List<ProductDataTransfer> tranfers, Action? OnFinish = null)
     {
         InitializeComponent();
         this.Modelo = modelo;

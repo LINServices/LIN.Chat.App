@@ -29,7 +29,7 @@ public partial class ProductForPick : Grid
     /// <summary>
     /// Model del contacto
     /// </summary>
-    public LIN.Shared.Models.ProductDataTransfer Modelo { get; set; }
+    public ProductDataTransfer Modelo { get; set; }
 
 
 
@@ -54,7 +54,7 @@ public partial class ProductForPick : Grid
     /// <summary>
     /// Constructor
     /// </summary>
-    public ProductForPick(LIN.Shared.Models.ProductDataTransfer modelo)
+    public ProductForPick(ProductDataTransfer modelo)
     {
         InitializeComponent();
         this.Modelo = modelo;

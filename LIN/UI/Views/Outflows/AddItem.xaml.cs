@@ -1,5 +1,5 @@
-using LIN.Access.Hubs;
-using LIN.Shared.Responses;
+
+
 using LIN.UI.Popups;
 
 namespace LIN.UI.Views.Outflows;
@@ -21,7 +21,7 @@ public partial class AddItem : ContentPage
     /// <summary>
     /// Tipo de la entrada
     /// </summary>
-    private LIN.Shared.Enumerations.OutflowsTypes Tipo = LIN.Shared.Enumerations.OutflowsTypes.None;
+    private OutflowsTypes Tipo = OutflowsTypes.None;
 
 
 
@@ -103,8 +103,8 @@ public partial class AddItem : ContentPage
     {
 
         // Variables
-        List<LIN.Shared.Models.OutflowDetailsDataModel> details = new();
-        LIN.Shared.Models.OutflowDataModel outflow;
+        List<OutflowDetailsDataModel> details = new();
+        OutflowDataModel outflow;
 
 
         // Prepara la vista
@@ -115,7 +115,7 @@ public partial class AddItem : ContentPage
 
 
         // Si no hay ningun tipo
-        if (Tipo == LIN.Shared.Enumerations.OutflowsTypes.None)
+        if (Tipo == OutflowsTypes.None)
         {
             // Muestra el mensaje de error
             DisplayMessage("Debes selecionar un tipo de salida");
@@ -216,17 +216,17 @@ public partial class AddItem : ContentPage
         Tipo = (string)inpCategoria.SelectedItem switch
         {
             // Compra
-            "Consumo interno" => LIN.Shared.Enumerations.OutflowsTypes.Consumo,
+            "Consumo interno" => OutflowsTypes.Consumo,
             // Devolucion
-            "Caducidad" => LIN.Shared.Enumerations.OutflowsTypes.Caducidad,
+            "Caducidad" => OutflowsTypes.Caducidad,
             // Regalo
-            "Venta" => LIN.Shared.Enumerations.OutflowsTypes.Venta,
+            "Venta" => OutflowsTypes.Venta,
             // Ajuste
-            "Fraude" => LIN.Shared.Enumerations.OutflowsTypes.Fraude,
-            "Donacion" => LIN.Shared.Enumerations.OutflowsTypes.Donacion,
-            "Perdida" => LIN.Shared.Enumerations.OutflowsTypes.Perdida,
+            "Fraude" => OutflowsTypes.Fraude,
+            "Donacion" => OutflowsTypes.Donacion,
+            "Perdida" => OutflowsTypes.Perdida,
             // Default
-            _ => LIN.Shared.Enumerations.OutflowsTypes.None,
+            _ => OutflowsTypes.None,
         };
 
 

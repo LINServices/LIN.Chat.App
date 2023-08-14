@@ -18,7 +18,7 @@ public partial class Integrant : Grid
     /// <summary>
     /// Modelo
     /// </summary>
-    public LIN.Shared.Models.IntegrantDataModel Modelo { get; set; }
+    public IntegrantDataModel Modelo { get; set; }
 
 
     /// <summary>
@@ -38,7 +38,7 @@ public partial class Integrant : Grid
     /// <summary>
     /// Constructor
     /// </summary>
-    public Integrant(LIN.Shared.Models.IntegrantDataModel modelo, InventoryRoles accountRol, int inventario)
+    public Integrant(IntegrantDataModel modelo, InventoryRoles accountRol, int inventario)
     {
         InitializeComponent();
         this.AccountRol = accountRol;

@@ -1,5 +1,4 @@
 using LIN.Services;
-using LIN.Shared.Models;
 using LIN.UI.Controls;
 using LIN.UI.Views;
 

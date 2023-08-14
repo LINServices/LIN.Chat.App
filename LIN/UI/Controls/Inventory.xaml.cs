@@ -15,7 +15,7 @@ public partial class Inventory : Grid
     /// <summary>
     /// Modelo del producto
     /// </summary>
-    public Shared.Models.InventoryDataModel Modelo { get; set; }
+    public InventoryDataModel Modelo { get; set; }
 
 
 
@@ -23,7 +23,7 @@ public partial class Inventory : Grid
     /// <summary>
     /// Constructor
     /// </summary>
-    public Inventory(LIN.Shared.Models.InventoryDataModel modelo)
+    public Inventory(InventoryDataModel modelo)
     {
         InitializeComponent();
         this.Modelo = modelo;

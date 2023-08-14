@@ -1,5 +1,6 @@
-using LIN.Access.Hubs;
-using LIN.Shared.Responses;
+
+
+using LIN.Access.Inventory.Hubs;
 using LIN.UI.Popups;
 
 namespace LIN.UI.Views.Inflows;
@@ -18,11 +19,11 @@ public partial class AddItem : ContentPage
     /// <summary>
     /// Tipo de la entrada
     /// </summary>
-    private LIN.Shared.Enumerations.InflowsTypes Tipo = LIN.Shared.Enumerations.InflowsTypes.Undefined;
+    private InflowsTypes Tipo = InflowsTypes.Undefined;
 
 
 
-    readonly ProductAccessHub? Hub = null;
+    readonly InventoryAccessHub? Hub = null;
 
     public int Inventario { get; set; }
 
@@ -30,7 +31,7 @@ public partial class AddItem : ContentPage
     /// <summary>
     /// Constructor
     /// </summary>
-    public AddItem(int inventario, ProductAccessHub? hub)
+    public AddItem(int inventario, InventoryAccessHub? hub)
     {
         InitializeComponent();
         this.Inventario = inventario;
@@ -101,8 +102,8 @@ public partial class AddItem : ContentPage
     {
 
         // Variables
-        List<LIN.Shared.Models.InflowDetailsDataModel> details = new();
-        LIN.Shared.Models.InflowDataModel entry;
+        List<InflowDetailsDataModel> details = new();
+        InflowDataModel entry;
 
 
         // Prepara la vista
@@ -133,7 +134,7 @@ public partial class AddItem : ContentPage
         foreach (var control in Models)
         {
             // Model
-            LIN.Shared.Models.InflowDetailsDataModel model = new()
+            InflowDetailsDataModel model = new()
             {
                 ProductoDetail = control.Modelo.IDDetail,
                 Cantidad = control.GetCounterValue()
@@ -157,7 +158,7 @@ public partial class AddItem : ContentPage
             Date = DateTime.Now,
             Type = Tipo,
             Inventario = Inventario,
-            Usuario = Sesion.Instance.Informacion.ID
+            ProfileID = Session.Instance.Informacion.ID
         };
 
 
@@ -217,7 +218,7 @@ public partial class AddItem : ContentPage
     {
 
         // Si el tipo es por ajuste
-        if (Tipo == LIN.Shared.Enumerations.InflowsTypes.Ajuste)
+        if (Tipo == InflowsTypes.Ajuste)
             return true;
 
         // Rellena los detalles
@@ -246,19 +247,19 @@ public partial class AddItem : ContentPage
         Tipo = (string)inpCategoria.SelectedItem switch
         {
             // Compra
-            "Compra" => LIN.Shared.Enumerations.InflowsTypes.Compra,
+            "Compra" => InflowsTypes.Compra,
             // Devolucion
-            "Devolucion" => LIN.Shared.Enumerations.InflowsTypes.Devolucion,
+            "Devolucion" => InflowsTypes.Devolucion,
             // Regalo
-            "Regalo" => LIN.Shared.Enumerations.InflowsTypes.Regalo,
+            "Regalo" => InflowsTypes.Regalo,
             // Ajuste
-            "Ajuste" => LIN.Shared.Enumerations.InflowsTypes.Ajuste,
+            "Ajuste" => InflowsTypes.Ajuste,
             // Default
-            _ => LIN.Shared.Enumerations.InflowsTypes.Undefined,
+            _ => InflowsTypes.Undefined,
         };
 
 
-        if (Tipo == LIN.Shared.Enumerations.InflowsTypes.Ajuste)
+        if (Tipo == InflowsTypes.Ajuste)
         {
             DisplayAlert("Advertencia", "La función de \"entrada por ajuste\" remplaza el valor actual de las existencias con la cantidad ingresada en lugar de sumarla al valor actual.", "Aceptar");
         }

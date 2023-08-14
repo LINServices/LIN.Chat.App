@@ -1,3 +1,6 @@
+using LIN.Types.Auth.Abstracts;
+using LIN.Types.Auth.Enumerations;
+
 namespace LIN.UI.Controls;
 
 public partial class UserForPick : Grid
@@ -18,7 +21,7 @@ public partial class UserForPick : Grid
     /// <summary>
     /// Model del contacto
     /// </summary>
-    public LIN.Shared.Models.UserDataModel Modelo { get; set; }
+    public AuthModel<ProfileModel> Modelo { get; set; }
 
 
     public bool IsSelected { get; set; } = false;
@@ -31,7 +34,7 @@ public partial class UserForPick : Grid
     /// <summary>
     /// Constructor
     /// </summary>
-    public UserForPick(LIN.Shared.Models.UserDataModel modelo)
+    public UserForPick(AuthModel<ProfileModel> modelo)
     {
         InitializeComponent();
         this.Modelo = modelo;
@@ -48,11 +51,11 @@ public partial class UserForPick : Grid
     {
 
         // Datos
-        displayName.Text = Modelo.Nombre;
-        displayUser.Text = "@" + Modelo.Usuario;
+        displayName.Text = Modelo.Account.Nombre;
+        displayUser.Text = "@" + Modelo.Account.Usuario;
 
         // Si no hay imagen que mostar
-        if (Modelo.Perfil.Length == 0)
+        if (Modelo.Account.Perfil.Length == 0)
         {
             img.Hide();
             lbPic.Show();
@@ -64,19 +67,19 @@ public partial class UserForPick : Grid
             lbPic.Hide();
             img.Show();
             bgImg.BackgroundColor = Microsoft.Maui.Graphics.Colors.Transparent;
-            img.Source = ImageEncoder.Decode(Modelo.Perfil);
+            img.Source = ImageEncoder.Decode(Modelo.Account.Perfil);
         }
 
 
         // Insignias
-        switch (Modelo.Insignia)
+        switch (Modelo.Account.Insignia)
         {
 
-            case Insignias.Verified:
+            case AccountBadges.Verified:
                 displayInsignia.Source = ImageSource.FromFile("verificado.png");
                 break;
 
-            case Insignias.VerifiedGold:
+            case AccountBadges.VerifiedGold:
                 displayInsignia.Source = ImageSource.FromFile("verificadogold.png");
                 break;
 
