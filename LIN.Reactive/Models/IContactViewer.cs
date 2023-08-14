@@ -1,6 +1,4 @@
-﻿using LIN.Shared.Models;
-
-namespace LIN.React.Models;
+﻿namespace LIN.React.Models;
 
 
 public interface IContactViewer

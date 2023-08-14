@@ -1,7 +1,5 @@
-﻿using LIN.React.Models;
-using LIN.Shared.Models;
+﻿namespace LIN.React.Observers;
 
-namespace LIN.React.Observers;
 
 public sealed class ContactObserver
 {
