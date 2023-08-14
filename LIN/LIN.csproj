@@ -66,10 +66,4 @@
 	  <ProjectReference Include="..\LIN.Reactive\LIN.React.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <MauiXaml Update="MainPage - Copia.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	</ItemGroup>
-
 </Project>
