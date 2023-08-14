@@ -131,11 +131,19 @@ public static class MauiProgram
                            }
 
                        })
-                           .OnLaunched((window, args) =>
-                           {
-                               if (Session.IsLocalOpen)
-                                   AppShell.Hub.Reconnect();
-                           })
+ //                          .OnLaunched((window, args) =>
+ //                          {
+ //                              try
+ //                              {
+ //if (Session.IsLocalOpen)
+ //                                  AppShell.Hub.Reconnect();
+ //                              }
+ //                              catch
+ //                              {
+
+ //                              }
+                              
+ //                          })
 
                            .OnLaunching((window, args) => LogEvent(nameof(WindowsLifecycle.OnLaunching)))
                            .OnVisibilityChanged((window, args) => LogEvent(nameof(WindowsLifecycle.OnVisibilityChanged)))
