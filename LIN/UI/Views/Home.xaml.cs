@@ -8,7 +8,7 @@ public partial class Home : ContentPage
     /// <summary>
     /// Lista de modelos de productos
     /// </summary>
-    private List<Shared.Models.Notificacion> Notificacions = new();
+    private List<Types.Inventory.Models.Notificacion> Notificacions = new();
 
 
     /// <summary>
@@ -46,10 +46,11 @@ public partial class Home : ContentPage
 
     private async void Ventas()
     {
-        var id = LIN.Access.Sesion.Instance.Informacion.ID;
 
-        var home = await Access.Controllers.User.TotalSales(id, 30);
-        var valueTask = LIN.Access.Controllers.User.ValueInventorys(id);
+        var id = LIN.Access.Inventory.Session.Instance.Informacion.ID;
+
+        var home = await Access.Inventory.Controllers.Profile.TotalSales(id, 30);
+        var valueTask = Access.Inventory.Controllers.Profile.ValueInventorys(id);
 
         ventas7.SubTitle = home.Model.Ventas7 + " ventas realizadas.";
         ventas30.SubTitle = home.Model.Ventas30 + " ventas realizadas.";
@@ -128,10 +129,10 @@ public partial class Home : ContentPage
     {
 
         // Items
-        var items = await Inventories.ReadNotifications(Sesion.Instance.Informacion.ID);
+        var items = await Inventories.ReadNotifications(Session.Instance.Informacion.ID);
 
         // Analisis de respuesta
-        if (items.Response != Shared.Responses.Responses.Success)
+        if (items.Response != Responses.Success)
             return false;
 
         // Rellena los items
@@ -146,7 +147,7 @@ public partial class Home : ContentPage
     /// <summary>
     /// Muestra los controles a la vista
     /// </summary>
-    public void AppendModel(Shared.Models.Notificacion modelo)
+    public void AppendModel(Types.Inventory.Models.Notificacion modelo)
     {
         Notificacions.Add(modelo);
         Controles = LoadCache(Notificacions);
@@ -187,7 +188,7 @@ public partial class Home : ContentPage
     /// <summary>
     /// Carga los modelos a los nuevos controles
     /// </summary>
-    private static List<Controls.Notificacion> LoadCache(List<LIN.Shared.Models.Notificacion> lista)
+    private static List<Controls.Notificacion> LoadCache(List<LIN.Types.Inventory.Models.Notificacion> lista)
     {
 
         // Lista
@@ -254,20 +255,20 @@ public partial class Home : ContentPage
     /// </summary>
     private async void LoadUserData()
     {
-        perfil.Source = ImageEncoder.Decode(Sesion.Instance.Informacion.Perfil);
+        perfil.Source = ImageEncoder.Decode(Session.Instance.Account.Perfil);
 
 
-        if (Sesion.Instance.Informacion.Sexo == Sexos.Female)
+        if (Session.Instance.Account.Genero == Genders.Female)
             lbBienvenido.Text = "Bienvenida, ";
         else
             lbBienvenido.Text = "Bienvenido, ";
 
-        lbName.Text = Sesion.Instance.Informacion.Nombre.Trim().Split(" ")[0];
+        lbName.Text = Session.Instance.Account.Nombre.Trim().Split(" ")[0];
 
 
-        lbUser.Text = Sesion.Instance.Informacion.Nombre;
-        AppShell.SetTitle(LIN.Access.Sesion.Instance.Informacion.Nombre);
-        AppShell.SetImage(ImageEncoder.Decode(Sesion.Instance.Informacion.Perfil));
+        lbUser.Text = Session.Instance.Account.Nombre;
+        AppShell.SetTitle(Session.Instance.Account.Nombre);
+        AppShell.SetImage(ImageEncoder.Decode(Session.Instance.Account.Perfil));
 
 
 
