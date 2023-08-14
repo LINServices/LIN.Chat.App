@@ -17,3 +17,5 @@ global using LIN.Types.Inventory.Enumerations;
 global using LIN.Types.Auth.Models;
 global using LIN.Access.Auth;
 global using LIN.Access.Inventory;
+global using LIN.Access.Inventory.Hubs;
+global using LIN.Types.Auth.Abstracts;

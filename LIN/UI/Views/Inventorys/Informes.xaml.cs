@@ -1,6 +1,5 @@
 using CommunityToolkit.Maui.Storage;
 using LIN.Access.Inventory.Controllers;
-
 using LIN.UI.Popups;
 
 namespace LIN.UI.Views.Inventorys;
@@ -16,7 +15,7 @@ public partial class Informes : ContentPage
     /// <summary>
     /// Nuevos participantes
     /// </summary>
-    private List<UserDataModel> Participantes { get; set; } = new();
+    private List<SessionModel<ProfileModel>> Participantes { get; set; } = new();
 
 
     /// <summary>
@@ -90,10 +89,10 @@ public partial class Informes : ContentPage
             var model = new InventoryAcessDataModel()
             {
                 Rol = InventoryRoles.Member,
-                Usuario = integrante.ID
+                ProfileID = integrante.Profile.ID
             };
             modelo.UsersAccess.Add(model);
-            ids.Add(integrante.ID);
+            ids.Add(integrante.Profile.ID);
         }
 
 
@@ -101,7 +100,7 @@ public partial class Informes : ContentPage
 
 
         // Respuesta del controlador
-        var response = await Inventories.GenerateInvitaciones(modelo, Sesion.Instance.Token);
+        var response = await Inventories.GenerateInvitaciones(modelo, Session.Instance.Token);
 
 
         if (response.Response != Responses.Success)
@@ -149,7 +148,7 @@ public partial class Informes : ContentPage
     private async void ToggleButton_Clicked(object sender, EventArgs e)
     {
 
-        var xx = (List<UserDataModel>?)(await new UserSelector().Show());
+        var xx = (List<SessionModel<ProfileModel>>?)(await new UserSelector().Show());
 
         if (xx == null)
             return;
@@ -193,7 +192,7 @@ public partial class Informes : ContentPage
         mes++;
         year = 2020 + year;
 
-        var user = LIN.Access.Sesion.Instance.Informacion.ID;
+        var user = Session.Instance.Informacion.ID;
 
 
         ReadOneResponse<List<byte>> res;

@@ -21,7 +21,7 @@ public partial class UserForPick : Grid
     /// <summary>
     /// Model del contacto
     /// </summary>
-    public AuthModel<ProfileModel> Modelo { get; set; }
+    public SessionModel<ProfileModel> Modelo { get; set; }
 
 
     public bool IsSelected { get; set; } = false;
@@ -34,7 +34,7 @@ public partial class UserForPick : Grid
     /// <summary>
     /// Constructor
     /// </summary>
-    public UserForPick(AuthModel<ProfileModel> modelo)
+    public UserForPick(SessionModel<ProfileModel> modelo)
     {
         InitializeComponent();
         this.Modelo = modelo;

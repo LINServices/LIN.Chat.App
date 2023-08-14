@@ -1,6 +1,4 @@
 
-
-
 namespace LIN.UI.Views.Inflows;
 
 public partial class Index : ContentPage
@@ -11,7 +9,7 @@ public partial class Index : ContentPage
     /// <summary>
     /// Hub de SignalR
     /// </summary>
-    private ProductAccessHub? Hub;
+    private InventoryAccessHub? Hub;
 
 
 
@@ -43,7 +41,7 @@ public partial class Index : ContentPage
     /// <summary>
     /// Constructor
     /// </summary>
-    public Index(int inventario, ProductAccessHub? hub)
+    public Index(int inventario, InventoryAccessHub? hub)
     {
         InitializeComponent();
         this.Hub = hub;

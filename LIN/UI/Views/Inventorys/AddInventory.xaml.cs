@@ -1,5 +1,4 @@
 using LIN.Access.Inventory.Controllers;
-
 using LIN.UI.Popups;
 
 namespace LIN.UI.Views.Inventorys;
@@ -9,7 +8,7 @@ public partial class AddInventory : ContentPage
     /// <summary>
     /// Lista de participantes
     /// </summary>
-    private readonly List<UserDataModel> Participantes = new();
+    private readonly List<A> Participantes = new();
 
 
 

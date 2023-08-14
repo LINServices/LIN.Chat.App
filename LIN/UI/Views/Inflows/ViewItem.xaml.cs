@@ -1,4 +1,5 @@
 using CommunityToolkit.Maui.Storage;
+using LIN.Types.Auth.Abstracts;
 using LIN.UI.Popups;
 
 namespace LIN.UI.Views.Inflows;
@@ -11,7 +12,7 @@ public partial class ViewItem : ContentPage
     /// </summary>
     public InflowDataModel Modelo { get; set; }
 
-    UserDataModel Creador { get; set; } = new();
+    AccountModel Creador { get; set; } = new();
 
     bool OpenExport { get; set; }
 
@@ -40,10 +41,12 @@ public partial class ViewItem : ContentPage
     {
 
         var response = await Access.Inventory.Controllers.Inflows.Read(Modelo.ID);
-        var taskUser = LIN.Access.Controllers.User.ReadOneAsync(Modelo.Usuario);
+
+        //[Error] // Consulta Modelo.Profile
+        var taskUser = LIN.Access.Auth.Controllers.Account.Read(Modelo.ProfileID);
         displayCategory.Text = Modelo.Type.ToString();
 
-        if (response.Response != Shared.Responses.Responses.Success)
+        if (response.Response != Responses.Success)
         {
             return;
         }
@@ -109,7 +112,7 @@ public partial class ViewItem : ContentPage
             return;
 
         var folderBase = result.Folder.Path;
-        await PDFService.RenderInflow(Modelo, Sesion.Instance.Informacion.Usuario, Creador.Usuario, tranfers, folderBase);
+        await PDFService.RenderInflow(Modelo, Session.Instance.Account.Usuario, Creador.Usuario, tranfers, folderBase);
 
         await DisplayAlert("Reporte", "Reporte generado exitosamente", "OK");
 
@@ -119,7 +122,7 @@ public partial class ViewItem : ContentPage
         {
             App = new[]
             {
-                LINApps.Inventory
+                Applications.Inventory
             },
             Plataformas = new[]
             {
