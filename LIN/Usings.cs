@@ -13,3 +13,5 @@ global using LIN.UI.Views;
 global using Microsoft.Maui.LifecycleEvents;
 global using LIN.Types.Inventory.Models;
 global using LIN.Types.Inventory.Enumerations;
+global using LIN.Types.Auth.Models;
+global using LIN.Access.Auth;

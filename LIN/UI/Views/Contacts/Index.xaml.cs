@@ -106,7 +106,7 @@ public partial class Index : ContentPage
     {
 
         // respuesta desde la API
-        var contactos = await Access.Controllers.Contact.ReadAll(Sesion.Instance.Informacion.ID);
+        var contactos = await Access.Inventory.Controllers.Contact.ReadAll(Sesion.Instance.Informacion.ID);
 
         // Validacion
         if (contactos.Response != Responses.Success)

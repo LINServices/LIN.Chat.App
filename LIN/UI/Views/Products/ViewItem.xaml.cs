@@ -159,7 +159,7 @@ public partial class ViewItem : ContentPage, IProductViewer
         if (!answer)
             return;
 
-        var response = await LIN.Access.Controllers.Product.Delete(Modelo.ProductID);
+        var response = await Access.Inventory.Controllers.Product.Delete(Modelo.ProductID);
 
         if (response.Response != Shared.Responses.Responses.Success)
         {

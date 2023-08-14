@@ -108,7 +108,7 @@ public partial class ProductSelector : Popup
         var id = Sesion.Instance.Informacion.ID;
 
         // Respuesta
-        var response = await Access.Controllers.Product.ReadAll(Inventario);
+        var response = await Access.Inventory.Controllers.Product.ReadAll(Inventario);
 
         // Evalua
         if (response.Response != Shared.Responses.Responses.Success)

@@ -77,7 +77,7 @@ public partial class ContactEdit : Popup
         await Task.Delay(5);
 
 
-        var response = await Access.Controllers.Contact.Update(Modelo);
+        var response = await Access.Inventory.Controllers.Contact.Update(Modelo);
 
         if (response.Response == Responses.Success)
         {

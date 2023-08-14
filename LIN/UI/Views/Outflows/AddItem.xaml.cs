@@ -156,7 +156,7 @@ public partial class AddItem : ContentPage
 
 
         // Envia al servidor
-        var response = await LIN.Access.Controllers.Outflows.CreateAsync(outflow);
+        var response = await Access.Inventory.Controllers.Outflows.CreateAsync(outflow);
 
 
         // Si hubo un error

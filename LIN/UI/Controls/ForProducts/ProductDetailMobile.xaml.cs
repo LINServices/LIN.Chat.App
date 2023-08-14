@@ -31,7 +31,7 @@ public partial class ProductDetailMobile : Grid
     {
 
         // Obtiene el contacto
-        var contact = LIN.Access.Controllers.Contact.Read(Detalle.Provider);
+        var contact = Access.Inventory.Controllers.Contact.Read(Detalle.Provider);
 
         // Muestra el modelo
         displayCompra.Contenido = $"${Detalle.PrecioCompra}";

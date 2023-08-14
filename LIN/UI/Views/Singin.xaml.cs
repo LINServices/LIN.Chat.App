@@ -71,8 +71,8 @@ public partial class Singin : ContentPage
         }
 
 
-        // Model
-        LIN.Shared.Models.UserDataModel modelo = new()
+
+        var account = new AccountModel
         {
             Nombre = name,
             Usuario = user,
@@ -80,8 +80,11 @@ public partial class Singin : ContentPage
             Perfil = await inpImg.GetBytes()
         };
 
-        // Creación
-        var res = await LIN.Access.Controllers.User.CreateAsync(modelo);
+
+        var res = await Access.Auth.Controllers.Account.Create(account);
+
+
+
 
 
         // Respuesta
@@ -111,7 +114,7 @@ public partial class Singin : ContentPage
         }
 
 
-        Access.Sesion.GenerateSesion(res.Model, res.Token);
+        _ = await LIN.Access.Inventory.Session.LoginWith(res.Token);
 
 
         await this.ShowPopupAsync(new Popups.Welcome());

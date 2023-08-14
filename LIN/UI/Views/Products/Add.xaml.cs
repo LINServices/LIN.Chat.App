@@ -1,4 +1,5 @@
 using LIN.Access.Hubs;
+using LIN.Access.Inventory.Controllers;
 using LIN.Shared.Responses;
 using LIN.UI.Popups;
 
@@ -202,7 +203,7 @@ public partial class Add : ContentPage
 
 
         // Respuesta del controlador
-        var response = await LIN.Access.Controllers.Product.Create(modelo);
+        var response = await Access.Inventory.Controllers.Product.Create(modelo);
 
 
         // Organizacion de la interfaz
@@ -227,7 +228,7 @@ public partial class Add : ContentPage
     private async void inputImage_ImageChanged(object sender, LIN.Controls.Events.ImageChanged e)
     {
         var bits = await inputImage.GetFileBytes();
-        var ss = await LIN.Access.Controllers.IA.IAVision(bits);
+        var ss = await IA.IAVision(bits);
 
         if (ss.Response != Responses.Success)
         {

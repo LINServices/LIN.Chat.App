@@ -96,7 +96,7 @@ public partial class ContactSelector : Popup
         var id = Sesion.Instance.Informacion.ID;
 
         // Respuesta
-        var response = await Access.Controllers.Contact.ReadAll(id);
+        var response = await Access.Inventory.Controllers.Contact.ReadAll(id);
 
         // Evalua
         if (response.Response != Shared.Responses.Responses.Success)

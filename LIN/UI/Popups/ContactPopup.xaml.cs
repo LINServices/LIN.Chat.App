@@ -77,8 +77,8 @@ public partial class ContactPopup : Popup
     {
 
         var response = await ((Modelo.State == ContactStatus.Normal) ?
-                            LIN.Access.Controllers.Contact.ToTrash(Modelo.ID, LIN.Access.Sesion.Instance.Token) :
-                            LIN.Access.Controllers.Contact.Delete(Modelo.ID, LIN.Access.Sesion.Instance.Token));
+                            Access.Inventory.Controllers.Contact.ToTrash(Modelo.ID, LIN.Access.Sesion.Instance.Token) :
+                            Access.Inventory.Controllers.Contact.Delete(Modelo.ID, LIN.Access.Sesion.Instance.Token));
 
         this.Close();
 

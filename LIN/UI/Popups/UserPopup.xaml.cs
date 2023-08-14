@@ -1,3 +1,4 @@
+using LIN.Access.Inventory.Controllers;
 using LIN.UI.Views;
 
 
@@ -136,7 +137,7 @@ public partial class UserPopup : Popup
 
 
         Prepare();
-        var res = await Access.Controllers.Inventories.UpdateRol(Modelo.AccessID, now, Sesion.Instance.Token);
+        var res = await Inventories.UpdateRol(Modelo.AccessID, now, Sesion.Instance.Token);
 
 
         switch (res.Response)

@@ -176,13 +176,13 @@ public partial class ProductEdit : Popup, IProductViewer
         Task<ResponseBase>? task = null;
 
         if (detailChange & plantillaChange)
-            task = Access.Controllers.Product.Update(newModel);
+            task = Access.Inventory.Controllers.Product.Update(newModel);
 
         else if (plantillaChange)
-            task = Access.Controllers.Product.UpdateAsync(newModel, true);
+            task = Access.Inventory.Controllers.Product.UpdateAsync(newModel, true);
 
         else if (detailChange)
-            task = Access.Controllers.Product.UpdateAsync(newModel, false);
+            task = Access.Inventory.Controllers.Product.UpdateAsync(newModel, false);
 
         if (task != null)
         {

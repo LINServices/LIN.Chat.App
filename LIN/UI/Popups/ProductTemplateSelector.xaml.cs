@@ -47,7 +47,7 @@ public partial class ProductTemplateSelector : Popup
         }
 
         // Encuentra el usuario
-        var user = await LIN.Access.Controllers.Product.ReadTemplates(pattern);
+        var user = await Access.Inventory.Controllers.Product.ReadTemplates(pattern);
 
 
         // Analisis de respuesta

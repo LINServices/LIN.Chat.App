@@ -1,3 +1,5 @@
+using LIN.Access.Inventory.Controllers;
+
 namespace LIN.UI.Controls;
 
 public partial class Notificacion : Grid
@@ -49,7 +51,7 @@ public partial class Notificacion : Grid
     private async void ButtonCancel(object sender, EventArgs e)
     {
         this.Hide();
-        await LIN.Access.Controllers.Inventories.UpdateState(Modelo.ID, Shared.Enumerations.InventoryAccessState.Deleted);
+        await Inventories.UpdateState(Modelo.ID, Shared.Enumerations.InventoryAccessState.Deleted);
     }
 
 
@@ -62,7 +64,7 @@ public partial class Notificacion : Grid
     private async void ButtonAcepted(object sender, EventArgs e)
     {
         this.Hide();
-        await LIN.Access.Controllers.Inventories.UpdateState(Modelo.ID, Shared.Enumerations.InventoryAccessState.Accepted);
+        await Inventories.UpdateState(Modelo.ID, Shared.Enumerations.InventoryAccessState.Accepted);
     }
 
     private void PointerGestureRecognizer_PointerEntered(object sender, PointerEventArgs e)

@@ -105,7 +105,7 @@ public partial class Index : ContentPage
     {
 
         // respuesta desde la API
-        var modelos = await Access.Controllers.Outflows.ReadAll(InventarioID);
+        var modelos = await Access.Inventory.Controllers.Outflows.ReadAll(InventarioID);
 
         // Validacion
         if (modelos.Response != Responses.Success)

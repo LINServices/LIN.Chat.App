@@ -1,3 +1,4 @@
+using LIN.Access.Inventory.Controllers;
 using LIN.Shared.Responses;
 
 namespace LIN.UI.Views.Inventorys;
@@ -87,7 +88,7 @@ public partial class Index : ContentPage
     private async Task<bool> RetrieveData()
     {
         // Items
-        var response = await Access.Controllers.Inventories.ReadAll(Sesion.Instance.Informacion.ID);
+        var response = await Inventories.ReadAll(Sesion.Instance.Informacion.ID);
 
         // Analisis de respuesta
         if (response.Response != Responses.Success)

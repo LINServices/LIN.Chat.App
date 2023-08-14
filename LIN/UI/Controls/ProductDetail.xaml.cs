@@ -46,7 +46,7 @@ public partial class ProductDetail : Grid
     {
 
         // Obtiene el producto
-        Producto = (await LIN.Access.Controllers.Product.ReadOneByDetail(Modelo.ProductoDetail)).Model;
+        Producto = (await Access.Inventory.Controllers.Product.ReadOneByDetail(Modelo.ProductoDetail)).Model;
 
         Tranfers.Add(Producto);
         OnFinish?.Invoke();

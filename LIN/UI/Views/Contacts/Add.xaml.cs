@@ -1,4 +1,3 @@
-
 namespace LIN.UI.Views.Contacts;
 
 public partial class Add : ContentPage
@@ -81,7 +80,7 @@ public partial class Add : ContentPage
 
 
         // Respuesta del controlador
-        var task = LIN.Access.Controllers.Contact.Create(modelo);
+        var task = Access.Inventory.Controllers.Contact.Create(modelo);
 
 
         // Miestras se completa la tarea

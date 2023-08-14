@@ -1,3 +1,4 @@
+using LIN.Access.Inventory.Controllers;
 using LIN.Shared.Responses;
 using LIN.UI.Popups;
 
@@ -132,7 +133,7 @@ public partial class AddInventory : ContentPage
 
 
         // Respuesta del controlador
-        var response = await LIN.Access.Controllers.Inventories.Create(modelo, Sesion.Instance.Informacion.ID);
+        var response = await Inventories.Create(modelo, Sesion.Instance.Informacion.ID);
 
 
         // Organizacion de la interfaz

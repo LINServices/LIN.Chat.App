@@ -193,7 +193,7 @@ public partial class Index : ContentPage
     private async Task<bool> RetrieveData()
     {
         // Items
-        var response = await Access.Controllers.Product.ReadAll(Inventario.ID);
+        var response = await Access.Inventory.Controllers.Product.ReadAll(Inventario.ID);
 
         // Analisis de respuesta
         if (response.Response != Responses.Success)

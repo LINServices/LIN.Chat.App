@@ -39,7 +39,7 @@ public partial class ViewItem : ContentPage
     public async Task RequestData()
     {
 
-        var response = await LIN.Access.Controllers.Inflows.Read(Modelo.ID);
+        var response = await Access.Inventory.Controllers.Inflows.Read(Modelo.ID);
         var taskUser = LIN.Access.Controllers.User.ReadOneAsync(Modelo.Usuario);
         displayCategory.Text = Modelo.Type.ToString();
 

@@ -1,4 +1,5 @@
 using CommunityToolkit.Maui.Storage;
+using LIN.Access.Inventory.Controllers;
 using LIN.Shared.Responses;
 using LIN.UI.Popups;
 
@@ -100,7 +101,7 @@ public partial class Informes : ContentPage
 
 
         // Respuesta del controlador
-        var response = await LIN.Access.Controllers.Inventories.GenerateInvitaciones(modelo, Sesion.Instance.Token);
+        var response = await Inventories.GenerateInvitaciones(modelo, Sesion.Instance.Token);
 
 
         if (response.Response != Responses.Success)
@@ -198,10 +199,10 @@ public partial class Informes : ContentPage
         ReadOneResponse<List<byte>> res;
 
         if (tipo == 0)
-            res = await LIN.Access.Controllers.Inflows.InformeMonth(user, Inventario, mes, year);
+            res = await Access.Inventory.Controllers.Inflows.InformeMonth(user, Inventario, mes, year);
         
         else
-            res = await LIN.Access.Controllers.Outflows.InformeMonth(user, Inventario, mes, year);
+            res = await Access.Inventory.Controllers.Outflows.InformeMonth(user, Inventario, mes, year);
         
 
         if (res.Response != Responses.Success)

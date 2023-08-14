@@ -1,3 +1,5 @@
+using LIN.Access.Inventory.Controllers;
+
 namespace LIN.UI.Views;
 
 public partial class Home : ContentPage
@@ -126,7 +128,7 @@ public partial class Home : ContentPage
     {
 
         // Items
-        var items = await LIN.Access.Controllers.Inventories.ReadNotifications(Sesion.Instance.Informacion.ID);
+        var items = await Inventories.ReadNotifications(Sesion.Instance.Informacion.ID);
 
         // Analisis de respuesta
         if (items.Response != Shared.Responses.Responses.Success)

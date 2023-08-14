@@ -1,3 +1,4 @@
+using LIN.Access.Inventory.Controllers;
 using LIN.Shared.Responses;
 using LIN.UI.Popups;
 
@@ -135,7 +136,7 @@ public partial class Integrantes : ContentPage
     private async Task<Responses> RetrieveData()
     {
 
-        var response = await Access.Controllers.Inventories.GetIntegrants(Inventory.ID, Sesion.Instance.Informacion.ID);
+        var response = await Inventories.GetIntegrants(Inventory.ID, Sesion.Instance.Informacion.ID);
 
         // Analisis de respuesta
         if (response.Response != Responses.Success)
@@ -231,7 +232,7 @@ public partial class Integrantes : ContentPage
             var user = modelo?.ID ?? 0;
 
             // Solicitud de eliminar
-            var response = await LIN.Access.Controllers.Inventories.DeleteSomeOne(inventario, user, me);
+            var response = await Inventories.DeleteSomeOne(inventario, user, me);
 
 
             if (response.Response != Responses.Success)

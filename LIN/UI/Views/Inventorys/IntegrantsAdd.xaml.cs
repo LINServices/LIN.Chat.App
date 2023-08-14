@@ -1,3 +1,4 @@
+using LIN.Access.Inventory.Controllers;
 using LIN.Services;
 using LIN.Shared.Responses;
 using LIN.UI.Popups;
@@ -103,7 +104,7 @@ public partial class IntegrantsAdd : ContentPage
        
 
         // Respuesta del controlador
-        var response = await LIN.Access.Controllers.Inventories.GenerateInvitaciones(modelo, Sesion.Instance.Token);
+        var response = await Inventories.GenerateInvitaciones(modelo, Sesion.Instance.Token);
 
 
         if (response.Response != Responses.Success)
