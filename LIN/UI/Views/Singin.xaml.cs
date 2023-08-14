@@ -1,6 +1,5 @@
-using LIN.Shared.Responses;
-
 namespace LIN.UI.Views;
+
 
 public partial class Singin : ContentPage
 {
