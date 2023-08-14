@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31611.283
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LIN", "LIN\LIN.csproj", "{E9922A11-751E-4588-A88A-EBDE80FAA616}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LIN.React", "LIN.Reactive\LIN.React.csproj", "{DE61183E-05DA-4911-BE20-29A38AF20749}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LIN.LocalDataBase", "LIN.LocalDataBase\LIN.LocalDataBase.csproj", "{1A90F84E-893D-454E-9FDA-A2AED22EA961}"
@@ -17,13 +15,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LIN.Types", "..\..\Tipos\LI
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LIN.Types.Inventory", "..\..\Tipos\LIN.Types.Inventory\LIN.Types.Inventory.csproj", "{93F1161C-7D24-4B46-B412-8802C5369212}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LIN.Access.Inventory", "..\..\AccesoAPI\LIN.Access.Inventory\LIN.Access.Inventory.csproj", "{13A2E241-254C-4E2C-9E2B-87C11D87C3A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LIN.Access.Inventory", "..\..\AccesoAPI\LIN.Access.Inventory\LIN.Access.Inventory.csproj", "{13A2E241-254C-4E2C-9E2B-87C11D87C3A7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LIN.Modules", "..\..\Tipos\LIN.Modules\LIN.Modules.csproj", "{21479039-D839-4B9F-87E5-310DDECE97B1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LIN.Types.Auth", "..\..\Tipos\LIN.Types.Auth\LIN.Types.Auth.csproj", "{3D78F11B-A59B-4DF3-AF69-2EB61F05168F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LIN.Access.Auth", "..\..\AccesoAPI\LIN.Access.Auth\LIN.Access.Auth.csproj", "{0D007BEF-8E9A-4553-93D4-FF3A5B964A7B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LIN", "LIN\LIN.csproj", "{5885E727-C5C2-4CDA-8F3A-8253BC6B4B5B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,24 +35,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E9922A11-751E-4588-A88A-EBDE80FAA616}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E9922A11-751E-4588-A88A-EBDE80FAA616}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E9922A11-751E-4588-A88A-EBDE80FAA616}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{E9922A11-751E-4588-A88A-EBDE80FAA616}.Debug|ARM32.ActiveCfg = Debug|ARM32
-		{E9922A11-751E-4588-A88A-EBDE80FAA616}.Debug|ARM32.Build.0 = Debug|ARM32
-		{E9922A11-751E-4588-A88A-EBDE80FAA616}.Debug|ARM32.Deploy.0 = Debug|ARM32
-		{E9922A11-751E-4588-A88A-EBDE80FAA616}.Debug|x86.ActiveCfg = Debug|x86
-		{E9922A11-751E-4588-A88A-EBDE80FAA616}.Debug|x86.Build.0 = Debug|x86
-		{E9922A11-751E-4588-A88A-EBDE80FAA616}.Debug|x86.Deploy.0 = Debug|x86
-		{E9922A11-751E-4588-A88A-EBDE80FAA616}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E9922A11-751E-4588-A88A-EBDE80FAA616}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E9922A11-751E-4588-A88A-EBDE80FAA616}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{E9922A11-751E-4588-A88A-EBDE80FAA616}.Release|ARM32.ActiveCfg = Release|ARM32
-		{E9922A11-751E-4588-A88A-EBDE80FAA616}.Release|ARM32.Build.0 = Release|ARM32
-		{E9922A11-751E-4588-A88A-EBDE80FAA616}.Release|ARM32.Deploy.0 = Release|ARM32
-		{E9922A11-751E-4588-A88A-EBDE80FAA616}.Release|x86.ActiveCfg = Release|x86
-		{E9922A11-751E-4588-A88A-EBDE80FAA616}.Release|x86.Build.0 = Release|x86
-		{E9922A11-751E-4588-A88A-EBDE80FAA616}.Release|x86.Deploy.0 = Release|x86
 		{DE61183E-05DA-4911-BE20-29A38AF20749}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DE61183E-05DA-4911-BE20-29A38AF20749}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE61183E-05DA-4911-BE20-29A38AF20749}.Debug|ARM32.ActiveCfg = Debug|ARM32
@@ -173,6 +155,24 @@ Global
 		{0D007BEF-8E9A-4553-93D4-FF3A5B964A7B}.Release|ARM32.Build.0 = Release|Any CPU
 		{0D007BEF-8E9A-4553-93D4-FF3A5B964A7B}.Release|x86.ActiveCfg = Release|Any CPU
 		{0D007BEF-8E9A-4553-93D4-FF3A5B964A7B}.Release|x86.Build.0 = Release|Any CPU
+		{5885E727-C5C2-4CDA-8F3A-8253BC6B4B5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5885E727-C5C2-4CDA-8F3A-8253BC6B4B5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5885E727-C5C2-4CDA-8F3A-8253BC6B4B5B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{5885E727-C5C2-4CDA-8F3A-8253BC6B4B5B}.Debug|ARM32.ActiveCfg = Debug|Any CPU
+		{5885E727-C5C2-4CDA-8F3A-8253BC6B4B5B}.Debug|ARM32.Build.0 = Debug|Any CPU
+		{5885E727-C5C2-4CDA-8F3A-8253BC6B4B5B}.Debug|ARM32.Deploy.0 = Debug|Any CPU
+		{5885E727-C5C2-4CDA-8F3A-8253BC6B4B5B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5885E727-C5C2-4CDA-8F3A-8253BC6B4B5B}.Debug|x86.Build.0 = Debug|Any CPU
+		{5885E727-C5C2-4CDA-8F3A-8253BC6B4B5B}.Debug|x86.Deploy.0 = Debug|Any CPU
+		{5885E727-C5C2-4CDA-8F3A-8253BC6B4B5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5885E727-C5C2-4CDA-8F3A-8253BC6B4B5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5885E727-C5C2-4CDA-8F3A-8253BC6B4B5B}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{5885E727-C5C2-4CDA-8F3A-8253BC6B4B5B}.Release|ARM32.ActiveCfg = Release|Any CPU
+		{5885E727-C5C2-4CDA-8F3A-8253BC6B4B5B}.Release|ARM32.Build.0 = Release|Any CPU
+		{5885E727-C5C2-4CDA-8F3A-8253BC6B4B5B}.Release|ARM32.Deploy.0 = Release|Any CPU
+		{5885E727-C5C2-4CDA-8F3A-8253BC6B4B5B}.Release|x86.ActiveCfg = Release|Any CPU
+		{5885E727-C5C2-4CDA-8F3A-8253BC6B4B5B}.Release|x86.Build.0 = Release|Any CPU
+		{5885E727-C5C2-4CDA-8F3A-8253BC6B4B5B}.Release|x86.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

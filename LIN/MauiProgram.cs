@@ -133,7 +133,7 @@ public static class MauiProgram
                        })
                            .OnLaunched((window, args) =>
                            {
-                               if (Sesion.IsOpen)
+                               if (Session.IsLocalOpen)
                                    AppShell.Hub.Reconnect();
                            })
 
@@ -163,7 +163,7 @@ public static class MauiProgram
 
 
 
-        DeviceSesionKey = Shared.Tools.KeyGen.Generate(20, "dv.");
+        DeviceSesionKey = KeyGen.Generate(20, "dv.");
 
         ScriptRuntime.Scripts.Build();
 

@@ -1,15 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		
-		<TargetFrameworks>;net7.0-android33.0</TargetFrameworks>
+		<TargetFrameworks>net7.0-android;</TargetFrameworks>
 		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
 		<!-- <TargetFrameworks>$(TargetFrameworks);net7.0-tizen</TargetFrameworks> -->
 		<OutputType>Exe</OutputType>
 		<RootNamespace>LIN</RootNamespace>
 		<UseMaui>true</UseMaui>
-		<Nullable>enable</Nullable>
 		<SingleProject>true</SingleProject>
 		<ImplicitUsings>enable</ImplicitUsings>
 
@@ -18,190 +16,28 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.linservices.lin</ApplicationId>
-		<ApplicationIdGuid>ca299a6e-9538-4fcc-b686-f7cdf9e8cef9</ApplicationIdGuid>
+		<ApplicationIdGuid>7d4c0cde-d05f-42a2-9716-e90d7e38c7b5</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
 		<ApplicationVersion>1</ApplicationVersion>
 
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">24.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
-		<Configurations>Debug;Release;</Configurations>
-		<Platforms>AnyCPU;x86;ARM32</Platforms>
-		<NeutralLanguage>es-CO</NeutralLanguage>
-		<GenerateAppInstallerFile>False</GenerateAppInstallerFile>
-		<AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
-		<AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
-		<GenerateTestArtifacts>True</GenerateTestArtifacts>
-		<HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
-		<AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
-		<PackageCertificateThumbprint>86AECE1E9FCF630FCD4EAC6B3C5E7DF523D48E5B</PackageCertificateThumbprint>
-		<AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
-		<SignAssembly>False</SignAssembly>
 	</PropertyGroup>
-
 
 	<PropertyGroup Condition="'$(TargetFramework)' == 'net7.0-android'">
 		<MauiVersion>7.0.58</MauiVersion>
 	</PropertyGroup>
-	
-	
-	
-	
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-android|AnyCPU'">
-	  <WarningLevel>9999</WarningLevel>
-	  <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
-	  <JavaMaximumHeapSize>5G</JavaMaximumHeapSize>
-	  <AndroidKeyStore>False</AndroidKeyStore>
-	</PropertyGroup>
-	
-	
-	
-	
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-android|ARM32'">
-	  <WarningLevel>9999</WarningLevel>
-	  <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
-	  <JavaMaximumHeapSize>5G</JavaMaximumHeapSize>
-	  <AndroidKeyStore>False</AndroidKeyStore>
-	</PropertyGroup>
-	
-	
-	
-	
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-android|x86'">
-	  <WarningLevel>9999</WarningLevel>
-	  <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
-	  <JavaMaximumHeapSize>5G</JavaMaximumHeapSize>
-	  <AndroidKeyStore>False</AndroidKeyStore>
-	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-android|AnyCPU'">
-	  <WarningLevel>9999</WarningLevel>
-	  <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
-	  <AndroidPackageFormat>apk</AndroidPackageFormat>
-	  <JavaMaximumHeapSize>5G</JavaMaximumHeapSize>
-	  <AndroidKeyStore>False</AndroidKeyStore>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-android|ARM32'">
-	  <WarningLevel>9999</WarningLevel>
-	  <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
-	  <AndroidPackageFormat>apk</AndroidPackageFormat>
-	  <JavaMaximumHeapSize>5G</JavaMaximumHeapSize>
-	  <AndroidKeyStore>False</AndroidKeyStore>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-android|x86'">
-	  <WarningLevel>9999</WarningLevel>
-	  <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
-	  <AndroidPackageFormat>apk</AndroidPackageFormat>
-	  <JavaMaximumHeapSize>5G</JavaMaximumHeapSize>
-	  <AndroidKeyStore>False</AndroidKeyStore>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-windows10.0.19041.0|AnyCPU'">
-	  <WarningLevel>9999</WarningLevel>
-	  <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-windows10.0.19041.0|ARM32'">
-	  <WarningLevel>9999</WarningLevel>
-	  <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-windows10.0.19041.0|x86'">
-	  <WarningLevel>9999</WarningLevel>
-	  <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-windows10.0.19041.0|AnyCPU'">
-	  <WarningLevel>9999</WarningLevel>
-	  <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-windows10.0.19041.0|ARM32'">
-	  <WarningLevel>9999</WarningLevel>
-	  <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-windows10.0.19041.0|x86'">
-	  <WarningLevel>9999</WarningLevel>
-	  <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
-	</PropertyGroup>
-
-
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-android33.0|AnyCPU'">
-	  <PublishTrimmed>True</PublishTrimmed>
-	  <AndroidPackageFormat>apk</AndroidPackageFormat>
-	  <EnableLLVM>True</EnableLLVM>
-	  <RunAOTCompilation>True</RunAOTCompilation>
-	  <AndroidEnableProfiledAot>False</AndroidEnableProfiledAot>
-	  <AndroidLinkTool>r8</AndroidLinkTool>
-	  <AndroidStoreUncompressedFileExtensions>.dll</AndroidStoreUncompressedFileExtensions>
-	  <JavaMaximumHeapSize>2G</JavaMaximumHeapSize>
-	  <AndroidKeyStore>False</AndroidKeyStore>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-android33.0|ARM32'">
-	  <PublishTrimmed>True</PublishTrimmed>
-	  <AndroidPackageFormat>apk</AndroidPackageFormat>
-	  <EnableLLVM>True</EnableLLVM>
-	  <RunAOTCompilation>True</RunAOTCompilation>
-	  <AndroidEnableProfiledAot>False</AndroidEnableProfiledAot>
-	  <AndroidLinkTool>r8</AndroidLinkTool>
-	  <AndroidStoreUncompressedFileExtensions>.dll</AndroidStoreUncompressedFileExtensions>
-	  <JavaMaximumHeapSize>2G</JavaMaximumHeapSize>
-	  <AndroidKeyStore>False</AndroidKeyStore>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-android33.0|x86'">
-	  <PublishTrimmed>True</PublishTrimmed>
-	  <AndroidPackageFormat>apk</AndroidPackageFormat>
-	  <EnableLLVM>True</EnableLLVM>
-	  <RunAOTCompilation>True</RunAOTCompilation>
-	  <AndroidEnableProfiledAot>False</AndroidEnableProfiledAot>
-	  <AndroidLinkTool>r8</AndroidLinkTool>
-	  <AndroidStoreUncompressedFileExtensions>.dll</AndroidStoreUncompressedFileExtensions>
-	  <JavaMaximumHeapSize>2G</JavaMaximumHeapSize>
-	  <AndroidKeyStore>False</AndroidKeyStore>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-android33.0|AnyCPU'">
-	  <EnableLLVM>True</EnableLLVM>
-	  <AndroidStoreUncompressedFileExtensions>.dll</AndroidStoreUncompressedFileExtensions>
-	  <JavaMaximumHeapSize>2G</JavaMaximumHeapSize>
-	  <AndroidKeyStore>False</AndroidKeyStore>
-	  <PublishTrimmed>False</PublishTrimmed>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-android33.0|ARM32'">
-	  <EnableLLVM>True</EnableLLVM>
-	  <AndroidStoreUncompressedFileExtensions>.dll</AndroidStoreUncompressedFileExtensions>
-	  <JavaMaximumHeapSize>2G</JavaMaximumHeapSize>
-	  <AndroidKeyStore>False</AndroidKeyStore>
-	  <PublishTrimmed>False</PublishTrimmed>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-android33.0|x86'">
-	  <EnableLLVM>True</EnableLLVM>
-	  <AndroidStoreUncompressedFileExtensions>.dll</AndroidStoreUncompressedFileExtensions>
-	  <JavaMaximumHeapSize>2G</JavaMaximumHeapSize>
-	  <AndroidKeyStore>False</AndroidKeyStore>
-	  <PublishTrimmed>False</PublishTrimmed>
-	</PropertyGroup>
-
-	
 	<ItemGroup>
-
-		
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#3b82f6" BaseSize="128,128" />
-	
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
 		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
@@ -211,23 +47,12 @@
 
 		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
-		
 	</ItemGroup>
 
-	
-
 	<ItemGroup>
-		<PackageReference Include="CommunityToolkit.Maui" Version="5.2.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
-		<PackageReference Include="System.Runtime.InteropServices.NFloat.Internal" Version="6.0.1" />
 	</ItemGroup>
 
-	
-	<ItemGroup>
-	  <ProguardConfiguration Include=".cfg" />
-	</ItemGroup>
-
-	
 	<ItemGroup>
 	  <ProjectReference Include="..\..\..\AccesoAPI\LIN.Access.Auth\LIN.Access.Auth.csproj" />
 	  <ProjectReference Include="..\..\..\AccesoAPI\LIN.Access.Inventory\LIN.Access.Inventory.csproj" />
@@ -242,238 +67,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="UI\Controls\ForProducts\ProductDetailMobile.xaml.cs">
-	    <DependentUpon>ProductDetailMobile.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="UI\Controls\ForProducts\ProductTemplate.xaml.cs">
-	    <DependentUpon>ProductTemplate.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="UI\Controls\Integrant.xaml.cs">
-	    <DependentUpon>Integrant.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="UI\Controls\Outflow.xaml.cs">
-	    <DependentUpon>Outflow.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="UI\Controls\Inflow.xaml.cs">
-	    <DependentUpon>Inflow.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="UI\Controls\ProductDetail.xaml.cs">
-	    <DependentUpon>ProductDetail.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="UI\Controls\DeviceControl.xaml.cs">
-	    <DependentUpon>DeviceControl.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="UI\Popups\UserPassEdit.xaml.cs">
-	    <DependentUpon>UserPassEdit.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="UI\Popups\ContactEdit.xaml.cs">
-	    <DependentUpon>ContactEdit.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="UI\Popups\UserPopup.xaml.cs">
-	    <DependentUpon>UserPopup.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="UI\Popups\ProductEdit.xaml.cs">
-	    <DependentUpon>ProductEdit.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="UI\Popups\ProductTemplateSelector.xaml.cs">
-	    <DependentUpon>ProductTemplateSelector.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="UI\Views\Inflows\AddItem.xaml.cs">
-	    <DependentUpon>%(Filename)</DependentUpon>
-	  </Compile>
-	  <Compile Update="UI\Views\Inventorys\Informes.xaml.cs">
-	    <DependentUpon>Informes.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="UI\Views\Inventorys\IntegrantsAdd.xaml.cs">
-	    <DependentUpon>IntegrantsAdd.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="UI\Views\Inventorys\Integrantes.xaml.cs">
-	    <DependentUpon>Integrantes.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="UI\Views\Outflows\Index.xaml.cs">
-	    <DependentUpon>%(Filename)</DependentUpon>
-	  </Compile>
-	  <Compile Update="UI\Views\Outflows\ViewItem.xaml.cs">
-	    <DependentUpon>%(Filename)</DependentUpon>
-	  </Compile>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <MauiAsset Update="Resources\Raw\plantilla1.html">
-	    <LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
-	  </MauiAsset>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <MauiXaml Update="UI\Controls\ForProducts\ProductDetailMobile.xaml">
+	  <MauiXaml Update="MainPage - Copia.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="UI\Controls\ForProducts\ProductTemplate.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Controls\Integrant.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Controls\ForContacts\Contact.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Controls\ForContacts\ContactForPick.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Controls\ForContacts\ContactMini.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Controls\ForContacts\ContactSquare.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Controls\ForProducts\Product.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Controls\ForProducts\ProductDetail.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Controls\ForProducts\ProductForPick.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Controls\ForUsers\UserForPick.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Controls\HomeCard.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Controls\Markups\BorderWithImage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Controls\Outflow.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Controls\Inflow.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Controls\InfoCard.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Controls\Inventory.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Controls\Notificacion.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Controls\ProductDetail.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Controls\DeviceControl.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Popups\UserPassEdit.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Popups\UserPopup.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Popups\ContactPopup.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Popups\ContactEdit.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Popups\ProductEdit.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Popups\ContactSelector.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Popups\DefaultPopup.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Popups\DeviceSelector.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Popups\ProductSelector.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Popups\ProductTemplateSelector.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Popups\UserSelector.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Popups\Welcome.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Views\AccountPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Views\AppShell.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Views\Contacts\Add.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Views\Contacts\Index.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Views\Devices\Index.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Views\Home.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Views\Inflows\AddItem.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Views\Inventorys\AddInventory.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Views\Inventorys\Informes.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Views\Outflows\AddItem.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Views\Inflows\Index.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Views\Inflows\ViewItem.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Views\Inventorys\IntegrantsAdd.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Views\Inventorys\Integrantes.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Views\Inventorys\Index.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Views\Login.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Views\LoginLoading.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Views\Outflows\Index.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Views\Outflows\ViewItem.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Views\Products\Add.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Views\Products\Index.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Views\Products\ViewItem.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Views\Singin.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Properties\PublishProfiles\" />
 	</ItemGroup>
 
 </Project>

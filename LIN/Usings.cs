@@ -1,4 +1,5 @@
-﻿global using CommunityToolkit.Maui;
+﻿global using LIN.Modules;
+global using CommunityToolkit.Maui;
 global using CommunityToolkit.Maui.Views;
 global using LIN.Access;
 global using System.Text;
