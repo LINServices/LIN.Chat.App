@@ -8,7 +8,7 @@ public partial class AddInventory : ContentPage
     /// <summary>
     /// Lista de participantes
     /// </summary>
-    private readonly List<A> Participantes = new();
+    private readonly List<SessionModel<ProfileModel>> Participantes = new();
 
 
 
@@ -30,13 +30,13 @@ public partial class AddInventory : ContentPage
     {
         // Nuevo popup
         var pop = new UserSelector();
-        var models = (List<UserDataModel>?)await this.ShowPopupAsync(pop) ?? new();
+        var models = (List<SessionModel<ProfileModel>>?)await this.ShowPopupAsync(pop) ?? new();
 
         // Recorre los resultados
         foreach (var model in models)
         {
             // Busca usuarios repetidos
-            var found = Participantes.Where(T => T.ID == model.ID).Count();
+            var found = Participantes.Where(T => T.Profile.ID == model.Profile.ID).Count();
 
             if (found > 0)
                 continue;
@@ -102,7 +102,7 @@ public partial class AddInventory : ContentPage
         {
             Nombre = txtName.Text,
             Direccion = txtDireccion.Text,
-            Creador = Sesion.Instance.Informacion.ID,
+            Creador = Session.Instance.Informacion.ID,
             UltimaModificacion = DateTime.Now
         };
 
@@ -114,16 +114,16 @@ public partial class AddInventory : ContentPage
             // Acceso del usuario creador
             modelo.UsersAccess.Add(new()
             {
-                Usuario = Sesion.Instance.Informacion.ID
+                ProfileID = Session.Instance.Informacion.ID
             });
 
             // Otros participantes
             foreach (var user in Participantes)
             {
-                notificationList.Add(user.ID);
+                notificationList.Add(user.Profile.ID);
                 modelo.UsersAccess.Add(new()
                 {
-                    Usuario = user.ID,
+                    ProfileID = user.Profile.ID,
                     Rol = InventoryRoles.Member
                 });
             }
@@ -132,7 +132,7 @@ public partial class AddInventory : ContentPage
 
 
         // Respuesta del controlador
-        var response = await Inventories.Create(modelo, Sesion.Instance.Informacion.ID);
+        var response = await Inventories.Create(modelo, Session.Instance.Informacion.ID);
 
 
         // Organizacion de la interfaz

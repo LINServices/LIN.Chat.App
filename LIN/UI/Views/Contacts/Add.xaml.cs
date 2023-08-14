@@ -71,9 +71,9 @@ public partial class Add : ContentPage
         var modelo = new ContactDataModel()
         {
             Mail = txtMail.Text ?? "Sin definir",
-            Name = txtName.Text ?? "Unamed",
+            Name = txtName.Text ?? "Unnamed",
             Picture =    await imagen,
-            UserID = Sesion.Instance.Informacion.ID,
+            ProfileID = Session.Instance.Informacion.ID,
             Direction = txtDireccion.Text ?? "Sin definir",
             Phone = txtPhone.Text ?? "Sin definir"
         };
@@ -109,7 +109,7 @@ public partial class Add : ContentPage
         lbInfo.TextColor = Colors.Crimson;
         btn.Show();
 
-        if (response.Response != LIN.Shared.Responses.Responses.Success)
+        if (response.Response != Responses.Success)
         {
             ShowInfo("Hubo un error");
             OnAdd?.Invoke(this, Services.AddResponse.Failure);
@@ -118,7 +118,7 @@ public partial class Add : ContentPage
 
 
 
-        AppShell.Hub.SendContactModel(Sesion.Instance.Informacion.ID, response.LastID);
+        AppShell.Hub.SendContactModel(Session.Instance.Informacion.ID, response.LastID);
 
         // Muestra el popup de agregado
         OnAdd?.Invoke(this, Services.AddResponse.Success);

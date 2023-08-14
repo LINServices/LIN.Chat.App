@@ -93,13 +93,13 @@ public partial class ContactSelector : Popup
     {
 
         // ID de la cuenta
-        var id = Sesion.Instance.Informacion.ID;
+        var id = Session.Instance.Informacion.ID;
 
         // Respuesta
         var response = await Access.Inventory.Controllers.Contact.ReadAll(id);
 
         // Evalua
-        if (response.Response != Shared.Responses.Responses.Success)
+        if (response.Response != Responses.Success)
             return false;
 
         // Organiza los modelos

@@ -29,10 +29,10 @@ internal class PDFService
         html = html.Replace("@titleTotal", $"Total ({outflow.Type}):");
 
         // Consulta a LIN PDF
-        var response = await LIN.Access.Developer.Controllers.PDF.ConvertHTML(html);
+        //var response = await LIN.Access.Developer.Controllers.PDF.ConvertHTML(html);
 
         // Guarda el archivo
-        File.WriteAllBytes($"{path}\\salida_{outflow.ID}.pdf", response.File);
+       // File.WriteAllBytes($"{path}\\salida_{outflow.ID}.pdf", response.File);
 
     }
 
@@ -100,10 +100,10 @@ internal class PDFService
 
 
         // Consulta a LIN PDF
-        var response = await LIN.Access.Developer.Controllers.PDF.ConvertHTML(html);
+      //  var response = await LIN.Access.Developer.Controllers.PDF.ConvertHTML(html);
 
         // Guarda el archivo
-        File.WriteAllBytes($"{path}\\entrada_{inflow.ID}.pdf", response.File);
+       // File.WriteAllBytes($"{path}\\entrada_{inflow.ID}.pdf", response.File);
 
     }
 

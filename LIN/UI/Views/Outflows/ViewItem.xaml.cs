@@ -10,7 +10,7 @@ public partial class ViewItem : ContentPage
 
     public OutflowDataModel Modelo { get; set; }
 
-    UserDataModel Creador = new();
+    SessionModel<ProfileModel> Creador = new();
     bool OpenExport { get; set; }
     public ViewItem(OutflowDataModel model, bool openExport = false)
     {
@@ -28,11 +28,11 @@ public partial class ViewItem : ContentPage
     {
 
         var response = await Access.Inventory.Controllers.Outflows.Read(Modelo.ID);
-        var taskUser = LIN.Access.Controllers.User.ReadOneAsync(Modelo.Usuario);
+        var taskUser = LIN.Access.Auth.Controllers.Account.Read(Modelo.ProfileID);
 
         displayCategory.Text = Modelo.Type.ToString();
         indicador.Hide();
-        if (response.Response != Shared.Responses.Responses.Success)
+        if (response.Response != Responses.Success)
         {
             return;
         }
@@ -52,7 +52,7 @@ public partial class ViewItem : ContentPage
 
 
         var resUser = await taskUser;
-        Creador = resUser.Model;
+        //Creador = resUser.Model.ID;
         lbName.Text = resUser.Model.Nombre;
         picUser.Source = ImageEncoder.Decode(resUser.Model.Perfil);
         displayCategory.Text = Modelo.Type.Humanize();
@@ -130,7 +130,7 @@ public partial class ViewItem : ContentPage
 
         var folderBase = result.Folder.Path;
 
-        await PDFService.RenderOutflow(Modelo, Sesion.Instance.Informacion.Usuario, Creador.Usuario, Transfers, folderBase);
+        await PDFService.RenderOutflow(Modelo, Session.Instance.Account.Usuario, Creador.Account.Usuario, Transfers, folderBase);
         await DisplayAlert("Reporte", "Reporte generado exitosamente", "OK");
 
 #elif ANDROID
@@ -139,7 +139,7 @@ public partial class ViewItem : ContentPage
         {
             App = new[]
             {
-                LINApps.Inventory
+                Applications.Inventory
             },
             Plataformas = new[]
             {

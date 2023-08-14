@@ -20,13 +20,13 @@ public partial class ViewItem : ContentPage, IProductViewer
 
     InventoryDataModel? Inventario;
 
-    ProductAccessHub? Hub = null;
+    InventoryAccessHub? Hub = null;
 
 
     /// <summary>
     /// Constructor
     /// </summary>
-    public ViewItem(ProductDataTransfer modelo, InventoryDataModel? inventario = null, ProductAccessHub? hub = null)
+    public ViewItem(ProductDataTransfer modelo, InventoryDataModel? inventario = null, InventoryAccessHub? hub = null)
     {
         // Suscribe la vista
         ProductObserver.Add(this);
@@ -161,7 +161,7 @@ public partial class ViewItem : ContentPage, IProductViewer
 
         var response = await Access.Inventory.Controllers.Product.Delete(Modelo.ProductID);
 
-        if (response.Response != Shared.Responses.Responses.Success)
+        if (response.Response != Responses.Success)
         {
             await DisplayAlert("Error", "Hubo un error al eliminar el producto", "OK");
             return;

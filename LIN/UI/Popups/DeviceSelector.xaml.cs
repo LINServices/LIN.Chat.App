@@ -120,20 +120,20 @@ public partial class DeviceSelector : Popup
     {
 
         // Solicitud
-        var devices = await Access.Controllers.Devices.ReadAll(AppShell.Hub.ID, Sesion.Instance.Informacion.ID);
+        //var devices = await Access.Controllers.Devices.ReadAll(AppShell.Hub.ID, Session.Instance.Informacion.ID);
 
-        // Respuesta incorrecta
-        if (devices.Response != Shared.Responses.Responses.Success)
-            return false;
+        //// Respuesta incorrecta
+        //if (devices.Response != Responses.Success)
+        //    return false;
 
-        // Modelos
-        List<DeviceModel> filters = new();
+        //// Modelos
+        //List<DeviceModel> filters = new();
 
 
-        if (!Filtro.HasMe)
-            filters = devices.Models.Where(T => T.ID != AppShell.Hub.ID).ToList();
+        //if (!Filtro.HasMe)
+        //    filters = devices.Models.Where(T => T.ID != AppShell.Hub.ID).ToList();
 
-        Modelos = ApplyFilters(filters, Filtro);
+        //Modelos = ApplyFilters(filters, Filtro);
 
         return true;
     }
@@ -291,7 +291,7 @@ public partial class DeviceSelector : Popup
     {
         // Lista de elementos filtrados
         List<DeviceModel> filtrado = new();
-        if (filtro.App.Contains(LINApps.Undefined))
+        if (filtro.App.Contains(Applications.Undefined))
         {
             filtrado.AddRange(lista);
             return filtrado;

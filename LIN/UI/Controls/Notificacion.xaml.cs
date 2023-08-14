@@ -10,10 +10,10 @@ public partial class Notificacion : Grid
     public event EventHandler<EventArgs>? Clicked;
 
 
-    public Notificacion Modelo { get; set; }
+    public Types.Inventory.Models.Notificacion Modelo { get; set; }
 
 
-    public Notificacion(Notificacion modelo)
+    public Notificacion(LIN.Types.Inventory.Models.Notificacion modelo)
     {
         InitializeComponent();
         this.Modelo = modelo;
@@ -51,7 +51,7 @@ public partial class Notificacion : Grid
     private async void ButtonCancel(object sender, EventArgs e)
     {
         this.Hide();
-        await Inventories.UpdateState(Modelo.ID, Shared.Enumerations.InventoryAccessState.Deleted);
+        await Inventories.UpdateState(Modelo.ID, InventoryAccessState.Deleted);
     }
 
 
@@ -64,7 +64,7 @@ public partial class Notificacion : Grid
     private async void ButtonAcepted(object sender, EventArgs e)
     {
         this.Hide();
-        await Inventories.UpdateState(Modelo.ID, Shared.Enumerations.InventoryAccessState.Accepted);
+        await Inventories.UpdateState(Modelo.ID, InventoryAccessState.Accepted);
     }
 
     private void PointerGestureRecognizer_PointerEntered(object sender, PointerEventArgs e)

@@ -137,16 +137,16 @@ public partial class UserPopup : Popup
 
 
         Prepare();
-        var res = await Inventories.UpdateRol(Modelo.AccessID, now, Sesion.Instance.Token);
+        var res = await Inventories.UpdateRol(Modelo.AccessID, now, Session.Instance.Token);
 
 
         switch (res.Response)
         {
-            case Shared.Responses.Responses.Success:
+            case Responses.Success:
                 this.Close(now);
                 return;
 
-            case Shared.Responses.Responses.DontHavePermissions:
+            case Responses.Unauthorized:
                 lbInfo.Text = "No tienes permisos";
                 break;
 

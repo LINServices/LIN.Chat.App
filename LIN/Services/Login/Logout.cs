@@ -8,9 +8,9 @@ internal class Logout
     {
         try
         {
-            MauiProgram.DeviceSesionKey = Shared.Tools.KeyGen.Generate(20, "dv.");
+            MauiProgram.DeviceSesionKey = KeyGen.Generate(20, "dv.");
             await new LocalDataBase.Data.UserDB().DeleteUsers();
-            Sesion.CloseSesion();
+            Session.CloseSession();
             if (AppShell.Hub != null)
                 await UI.Views.AppShell.Hub?.CloseSesion();
             AppShell.Hub = null;

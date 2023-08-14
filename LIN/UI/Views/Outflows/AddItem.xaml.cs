@@ -7,7 +7,7 @@ namespace LIN.UI.Views.Outflows;
 public partial class AddItem : ContentPage
 {
 
-    ProductAccessHub? Hub;
+    InventoryAccessHub? Hub;
 
 
     //====== Propiedades ======//
@@ -32,7 +32,7 @@ public partial class AddItem : ContentPage
     /// <summary>
     /// Constructor
     /// </summary>
-    public AddItem(int inventario, ProductAccessHub? hub)
+    public AddItem(int inventario, InventoryAccessHub? hub)
     {
         InitializeComponent();
         Inventario = inventario;
@@ -151,7 +151,7 @@ public partial class AddItem : ContentPage
             Date = DateTime.Now,
             Type = Tipo,
             Inventario = Inventario,
-            Usuario = Sesion.Instance.Informacion.ID
+            ProfileID = Session.Instance.Informacion.ID
         };
 
 

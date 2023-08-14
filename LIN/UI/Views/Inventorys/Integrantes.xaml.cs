@@ -105,7 +105,7 @@ public partial class Integrantes : ContentPage
                 break;
 
             // Sin permisos
-            case Responses.DontHavePermissions:
+            case Responses.Unauthorized:
                 ShowInfo("Sin permisos");
                 return;
 
@@ -136,7 +136,7 @@ public partial class Integrantes : ContentPage
     private async Task<Responses> RetrieveData()
     {
 
-        var response = await Inventories.GetIntegrants(Inventory.ID, Sesion.Instance.Informacion.ID);
+        var response = await Inventories.GetIntegrants(Inventory.ID, Session.Instance.Informacion.ID);
 
         // Analisis de respuesta
         if (response.Response != Responses.Success)
@@ -228,7 +228,7 @@ public partial class Integrantes : ContentPage
                 return;
 
             var inventario = Inventory.ID;
-            var me = Sesion.Instance.Informacion.ID;
+            var me = Session.Instance.Informacion.ID;
             var user = modelo?.ID ?? 0;
 
             // Solicitud de eliminar
@@ -407,7 +407,7 @@ public partial class Integrantes : ContentPage
         {
             App = new[]
           {
-                LINApps.Inventory
+                Applications.Inventory
             },
             Plataformas = new[]
           {

@@ -9,7 +9,7 @@ internal class Events
 
     public static void OnStart(Activity activity)
     {
-        if (Sesion.IsOpen)
+        if (Session.IsLocalOpen)
             AppShell.Hub.ReconnectAndUpdate();
 
     }

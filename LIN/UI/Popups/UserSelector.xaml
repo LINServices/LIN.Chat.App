@@ -67,7 +67,6 @@
                     <!--  Imagen de aceptar  -->
                     <Custom:ToggleButton
                         Margin="5,0,0,0"
-                        Clicked="ButtonBuscarClick"
                         ColorBG="#E4E4E4"
                         HeightRequest="30"
                         Picture="buscar.png"

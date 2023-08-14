@@ -46,7 +46,7 @@ public partial class ContactPopup : Popup
 
     private void Button_Clicked(object sender, EventArgs e)
     {
-        AppShell.OnViewON($"openCt({Modelo.ID})", LINApps.CloudConsole);
+        AppShell.OnViewON($"openCt({Modelo.ID})", Applications.CloudConsole);
     }
 
     private async void Button_Clicked_1(object sender, EventArgs e)
@@ -59,7 +59,7 @@ public partial class ContactPopup : Popup
 #elif WINDOWS
 
         var pop = new Popups.DeviceSelector($"call({Modelo.Phone})",
-            new() { App = new[] { LINApps.Inventory }, Plataformas = new[] { Platforms.Android }, AutoSelect = true });
+            new() { App = new[] { Applications.Inventory }, Plataformas = new[] { Platforms.Android }, AutoSelect = true });
 
         await AppShell.ActualPage!.ShowPopupAsync(pop);
 #endif
@@ -77,12 +77,12 @@ public partial class ContactPopup : Popup
     {
 
         var response = await ((Modelo.State == ContactStatus.Normal) ?
-                            Access.Inventory.Controllers.Contact.ToTrash(Modelo.ID, LIN.Access.Sesion.Instance.Token) :
-                            Access.Inventory.Controllers.Contact.Delete(Modelo.ID, LIN.Access.Sesion.Instance.Token));
+                            Access.Inventory.Controllers.Contact.ToTrash(Modelo.ID, Session.Instance.Token) :
+                            Access.Inventory.Controllers.Contact.Delete(Modelo.ID, Session.Instance.Token));
 
         this.Close();
 
-        if (response.Response == Shared.Responses.Responses.Success)
+        if (response.Response == Responses.Success)
         {
             Modelo.State = (Modelo.State == ContactStatus.Normal) ? ContactStatus.OnTrash : ContactStatus.Deleted;
             ContactObserver.Update(Modelo);

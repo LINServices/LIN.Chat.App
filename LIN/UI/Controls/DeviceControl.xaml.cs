@@ -60,18 +60,18 @@ public partial class DeviceControl : Grid
 
         displayApp.Text = Modelo.App switch
         {
-            LINApps.Inventory => "LIN Inventory",
-            LINApps.CloudConsole => "LIN Cloud Console",
-            LINApps.Admin => "LIN Admin",
+            Applications.Inventory => "LIN Inventory",
+            Applications.CloudConsole => "LIN Cloud Console",
+            Applications.Admin => "LIN Admin",
             _ => ""
         };
 
 
-        if (Modelo.Platform == Shared.Enumerations.Platforms.Windows)
+        if (Modelo.Platform == Platforms.Windows)
             img.Source = ImageSource.FromFile("ordenador.png");
-        else if (Modelo.Platform == Shared.Enumerations.Platforms.Android)
+        else if (Modelo.Platform == Platforms.Android)
             img.Source = ImageSource.FromFile("telefono.png");
-        else if (Modelo.Platform == Shared.Enumerations.Platforms.Web)
+        else if (Modelo.Platform == Platforms.Web)
             img.Source = ImageSource.FromFile("web.png");
 
 

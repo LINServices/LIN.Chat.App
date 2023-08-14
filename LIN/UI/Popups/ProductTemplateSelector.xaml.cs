@@ -53,22 +53,22 @@ public partial class ProductTemplateSelector : Popup
         // Analisis de respuesta
         switch (user.Response)
         {
-            case Shared.Responses.Responses.Success:
+            case Responses.Success:
                 break;
 
-            case Shared.Responses.Responses.InvalidUser:
+            case Responses.InvalidUser:
                 indicador.Hide();
                 displayInfo.Show();
                 displayInfo.Text = $"Hubo un error con tu cuenta.";
                 return;
 
-            case Shared.Responses.Responses.InvalidParamText:
+            case Responses.InvalidParam:
                 indicador.Hide();
                 displayInfo.Show();
                 displayInfo.Text = $"El texto es invalido";
                 return;
 
-            case Shared.Responses.Responses.NotRows:
+            case Responses.NotRows:
                 indicador.Hide();
                 displayInfo.Show();
                 displayInfo.Text = $"No se encontraron resultados para '{pattern}'";
@@ -157,7 +157,7 @@ public partial class ProductTemplateSelector : Popup
     /// </summary>
     private void BtnCancelClick(object sender, EventArgs e)
     {
-        this.Close(new UserDataModel());
+       // this.Close(new UserDataModel());
     }
 
 

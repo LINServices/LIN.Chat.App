@@ -211,19 +211,19 @@ public partial class LoginLoading : ContentPage
 
 
 
-    //        if (login.Response == LIN.Shared.Responses.Responses.Success)
+    //        if (login.Response == Responses.Success)
     //        {
     //            // Abre la nueva ventana
     //            new AppShell().ShowOnTop();
     //           // this.Close();
     //        }
 
-    //        else if (login.Response == LIN.Shared.Responses.Responses.InvalidPassword)
+    //        else if (login.Response == Responses.InvalidPassword)
     //        {
     //            new Login("La sesión expiro").ShowOnTop();
     //            //this.Close();
     //        }
-    //        else if (login.Response == LIN.Shared.Responses.Responses.NotExistAccount)
+    //        else if (login.Response == Responses.NotExistAccount)
     //        {
     //            new Login("No existe este usuario").ShowOnTop();
     //            //this.Close();

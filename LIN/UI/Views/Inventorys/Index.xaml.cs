@@ -88,7 +88,7 @@ public partial class Index : ContentPage
     private async Task<bool> RetrieveData()
     {
         // Items
-        var response = await Inventories.ReadAll(Sesion.Instance.Informacion.ID);
+        var response = await Inventories.ReadAll(Session.Instance.Informacion.ID);
 
         // Analisis de respuesta
         if (response.Response != Responses.Success)
@@ -280,7 +280,7 @@ public partial class Index : ContentPage
     private void Calculate()
     {
         cardInventarios.Contenido = $"{Modelos.Count}";
-        cardInventarios.ChartText = $"{Modelos.Where(T => T.Creador == Sesion.Instance.Informacion.ID).Count()} eres fundador";
+        cardInventarios.ChartText = $"{Modelos.Where(T => T.Creador == Session.Instance.Informacion.ID).Count()} eres fundador";
     }
 
 

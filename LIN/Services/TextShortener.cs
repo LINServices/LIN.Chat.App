@@ -21,7 +21,7 @@
             {
 
                 case "Tecnología":
-                    return ProductCategories.Tecnologia;
+                    return ProductCategories.Tecnología;
                 case "Hogar y decoración":
                     return ProductCategories.Hogar;
                 case "Agricultura y jardinería":
@@ -62,7 +62,7 @@
             switch (value)
             {
 
-                case ProductCategories.Tecnologia:
+                case ProductCategories.Tecnología:
                     return "Tecnología";
                 case ProductCategories.Hogar:
                     return "Hogar y decoración";

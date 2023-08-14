@@ -51,28 +51,28 @@ public partial class UserSelector : Popup
     //    }
 
     //    // Encuentra el usuario
-    //    var user = await LIN.Access.Controllers.User.SearhByPattern(pattern, Sesion.Instance.Informacion.ID);
+    //    var user = await LIN.Access.Controllers.User.SearhByPattern(pattern, Session.Instance.Informacion.ID);
 
 
     //    // Analisis de respuesta
     //    switch (user.Response)
     //    {
-    //        case Shared.Responses.Responses.Success:
+    //        case Responses.Success:
     //            break;
 
-    //        case Shared.Responses.Responses.InvalidUser:
+    //        case Responses.InvalidUser:
     //            indicador.Hide();
     //            displayInfo.Show();
     //            displayInfo.Text = $"Hubo un error con tu cuenta.";
     //            return;
 
-    //        case Shared.Responses.Responses.InvalidParamText:
+    //        case Responses.InvalidParamText:
     //            indicador.Hide();
     //            displayInfo.Show();
     //            displayInfo.Text = $"El texto es invalido";
     //            return;
 
-    //        case Shared.Responses.Responses.NotRows:
+    //        case Responses.NotRows:
     //            indicador.Hide();
     //            displayInfo.Show();
     //            displayInfo.Text = $"No se encontraron resultados para '{pattern}'";
@@ -133,60 +133,60 @@ public partial class UserSelector : Popup
 
 
 
-    ///// <summary>
-    ///// Evento click sobre Pick
-    ///// </summary>
-    //private void PickItemClick(object sender, EventArgs e)
-    //{
+    /// <summary>
+    /// Evento click sobre Pick
+    /// </summary>
+    private void PickItemClick(object sender, EventArgs e)
+    {
 
-    //    // Control
-    //    UserForPick control = (UserForPick)sender;
+        //// Control
+        //UserForPick control = (UserForPick)sender;
 
-    //    // Accion si no esta seleccionado
-    //    var finder = SelectedItems.Where(T => T.ID == control.Modelo.ID).ToList();
-    //    if (!control.IsSelected & finder.Count <= 0)
-    //    {
-    //        var obj = (UserForPick)sender;
-    //        SelectedItems.Add(obj?.Modelo ?? new());
-    //        obj?.Select();
-    //        return;
-    //    }
+        //// Accion si no esta seleccionado
+        //var finder = SelectedItems.Where(T => T.ID == control.Modelo.ID).ToList();
+        //if (!control.IsSelected & finder.Count <= 0)
+        //{
+        //    var obj = (UserForPick)sender;
+        //    SelectedItems.Add(obj?.Modelo ?? new());
+        //    obj?.Select();
+        //    return;
+        //}
 
-    //    // deselecciona los items
-    //    foreach (var item in finder)
-    //    {
-    //        control.UnSelect();
-    //        SelectedItems.Remove(item);
-    //    }
-
-
-    //}
+        //// deselecciona los items
+        //foreach (var item in finder)
+        //{
+        //    control.UnSelect();
+        //    SelectedItems.Remove(item);
+        //}
 
 
-
-    ///// <summary>
-    ///// Boton de cancelar
-    ///// </summary>
-    //private void BtnCancelClick(object sender, EventArgs e)
-    //{
-    //    this.Close(new List<UserDataModel>());
-    //}
+    }
 
 
 
-    ///// <summary>
-    ///// Boton de aceptar
-    ///// </summary>
-    //private void BtnSelectClick(object sender, EventArgs e)
-    //{
-    //    if (SelectedItems.Count <= 0)
-    //    {
-    //        displayInfo.Text = "Selecciona minimo un usuario";
-    //        return;
-    //    }
+    /// <summary>
+    /// Boton de cancelar
+    /// </summary>
+    private void BtnCancelClick(object sender, EventArgs e)
+    {
+     //   this.Close(new List<UserDataModel>());
+    }
 
-    //    this.Close(SelectedItems);
-    //}
+
+
+    /// <summary>
+    /// Boton de aceptar
+    /// </summary>
+    private void BtnSelectClick(object sender, EventArgs e)
+    {
+        //if (SelectedItems.Count <= 0)
+        //{
+        //    displayInfo.Text = "Selecciona minimo un usuario";
+        //    return;
+        //}
+
+        //this.Close(SelectedItems);
+    }
 
 
 
@@ -200,11 +200,11 @@ public partial class UserSelector : Popup
 
 
 
-    ///// <summary>
-    ///// Boton de listar
-    ///// </summary>
-    //private async void ButtonListar_Clicked(object sender, EventArgs e)
-    //{
+    /// <summary>
+    /// Boton de listar
+    /// </summary>
+    private async void ButtonListar_Clicked(object sender, EventArgs e)
+    {
     //    // Elementos seleccionados
     //    content.Clear();
     //    indicador.Show();
@@ -218,7 +218,7 @@ public partial class UserSelector : Popup
     //    displayInfo.Show();
     //    displayInfo.Text = $"{SelectedItems.Count} elementos seleccionados";
 
-    //}
+    }
 
 
 }

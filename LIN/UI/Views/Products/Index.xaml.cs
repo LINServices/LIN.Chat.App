@@ -11,7 +11,7 @@ public partial class Index : ContentPage
     /// <summary>
     /// HUB de productos
     /// </summary>
-    private ProductAccessHub? HubConnection { get; set; }
+    private InventoryAccessHub? HubConnection { get; set; }
 
 
 
@@ -115,7 +115,7 @@ public partial class Index : ContentPage
     /// </summary>
     private void SuscribeToHub()
     {
-        HubConnection = new ProductAccessHub(Inventario.ID);
+        HubConnection = new InventoryAccessHub(Inventario.ID);
         HubConnection.On += HubConnection_On;
         HubConnection.OnDeleteProducto += HubConnection_OnDeleteProducto;
         HubConnection.OnUpdate += HubConnection_OnUpdate;

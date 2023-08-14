@@ -11,7 +11,7 @@ public partial class Add : ContentPage
     /// <summary>
     /// HUB de conexion
     /// </summary>
-    ProductAccessHub? HubConnection { get; set; }
+    InventoryAccessHub? HubConnection { get; set; }
 
 
     bool WithPlantilla { get; set; } = false;
@@ -31,7 +31,7 @@ public partial class Add : ContentPage
     /// <summary>
     /// Constructor
     /// </summary>
-    public Add(int idInventory, ProductAccessHub? hubonnection)
+    public Add(int idInventory, InventoryAccessHub? hubonnection)
     {
         InitializeComponent();
         this.HubConnection = hubonnection;
@@ -286,7 +286,7 @@ public partial class Add : ContentPage
             case ProductCategories.Servicios:
                 inpCategoria.SelectedIndex = 7;
                 break;
-            case ProductCategories.Tecnologia:
+            case ProductCategories.Tecnología:
                 inpCategoria.SelectedIndex = 1;
                 break;
             default:

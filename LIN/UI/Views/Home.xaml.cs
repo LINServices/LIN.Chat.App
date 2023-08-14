@@ -27,7 +27,7 @@ public partial class Home : ContentPage
     {
         Appearing += AppearingEvent;
         AppShell.ActualPage = this;
-        AppShell.Hub.OnReceiveNotification += Hub_OnReceiveNotification1;
+       // AppShell.Hub.OnReceiveNotification += Hub_OnReceiveNotification1;
         InitializeComponent();
         LoadUserData();
         Load();
@@ -64,7 +64,7 @@ public partial class Home : ContentPage
 
     private void SuscribeToHub()
     {
-        AppShell.Hub.OnReceiveNotification += Hub_OnReceiveNotification;
+        //AppShell.Hub.OnReceiveNotification += Hub_OnReceiveNotification;
     }
 
     private void Hub_OnReceiveNotification(object? sender, string e)
@@ -273,7 +273,7 @@ public partial class Home : ContentPage
 
 
 
-        //    lbUsuario.Text = "@" + Sesion.Instance.Informacion.UsuarioU;
+        //    lbUsuario.Text = "@" + Session.Instance.Informacion.UsuarioU;
         //    imgPerfil.Source = ;
         await Task.Delay(1);
     }

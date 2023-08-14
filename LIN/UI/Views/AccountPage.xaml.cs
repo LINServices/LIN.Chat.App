@@ -1,3 +1,5 @@
+using LIN.Types.Auth.Enumerations;
+
 namespace LIN.UI.Views;
 
 
@@ -36,24 +38,24 @@ public partial class AccountPage : ContentPage
         Appearing += AccountPage_Appearing;
 
         // Eventos para el HUB
-        AppShell.Hub.OnReceiveDevicesList += OnRecieveAll;
-        AppShell.Hub.OnReceiveDevice += OnReceiveDevice;
-        AppShell.Hub.OnSomeoneLeave += OnSomeoneLeave;
+        //AppShell.Hub.OnReceiveDevicesList += OnRecieveAll;
+        //AppShell.Hub.OnReceiveDevice += OnReceiveDevice;
+        //AppShell.Hub.OnSomeoneLeave += OnSomeoneLeave;
 
         // Muestra la informacion
-        perfil.Source = ImageEncoder.Decode(Sesion.Instance.Informacion.Perfil);
-        lbName.Text = Sesion.Instance.Informacion.Nombre;
-        displayUser.Text = "@" + Sesion.Instance.Informacion.Usuario;
+        perfil.Source = ImageEncoder.Decode(Session.Instance.Account.Perfil);
+        lbName.Text = Session.Instance. Account.Nombre;
+        displayUser.Text = "@" + Session.Instance.Account.Usuario;
 
         // Insignias
-        switch (Sesion.Instance.Informacion.Insignia)
+        switch (Session.Instance.Account.Insignia)
         {
 
-            case Insignias.Verified:
+            case AccountBadges.Verified:
                 displayInsignia.Source = ImageSource.FromFile("verificado.png");
                 break;
 
-            case Insignias.VerifiedGold:
+            case AccountBadges.VerifiedGold:
                 displayInsignia.Source = ImageSource.FromFile("verificadogold.png");
                 break;
 
@@ -62,29 +64,11 @@ public partial class AccountPage : ContentPage
                 break;
         }
 
-        GetCredits();
     }
 
 
 
-    public async void GetCredits()
-    {
-        var response = await LIN.Access.Developer.Controllers.Profile.ReadOneAsync(Sesion.Instance.Informacion.ID);
-
-        if (response.Response != Shared.Responses.Responses.Success)
-        {
-            cardLayout.Hide();
-            lbMetodos.Hide();
-            return;
-        }
-
-        cardLayout.Show();
-        lbMetodos.Show();
-
-        card.Creditos = response.Model.Credito;
-        card.Cuenta = response.Model.Name;
-
-    }
+   
 
 
 
@@ -357,10 +341,10 @@ public partial class AccountPage : ContentPage
 
         rendering = true;
 
-        var devices = await LIN.Access.Controllers.Devices.ReadAll(AppShell.Hub.ID, Sesion.Instance.Informacion.ID);
+       // var devices = await LIN.Access.Controllers.Devices.ReadAll(AppShell.Hub.ID, Session.Instance.Informacion.ID);
 
 
-        OnRecieveAll(this, devices.Models);
+      //  OnRecieveAll(this, devices.Models);
 
         rendering = false;
 
