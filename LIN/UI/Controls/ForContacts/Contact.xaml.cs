@@ -1,5 +1,6 @@
 namespace LIN.UI.Controls;
 
+
 public partial class Contact : Grid, IContactViewer
 {
 

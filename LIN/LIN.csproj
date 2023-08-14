@@ -246,8 +246,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\..\AccesoAPI\LIN.Access\LIN.Access.csproj" />
 	  <ProjectReference Include="..\..\..\SILFScript\SILF.Script\SILF.Script\SILF.Script.csproj" />
+	  <ProjectReference Include="..\..\..\Tipos\LIN.Types.Auth\LIN.Types.Auth.csproj" />
 	  <ProjectReference Include="..\..\..\Tipos\LIN.Types.Inventory\LIN.Types.Inventory.csproj" />
 	  <ProjectReference Include="..\..\..\Tipos\LIN.Types\LIN.Types.csproj" />
 	  <ProjectReference Include="..\LIN.Controls\LIN.Controls.csproj" />
