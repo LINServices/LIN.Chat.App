@@ -30,7 +30,7 @@ public partial class Integrant : Grid
     /// <summary>
     /// Rol
     /// </summary>
-    private InventoryRols AccountRol { get; set; }
+    private InventoryRoles AccountRol { get; set; }
 
 
 
@@ -38,7 +38,7 @@ public partial class Integrant : Grid
     /// <summary>
     /// Constructor
     /// </summary>
-    public Integrant(LIN.Shared.Models.IntegrantDataModel modelo, InventoryRols accountRol, int inventario)
+    public Integrant(LIN.Shared.Models.IntegrantDataModel modelo, InventoryRoles accountRol, int inventario)
     {
         InitializeComponent();
         this.AccountRol = accountRol;
@@ -63,7 +63,7 @@ public partial class Integrant : Grid
 
 
         // Permisos para eliminar
-        if (AccountRol == InventoryRols.Administrator)
+        if (AccountRol == InventoryRoles.Administrator)
         {
             btnDelete.Show();
         }

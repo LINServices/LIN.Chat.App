@@ -56,10 +56,10 @@ public partial class UserPopup : Popup
 
         switch (Modelo.Rol)
         {
-            case InventoryRols.Administrator:
+            case InventoryRoles.Administrator:
                 inpRol.SelectedIndex = 0;
                 break;
-            case InventoryRols.Member:
+            case InventoryRoles.Member:
                 inpRol.SelectedIndex = 1;
                 break;
             default:
@@ -105,25 +105,25 @@ public partial class UserPopup : Popup
     {
 
 
-        InventoryRols now;
+        InventoryRoles now;
 
         switch (inpRol.SelectedIndex)
         {
 
             case 0:
-                now = InventoryRols.Administrator;
+                now = InventoryRoles.Administrator;
                 break;
 
             case 1:
-                now = InventoryRols.Member;
+                now = InventoryRoles.Member;
                 break;
 
             case 2:
-                now = InventoryRols.Guest;
+                now = InventoryRoles.Guest;
                 break;
 
             default:
-                now = InventoryRols.Undefined;
+                now = InventoryRoles.Undefined;
                 break;
 
         }

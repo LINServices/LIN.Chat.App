@@ -125,7 +125,7 @@ public partial class AddInventory : ContentPage
                 modelo.UsersAccess.Add(new()
                 {
                     Usuario = user.ID,
-                    Rol = InventoryRols.Member
+                    Rol = InventoryRoles.Member
                 });
             }
 

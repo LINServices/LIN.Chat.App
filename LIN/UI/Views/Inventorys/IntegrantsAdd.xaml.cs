@@ -92,7 +92,7 @@ public partial class IntegrantsAdd : ContentPage
         {
             var model = new InventoryAcessDataModel()
             {
-                Rol = InventoryRols.Member,
+                Rol = InventoryRoles.Member,
                 Usuario = integrante.ID
             };
             modelo.UsersAccess.Add(model);

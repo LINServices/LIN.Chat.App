@@ -113,16 +113,16 @@
         }
 
 
-        public static string Humanize(this InventoryRols value)
+        public static string Humanize(this InventoryRoles value)
         {
 
             return value switch
             {
-                InventoryRols.Undefined => "Indefinido",
-                InventoryRols.Administrator => "Administrador",
-                InventoryRols.Guest => "Invitado",
-                InventoryRols.Member => "Miembro",
-                InventoryRols.Banned => "Eliminado",
+                InventoryRoles.Undefined => "Indefinido",
+                InventoryRoles.Administrator => "Administrador",
+                InventoryRoles.Guest => "Invitado",
+                InventoryRoles.Member => "Miembro",
+                InventoryRoles.Banned => "Eliminado",
                 _ => "Indefinido",
             };
         }

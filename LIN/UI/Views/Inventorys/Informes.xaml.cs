@@ -89,7 +89,7 @@ public partial class Informes : ContentPage
         {
             var model = new InventoryAcessDataModel()
             {
-                Rol = InventoryRols.Member,
+                Rol = InventoryRoles.Member,
                 Usuario = integrante.ID
             };
             modelo.UsersAccess.Add(model);

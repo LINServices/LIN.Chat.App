@@ -7,7 +7,7 @@ public class DeviceFilterModel
     /// <summary>
     /// Aplicaciones que pueden aparecer en la lista
     /// </summary>
-    public LINApps[] App { get; set; } = new[] { LINApps.Undefined };
+    public Applications[] App { get; set; } = new[] { Applications.Undefined };
 
 
     /// <summary>

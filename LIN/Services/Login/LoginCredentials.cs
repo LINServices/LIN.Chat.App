@@ -1,6 +1,4 @@
-﻿using LIN.Shared.Responses;
-
-namespace LIN.Services.Login;
+﻿namespace LIN.Services.Login;
 
 
 internal class LoginCredentials : ILoginStrategy
@@ -41,7 +39,7 @@ internal class LoginCredentials : ILoginStrategy
         Platforms platform = MauiProgram.GetPlatform();
 
         // Inicio de sesion
-        var (_, response) = await Sesion.LoginWith(username, password, platform);
+        var (_, response) = await Session.LoginWith(username, password);
 
 
         // Evaluacion

@@ -69,7 +69,7 @@ public partial class Integrantes : ContentPage
     {
 
 
-        if (Inventory.MyRol != InventoryRols.Administrator)
+        if (Inventory.MyRol != InventoryRoles.Administrator)
             btnAdd.Hide();
         else
             btnAdd.Show();
@@ -251,14 +251,14 @@ public partial class Integrantes : ContentPage
         control.OnRolClick += async (sender, e) =>
         {
 
-            if (Inventory.MyRol != InventoryRols.Administrator)
+            if (Inventory.MyRol != InventoryRoles.Administrator)
                 return;
 
             var result = await new Popups.UserPopup(modelo!).Show();
 
-            if (result is not null and InventoryRols)
+            if (result is not null and InventoryRoles)
             {
-                control.Modelo.Rol = (InventoryRols)result;
+                control.Modelo.Rol = (InventoryRoles)result;
                 control.LoadModelVisible();
             }
 
@@ -277,7 +277,7 @@ public partial class Integrantes : ContentPage
         var count = Modelos.Count;
 
         cardIntegrant.Contenido = count.ToString();
-        cardIntegrant.ChartText = $"{Modelos.Where(T => T.Rol == InventoryRols.Administrator).Count()} Admins";
+        cardIntegrant.ChartText = $"{Modelos.Where(T => T.Rol == InventoryRoles.Administrator).Count()} Admins";
 
     }
 
