@@ -61,19 +61,19 @@ public static class MauiProgram
         // Builder
         var builder = MauiApp.CreateBuilder();
 
-        // Configuracion
-        builder
-            .UseMauiApp<App>()
-            .UseCustomControls()
-            .ConfigureFonts(SetFonts)
-            .UseMauiCommunityToolkit()
-            .ConfigureEssentials(essentials =>
+        // Configuración
+        builder.UseMauiApp<App>();
+
+        builder.UseCustomControls();
+        builder.ConfigureFonts(SetFonts);
+        builder.UseMauiCommunityToolkit();
+        builder.ConfigureEssentials(essentials =>
             {
                 essentials.UseMapServiceToken("gCUbfMPXmCnDH2WR6uPk~JduHoZNxfxpNPxPihSH2aw~AoCRe2_PQIXYtX5u3x9BV03jFM3RE0zir7_M0c6laIIfdlNdgYeFhmohu_6bIQIp");
-            })
+            });
 
 
-            .ConfigureLifecycleEvents(events =>
+           builder.ConfigureLifecycleEvents(events =>
             {
 #if ANDROID
                 events.AddAndroid(android => android
