@@ -76,8 +76,8 @@ public static class MauiProgram
             });
 
 
-           builder.ConfigureLifecycleEvents(events =>
-            {
+        builder.ConfigureLifecycleEvents(events =>
+         {
 #if ANDROID
                 events.AddAndroid(android => android
 
@@ -120,49 +120,50 @@ public static class MauiProgram
 
 
 #if WINDOWS
-                events.AddWindows(windows => windows
-                       .OnActivated((window, args) => LogEvent(nameof(WindowsLifecycle.OnActivated)))
-                       .OnClosed((window, args) =>
-                       {
-                           try
-                           {
-                               AppShell.Hub.CloseSesion();
-                           }
-                           catch
-                           {
+             events.AddWindows(windows => windows
+                    .OnActivated((window, args) => LogEvent(nameof(WindowsLifecycle.OnActivated)))
+                    .OnClosed((window, args) =>
+                    {
+                        try
+                        {
+                            if (AppShell.Hub != null)
+                                _ = AppShell.Hub.CloseSesion();
+                        }
+                        catch
+                        {
 
-                           }
+                        }
 
-                       })
- //                          .OnLaunched((window, args) =>
- //                          {
- //                              try
- //                              {
- //if (Session.IsLocalOpen)
- //                                  AppShell.Hub.Reconnect();
- //                              }
- //                              catch
- //                              {
+                    })
+                        //                          .OnLaunched((window, args) =>
+                        //                          {
+                        //                              try
+                        //                              {
+                        //if (Session.IsLocalOpen)
+                        //                                  AppShell.Hub.Reconnect();
+                        //                              }
+                        //                              catch
+                        //                              {
 
- //                              }
-                              
- //                          })
+                        //                              }
 
-                           .OnLaunching((window, args) => LogEvent(nameof(WindowsLifecycle.OnLaunching)))
-                           .OnVisibilityChanged((window, args) => LogEvent(nameof(WindowsLifecycle.OnVisibilityChanged)))
-                           .OnPlatformMessage((window, args) =>
-                           {
-                               if (args.MessageId == Convert.ToUInt32("031A", 16))
-                               {
-                                   // System theme has changed
-                               }
-                           }));
+                        //                          })
 
-                static bool LogEvent(string eventName, string type = null)
-                {
-                    System.Diagnostics.Debug.WriteLine($"Lifecycle event: {eventName}{(type == null ? string.Empty : $" ({type})")}");
-                    return true;
-                }
+                        .OnLaunching((window, args) => LogEvent(nameof(WindowsLifecycle.OnLaunching)))
+                        .OnVisibilityChanged((window, args) => LogEvent(nameof(WindowsLifecycle.OnVisibilityChanged)))
+                        .OnPlatformMessage((window, args) =>
+                        {
+                            if (args.MessageId == Convert.ToUInt32("031A", 16))
+                            {
+                                // System theme has changed
+                            }
+                        }));
+
+             static bool LogEvent(string eventName, string type = null)
+             {
+                 System.Diagnostics.Debug.WriteLine($"Lifecycle event: {eventName}{(type == null ? string.Empty : $" ({type})")}");
+                 return true;
+             }
 
 
 #endif
@@ -170,7 +171,7 @@ public static class MauiProgram
 
 
 
-            });
+         });
 
 
 

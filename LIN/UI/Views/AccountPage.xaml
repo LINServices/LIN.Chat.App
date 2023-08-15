@@ -179,36 +179,6 @@
             </Border>
 
 
-
-            <Label
-                x:Name="lbMetodos"
-                Margin="2,5,0,0"
-                FontFamily="QSSB"
-                Text="Metodos de pago"
-                TextColor="{StaticResource Gray500}" />
-
-
-            <VerticalStackLayout x:Name="Hola" />
-
-            <ScrollView
-                x:Name="cardLayout"
-                Margin="0,10,0,0"
-                HorizontalOptions="FillAndExpand"
-                IsVisible="false"
-                Orientation="Horizontal"
-                Scrolled="ScrollView_Scrolled">
-
-                <HorizontalStackLayout
-                    x:Name="cards"
-                    HorizontalOptions="FillAndExpand"
-                    Spacing="5">
-
-                    <Custom:CreditCard x:Name="card" />
-                </HorizontalStackLayout>
-
-            </ScrollView>
-
-
             <Label
                 Margin="2,15,0,0"
                 FontFamily="QSSB"

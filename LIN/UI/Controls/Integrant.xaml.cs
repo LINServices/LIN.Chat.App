@@ -62,6 +62,10 @@ public partial class Integrant : Grid
         displayRol.Text = Modelo.Rol.Humanize();
 
 
+        if (lbName.Text == "")
+        {
+            lbName.Text = "UUN";
+        }
         // Permisos para eliminar
         if (AccountRol == InventoryRoles.Administrator)
         {

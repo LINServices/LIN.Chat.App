@@ -216,6 +216,7 @@ public partial class Integrantes : ContentPage
     /// </summary>
     private Controls.Integrant BuildOneControl(IntegrantDataModel modelo)
     {
+
         var control = new Controls.Integrant(modelo ?? new(), Inventory.MyRol, Inventory.ID);
 
         control.OnDelete += async (sender, e) =>

@@ -7,7 +7,7 @@ public partial class Map : ContentView
     /// <summary>
     /// Llave de la API
     /// </summary>
-    private static readonly string _apikey = "pk.J5mXUp0DLdPosxwhKP0yDjn76MTjL4nZakfk";
+    private static readonly string _apikey = "pk.nG1P6Y7lEGTZrsdawGN8T1lsDofolu5UuOZF";
 
 
     /// <summary>
