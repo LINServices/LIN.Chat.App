@@ -108,7 +108,7 @@ public partial class ProductSelector : Popup
         var id = Session.Instance.Informacion.ID;
 
         // Respuesta
-        var response = await Access.Inventory.Controllers.Product.ReadAll(Inventario);
+        var response = await Access.Inventory.Controllers.Product.ReadAll(Inventario, Session.Instance.Token);
 
         // Evalua
         if (response.Response != Responses.Success)
@@ -293,12 +293,6 @@ public partial class ProductSelector : Popup
 
     //****** Propiedades ******//
 
-  
-
-
-
-
-   
 
 
 
@@ -313,7 +307,13 @@ public partial class ProductSelector : Popup
 
 
 
-   
+
+
+
+
+
+
+
 
 
 

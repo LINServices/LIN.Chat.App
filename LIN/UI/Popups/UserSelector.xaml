@@ -68,6 +68,7 @@
                     <Custom:ToggleButton
                         Margin="5,0,0,0"
                         ColorBG="#E4E4E4"
+                        Clicked="ButtonBuscarClick"
                         HeightRequest="30"
                         Picture="buscar.png"
                         WidthRequest="30" />

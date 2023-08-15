@@ -1,7 +1,5 @@
 using LIN.Access.Inventory.Controllers;
 
-using LIN.UI.Popups;
-
 namespace LIN.UI.Views.Inventorys;
 
 public partial class Integrantes : ContentPage

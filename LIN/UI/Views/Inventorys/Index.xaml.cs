@@ -88,7 +88,7 @@ public partial class Index : ContentPage
     private async Task<bool> RetrieveData()
     {
         // Items
-        var response = await Inventories.ReadAll(Session.Instance.Informacion.ID);
+        var response = await Inventories.ReadAll(Session.Instance.Token);
 
         // Analisis de respuesta
         if (response.Response != Responses.Success)
