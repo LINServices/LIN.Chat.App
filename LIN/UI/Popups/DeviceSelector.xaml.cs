@@ -1,7 +1,3 @@
-using LIN.Services;
-using LIN.UI.Controls;
-using LIN.UI.Views;
-
 namespace LIN.UI.Popups;
 
 
@@ -119,21 +115,21 @@ public partial class DeviceSelector : Popup
     private async Task<bool> RetrieveData()
     {
 
-        // Solicitud
-        //var devices = await Access.Controllers.Devices.ReadAll(AppShell.Hub.ID, Session.Instance.Informacion.ID);
+        //Solicitud
+        var devices = await Access.Auth.Controllers.Devices.ReadAll(Session.Instance.AccountToken);
 
-        //// Respuesta incorrecta
-        //if (devices.Response != Responses.Success)
-        //    return false;
+        // Respuesta incorrecta
+        if (devices.Response != Responses.Success)
+            return false;
 
-        //// Modelos
-        //List<DeviceModel> filters = new();
+        // Modelos
+        List<DeviceModel> filters = new();
 
 
-        //if (!Filtro.HasMe)
-        //    filters = devices.Models.Where(T => T.ID != AppShell.Hub.ID).ToList();
+        if (!Filtro.HasMe)
+            filters = devices.Models.Where(T => T.ID != AppShell.Hub.ID).ToList();
 
-        //Modelos = ApplyFilters(filters, Filtro);
+        Modelos = ApplyFilters(filters, Filtro);
 
         return true;
     }

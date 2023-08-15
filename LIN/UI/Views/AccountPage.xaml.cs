@@ -52,10 +52,12 @@ public partial class AccountPage : ContentPage
         {
 
             case AccountBadges.Verified:
+                displayInsignia.Show();
                 displayInsignia.Source = ImageSource.FromFile("verificado.png");
                 break;
 
             case AccountBadges.VerifiedGold:
+                displayInsignia.Show();
                 displayInsignia.Source = ImageSource.FromFile("verificadogold.png");
                 break;
 

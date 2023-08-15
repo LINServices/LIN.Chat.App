@@ -60,6 +60,7 @@
                         <Image
                             x:Name="displayInsignia"
                             Margin="3,2,0,0"
+                            IsVisible="false"
                             HeightRequest="11"
                             Source="verificado.png"
                             VerticalOptions="Center"
