@@ -39,10 +39,10 @@ public partial class AccountPage : ContentPage
 
         // Eventos para el HUB
         AppShell.Hub.OnReceiveDevicesList += OnRecieveAll;
-        AppShell.Hub.OnReceiveDevice += OnReceiveDevice;
-        AppShell.Hub.OnSomeoneLeave += OnSomeoneLeave;
+        AppShell.Hub.OnDeviceJoins += OnReceiveDevice;
+        AppShell.Hub.OnDeviceLeaves += OnSomeoneLeave;
 
-        // Muestra la informacion
+        // Muestra la información
         perfil.Source = ImageEncoder.Decode(Session.Instance.Account.Perfil);
         lbName.Text = Session.Instance. Account.Nombre;
         displayUser.Text = "@" + Session.Instance.Account.Usuario;

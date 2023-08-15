@@ -36,8 +36,8 @@ public partial class AppShell : Shell
         Hub ??= new(BuildHub());
 
         // Eventos del HUB
-        Hub.OnReceiveCommand += Hub_OnRecieve;
-        Hub.OnChange += Hub_OnChange;
+        Hub.OnReceivingCommand += Hub_OnRecieve;
+        Hub.OnDeviceChange += Hub_OnChange;
 
         BatteryService.StatusChange += BatteryService_StatusChange;
 
