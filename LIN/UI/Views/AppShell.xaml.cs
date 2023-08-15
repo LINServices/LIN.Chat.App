@@ -14,7 +14,7 @@ public partial class AppShell : Shell
     /// <summary>
     /// Hub de ViewON
     /// </summary>
-    public static dynamic Hub = null;//new(BuildHub());
+    public static LIN.Access.Auth.Hubs.AccountHub Hub = new(BuildHub());
 
 
 
@@ -33,11 +33,11 @@ public partial class AppShell : Shell
         InitializeComponent();
         Instance = this;
 
-        //Hub ??= new(BuildHub());
-        
-        //// Eventos del HUB
-        //Hub.OnReceiveCommand += Hub_OnRecieve;
-        //Hub.OnChange += Hub_OnChange;
+        Hub ??= new(BuildHub());
+
+        // Eventos del HUB
+        Hub.OnReceiveCommand += Hub_OnRecieve;
+        Hub.OnChange += Hub_OnChange;
 
         BatteryService.StatusChange += BatteryService_StatusChange;
 

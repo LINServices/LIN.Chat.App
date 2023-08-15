@@ -38,9 +38,9 @@ public partial class AccountPage : ContentPage
         Appearing += AccountPage_Appearing;
 
         // Eventos para el HUB
-        //AppShell.Hub.OnReceiveDevicesList += OnRecieveAll;
-        //AppShell.Hub.OnReceiveDevice += OnReceiveDevice;
-        //AppShell.Hub.OnSomeoneLeave += OnSomeoneLeave;
+        AppShell.Hub.OnReceiveDevicesList += OnRecieveAll;
+        AppShell.Hub.OnReceiveDevice += OnReceiveDevice;
+        AppShell.Hub.OnSomeoneLeave += OnSomeoneLeave;
 
         // Muestra la informacion
         perfil.Source = ImageEncoder.Decode(Session.Instance.Account.Perfil);
@@ -341,10 +341,10 @@ public partial class AccountPage : ContentPage
 
         rendering = true;
 
-       // var devices = await LIN.Access.Controllers.Devices.ReadAll(AppShell.Hub.ID, Session.Instance.Informacion.ID);
+      // var devices = await LIN.Access.Controllers.Devices.ReadAll(AppShell.Hub.ID, Session.Instance.Informacion.ID);
 
 
-      //  OnRecieveAll(this, devices.Models);
+     //OnRecieveAll(this, devices.Models);
 
         rendering = false;
 
