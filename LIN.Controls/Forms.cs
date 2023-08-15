@@ -9,6 +9,11 @@ namespace LIN.Controls;
 public static class ContextPageExtensions
 {
 
+
+
+
+
+
     /// <summary>
     /// Muestra un Popup
     /// </summary>
@@ -33,6 +38,10 @@ public static class ContextPageExtensions
         }
         return null;
     }
+
+
+
+
 
 
     public static List<ContentPage> Pages = new();

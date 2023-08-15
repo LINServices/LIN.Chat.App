@@ -74,7 +74,7 @@ public partial class Integrant : Grid
 
 
 
-        // Si no hay imagen que mostar
+        // Si no hay imagen que mostrar
         if (Modelo.Perfil.Length == 0)
         {
             img.Hide();

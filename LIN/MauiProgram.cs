@@ -14,6 +14,9 @@ public static class MauiProgram
 
 
 
+
+
+
     /// <summary>
     /// Abre una nueva pagina
     /// </summary>
@@ -184,47 +187,16 @@ public static class MauiProgram
 
 
 
-
-
     /// <summary>
-    /// Configuracion de las fuentes
+    /// Configuración de las fuentes
     /// </summary>
     private static void SetFonts(IFontCollection fonts)
     {
-        SetFontsAndroid(fonts);
-    }
-
-
-    /// <summary>
-    /// Configuracion de las fuentes
-    /// </summary>
-    private static void SetFontsWindows(IFontCollection fonts)
-    {
         // Fuentes de Windows
         fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
         fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 
-        // Fuentes de la aplicacion LIN
-        fonts.AddFont("Quicksand-Bold.ttf", "QSB");
-        fonts.AddFont("Quicksand-Light.ttf", "QSL");
-        fonts.AddFont("Quicksand-Medium.ttf", "QSM");
-        fonts.AddFont("Quicksand-Regular.ttf", "QSR");
-        fonts.AddFont("Quicksand-SemiBold.ttf", "QSSB");
-
-        // Fuentes de utilidades
-        fonts.AddFont("BarcodeFont.ttf", "Barcode");
-    }
-
-    /// <summary>
-    /// Configuracion de las fuentes
-    /// </summary>
-    private static void SetFontsAndroid(IFontCollection fonts)
-    {
-        // Fuentes de Windows
-        fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-        fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-
-        // Fuentes de la aplicacion LIN
+        // Fuentes de la aplicación LIN
         fonts.AddFont("Gilroy-Bold.ttf", "QSB");
         fonts.AddFont("Gilroy-Light.ttf", "QSL");
         fonts.AddFont("Gilroy-Medium.ttf", "QSM");
