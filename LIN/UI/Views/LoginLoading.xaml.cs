@@ -98,8 +98,6 @@ public partial class LoginLoading : ContentPage
                                      : new LoginCredentials(MessageStart);
 
 
-       
-
         // Respuesta
         var (message, can) = await loginStrategy.Login(User, Password);
 
