@@ -206,7 +206,6 @@ public partial class LoginLoading : ContentPage
             var login = await Session.LoginWith(e.Token);
 
 
-
             if (login.Response == Responses.Success)
             {
                 // Abre la nueva ventana
