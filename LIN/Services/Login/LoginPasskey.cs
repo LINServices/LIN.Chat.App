@@ -1,84 +1,84 @@
 ﻿namespace LIN.Services.Login;
 
-internal class LoginPasskey //: //ILoginStrategy
+internal class LoginPasskey : ILoginStrategy
 {
 
-    //Action OnWaiting;
+    Action OnWaiting;
 
-    //Action<object?, PasskeyIntentDataModel> OnRecieve;
-
-
-    //bool isDispose = false;
-
-    //private Access.Hubs.PasskeyHub? Hub = null;
-
-    //public LoginPasskey(Action onWaiting, Action<object?, PasskeyIntentDataModel> onRecieve)
-    //{
-    //    this.OnWaiting = onWaiting;
-    //    this.OnRecieve = onRecieve;
-    //}
-
-    //public void Dispose()
-    //{
-    //    Hub?.Disconet();
-    //    Hub = null;
-    //    isDispose = true;
-    //}
+    Action<object?, PassKeyModel> OnRecieve;
 
 
-    //public async Task<(string message, bool can)> Login(string username, string? val)
-    //{
-    //    try
-    //    {
-    //        // Campos vacíos
-    //        if (string.IsNullOrEmpty(username))
-    //            return ("Por favor, asegúrate de llenar todos los campos requeridos.", false);
+    bool isDispose = false;
 
-    //        // Connection a internet
-    //        if (Connectivity.Current.NetworkAccess != NetworkAccess.Internet)
-    //            return ("No hay conexión a internet", false);
+    private Access.Auth.Hubs.PassKeyHub? Hub = null;
 
-    //        // Ejecucion de OnWaiting
-    //        OnWaiting();
+    public LoginPasskey(Action onWaiting, Action<object?, PassKeyModel> onRecieve)
+    {
+        this.OnWaiting = onWaiting;
+        this.OnRecieve = onRecieve;
+    }
 
-    //        Hub = new LIN.Access.Hubs.PasskeyHub(username);
-    //        await Hub.Suscribe();
-
-
-    //        Hub.OnRecieveResponse += Hub_OnRecieveResponse;
-
-    //        var intent = new PasskeyIntentDataModel()
-    //        {
-    //            ApplicationName = "Inventario LIN for Windows",
-    //            User = username
-    //        };
-
-    //        Hub?.SendIntent(intent);
+    public void Dispose()
+    {
+        Hub?.Disconet();
+        Hub = null;
+        isDispose = true;
+    }
 
 
-    //        await Task.Delay(30000);
+    public async Task<(string message, bool can)> Login(string username, string? val)
+    {
+        try
+        {
+            // Campos vacíos
+            if (string.IsNullOrEmpty(username))
+                return ("Por favor, asegúrate de llenar todos los campos requeridos.", false);
 
-    //        Hub?.Disconet();
-    //        Hub = null;
+            // Connection a internet
+            if (Connectivity.Current.NetworkAccess != NetworkAccess.Internet)
+                return ("No hay conexión a internet", false);
 
-    //        return ("La sesión expiro", isDispose);
+            // Ejecucion de OnWaiting
+            OnWaiting();
 
-    //    }
-    //    catch (Exception ex)
-    //    {
-    //        System.Diagnostics.Debug.WriteLine(ex);
-    //    }
-
-    //    return ("Hubo un error", false);
-
-    //}
+            Hub = new LIN.Access.Auth.Hubs.PassKeyHub(username);
+            await Hub.Suscribe();
 
 
+            Hub.OnRecieveResponse += Hub_OnRecieveResponse;
 
-    //private void Hub_OnRecieveResponse(object? sender, PasskeyIntentDataModel e)
-    //{
-    //    Dispose();
-    //    OnRecieve(sender, e);
-    //}
+            var intent = new PassKeyModel()
+            {
+                ApplicationName = "Inventario LIN for Windows",
+                User = username
+            };
+
+            Hub?.SendIntent(intent);
+
+
+            await Task.Delay(30000);
+
+            Hub?.Disconet();
+            Hub = null;
+
+            return ("La sesión expiro", isDispose);
+
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine(ex);
+        }
+
+        return ("Hubo un error", false);
+
+    }
+
+
+
+    private void Hub_OnRecieveResponse(object? sender, PassKeyModel e)
+    {
+        Dispose();
+        OnRecieve(sender, e);
+    }
 
 }

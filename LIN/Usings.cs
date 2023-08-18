@@ -19,3 +19,4 @@ global using LIN.Access.Auth;
 global using LIN.Access.Inventory;
 global using LIN.Access.Inventory.Hubs;
 global using LIN.Types.Auth.Abstracts;
+global using LIN.Types.Auth.Enumerations;

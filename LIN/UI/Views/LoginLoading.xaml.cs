@@ -92,13 +92,13 @@ public partial class LoginLoading : ContentPage
     public async void Iniciar()
     {
 
-        //// Seleccion de la estrategia
-        //ILoginStrategy loginStrategy = IsPasskeySesion
-        //                             ? new LoginPasskey(MessageWait, RecievePasskeyResponse)
-        //                             : new LoginCredentials(MessageStart);
+        // Seleccion de la estrategia
+        ILoginStrategy loginStrategy = IsPasskeySesion
+                                     ? new LoginPasskey(MessageWait, RecievePasskeyResponse)
+                                     : new LoginCredentials(MessageStart);
 
 
-        ILoginStrategy loginStrategy = new LoginCredentials(MessageStart);
+       
 
         // Respuesta
         var (message, can) = await loginStrategy.Login(User, Password);
@@ -166,75 +166,73 @@ public partial class LoginLoading : ContentPage
 
 
 
-    /// <summary>
-    /// Recibe respuesta de Passkey
-    /// </summary>
-    //private void RecievePasskeyResponse(object? sender, PasskeyIntentDataModel e)
-    //{
-    //    Dispatcher.DispatchAsync(async () =>
-    //    {
+    // <summary>
+    // Recibe respuesta de Passkey
+    // </summary>
+    private void RecievePasskeyResponse(object? sender, PassKeyModel e)
+    {
+        Dispatcher.DispatchAsync(async () =>
+        {
 
-    //        IsCompleted = true;
+            IsCompleted = true;
 
-    //        // Estado
-    //        switch (e.Status)
-    //        {
-    //            case PassKeyStatus.Success:
-    //                break;
+            // Estado
+            switch (e.Status)
+            {
+                case PassKeyStatus.Success:
+                    break;
 
-    //            case PassKeyStatus.Rejected:
-    //                new Login("Sesión de passkey rechazada").ShowOnTop();
-    //                this.Close();
-    //                return;
+                case PassKeyStatus.Rejected:
+                    new Login("Sesión de passkey rechazada").ShowOnTop();
+                    this.Close();
+                    return;
 
-    //            case PassKeyStatus.Expired:
-    //                new Login("La sesión expiro").ShowOnTop();
-    //                this.Close();
-    //                return;
+                case PassKeyStatus.Expired:
+                    new Login("La sesión expiro").ShowOnTop();
+                    this.Close();
+                    return;
 
-    //            default:
-    //                new Login("Hubo un error en Passkey").ShowOnTop();
-    //                this.Close();
-    //                return;
-    //        }
+                default:
+                    new Login("Hubo un error en Passkey").ShowOnTop();
+                    this.Close();
+                    return;
+            }
 
-    //        MessageStart();
+            MessageStart();
 
-    //        await Task.Delay(10);
-    //        await Task.Delay(10);
+            await Task.Delay(10);
+            await Task.Delay(10);
 
 
-    //        Platforms platform = MauiProgram.GetPlatform();
-
-    //        // Inicio de sesion
-    //        var login = await Sesion.LoginWith(e.Token, platform);
+            // Inicio de sesion
+            var login = await Session.LoginWith(e.Token);
 
 
 
-    //        if (login.Response == Responses.Success)
-    //        {
-    //            // Abre la nueva ventana
-    //            new AppShell().ShowOnTop();
-    //           // this.Close();
-    //        }
+            if (login.Response == Responses.Success)
+            {
+                // Abre la nueva ventana
+                new AppShell().ShowOnTop();
+                // this.Close();
+            }
 
-    //        else if (login.Response == Responses.InvalidPassword)
-    //        {
-    //            new Login("La sesión expiro").ShowOnTop();
-    //            //this.Close();
-    //        }
-    //        else if (login.Response == Responses.NotExistAccount)
-    //        {
-    //            new Login("No existe este usuario").ShowOnTop();
-    //            //this.Close();
-    //        }
-    //        else
-    //        {
-    //            new Login("Inténtalo mas tarde").ShowOnTop();
-    //            //this.Close();
-    //        }
-    //    });
-    //}
+            else if (login.Response == Responses.InvalidPassword)
+            {
+                new Login("La sesión expiro").ShowOnTop();
+                //this.Close();
+            }
+            else if (login.Response == Responses.NotExistAccount)
+            {
+                new Login("No existe este usuario").ShowOnTop();
+                //this.Close();
+            }
+            else
+            {
+                new Login("Inténtalo mas tarde").ShowOnTop();
+                //this.Close();
+            }
+        });
+    }
 
 
 
