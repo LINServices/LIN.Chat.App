@@ -111,7 +111,7 @@ public partial class LoginLoading : ContentPage
                 if (!IsCompleted)
                 {
                     new Login(message).ShowOnTop();
-                    //this.Close();
+                    this.Close();
                 }
             });
 
@@ -123,7 +123,7 @@ public partial class LoginLoading : ContentPage
         {
             // Abre la nueva ventana
             App.Current!.MainPage = new AppShell();
-            //this.Close();
+            this.Close();
         }
 
 
@@ -210,24 +210,24 @@ public partial class LoginLoading : ContentPage
             if (login.Response == Responses.Success)
             {
                 // Abre la nueva ventana
-                new AppShell().ShowOnTop();
-                // this.Close();
+                App.Current!.MainPage = new AppShell();
+                this.Close();
             }
 
             else if (login.Response == Responses.InvalidPassword)
             {
                 new Login("La sesión expiro").ShowOnTop();
-                //this.Close();
+                this.Close();
             }
             else if (login.Response == Responses.NotExistAccount)
             {
                 new Login("No existe este usuario").ShowOnTop();
-                //this.Close();
+                this.Close();
             }
             else
             {
                 new Login("Inténtalo mas tarde").ShowOnTop();
-                //this.Close();
+                this.Close();
             }
         });
     }
