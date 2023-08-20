@@ -167,6 +167,12 @@ public partial class AddItem : ContentPage
         }
 
 
+        foreach (var control in Models)
+        {
+            int newQ = control.Modelo.Quantity - control.GetCounterValue();
+            ProductObserver.UpdateQuantity(control.Modelo.ProductID, newQ, From.SameDevice);
+        }
+
         // Actualizacion en tiempo real
         Hub?.SendAddModelOutflow(Inventario, response.LastID);
 
