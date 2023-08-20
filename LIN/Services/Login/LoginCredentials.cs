@@ -61,6 +61,10 @@ internal class LoginCredentials : ILoginStrategy
                 return ("Contraseña incorrecta", false);
 
             // No existe el usuario
+            case Responses.UnauthorizedByOrg:
+                return ("Tu organización no permite que inicies en esta app", false);
+
+            // No existe el usuario
             case Responses.NotConnection:
                 return ("No hay conexión", false);
 
