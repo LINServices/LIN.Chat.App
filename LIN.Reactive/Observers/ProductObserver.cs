@@ -20,7 +20,7 @@ public sealed class ProductObserver
 
         if (viewer.ContextKey != null && viewer.ContextKey != "")
             _data.RemoveAll(T => T.ContextKey == viewer.ContextKey);
-        
+
         if (!_data.Contains(viewer))
             _data.Add(viewer);
     }
@@ -33,6 +33,21 @@ public sealed class ProductObserver
     {
         _data.Remove(viewer);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -53,6 +68,31 @@ public sealed class ProductObserver
 
     }
 
+
+
+
+
+    /// <summary>
+    /// Envia los cambios
+    /// </summary>
+    public static bool UpdateQuantity(int id, int newQuantity, From from)
+    {
+
+
+        var data = _data.Where(x => x.Modelo.ProductID == id);
+
+        if (!data.Any())
+            return false;
+
+        foreach (var e in data)
+        {
+            e.Modelo.Quantity = newQuantity;
+            e.RenderNewData(from);
+        }
+
+        return true;
+
+    }
 
 
 

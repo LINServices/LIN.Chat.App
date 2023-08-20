@@ -79,7 +79,10 @@
                                 x:Name="lbCode"
                                 FontFamily="QSM"
                                 Text="" />
-                            <Span x:Name="separator" FontFamily="QSB" Text=" | " />
+                            <Span
+                                x:Name="separator"
+                                FontFamily="QSB"
+                                Text=" | " />
                             <Span
                                 x:Name="lbQu"
                                 FontFamily="QSM"

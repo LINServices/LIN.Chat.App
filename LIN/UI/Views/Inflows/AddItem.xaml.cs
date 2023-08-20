@@ -1,6 +1,3 @@
-
-
-using LIN.Access.Inventory.Hubs;
 using LIN.UI.Popups;
 
 namespace LIN.UI.Views.Inflows;
@@ -133,6 +130,7 @@ public partial class AddItem : ContentPage
         // Rellena los detalles
         foreach (var control in Models)
         {
+           
             // Model
             InflowDetailsDataModel model = new()
             {
@@ -174,7 +172,17 @@ public partial class AddItem : ContentPage
         }
 
 
-        // Actualizacion en tiempo real
+
+        // Rellena los detalles
+        foreach (var control in Models)
+        {
+            int newQ = control.Modelo.Quantity + control.GetCounterValue();
+            ProductObserver.UpdateQuantity(control.Modelo.ProductID, newQ, From.SameDevice);
+        }
+
+
+
+        // Actualización en tiempo real
         Hub?.SendAddModelInflow(Inventario, response.LastID);
 
         // Muestra el popup
