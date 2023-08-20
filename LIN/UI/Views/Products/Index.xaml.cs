@@ -11,7 +11,7 @@ public partial class Index : ContentPage
     /// <summary>
     /// HUB de productos
     /// </summary>
-    private InventoryAccessHub? HubConnection { get; set; }
+    public InventoryAccessHub? HubConnection { get; set; }
 
 
 

@@ -20,6 +20,8 @@ public partial class Index : ContentPage
 
 
 
+    private InventoryAccessHub? ActualHub { get; set; }
+
 
     /// <summary>
     /// Constructor
@@ -165,12 +167,15 @@ public partial class Index : ContentPage
     /// <summary>
     /// Renderiza un control
     /// </summary>
-    private static Controls.Inventory BuildOneControl(InventoryDataModel modelo)
+    private Controls.Inventory BuildOneControl(InventoryDataModel modelo)
     {
         var control = new Controls.Inventory(modelo ?? new());
         control.Clicked += (sender, e) =>
         {
-            new Products.Index(control.Modelo, control.Modelo.Nombre).Show();
+            ActualHub?.Dispose();
+            var page = new Products.Index(control.Modelo, control.Modelo.Nombre);
+            ActualHub = page.HubConnection;
+            page.Show();
         };
         return control;
     }

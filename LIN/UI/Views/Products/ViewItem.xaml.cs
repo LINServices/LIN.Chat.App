@@ -94,6 +94,13 @@ public partial class ViewItem : ContentPage, IProductViewer
     /// </summary>
     public void LoadModelVisible()
     {
+
+        if (Modelo.Estado == ProductBaseStatements.Deleted)
+        {
+            _ = DisplayAlert("Eliminado", "Este producto fue eliminado", "OK");
+            this.Close();
+        }
+
         Detalles.Clear();
 
         // Muestra los datos
@@ -132,7 +139,7 @@ public partial class ViewItem : ContentPage, IProductViewer
     {
         if (from == From.OtherDevice && AppShell.ActualPage == this)
         {
-            var x =await DisplayAlert("Actualización", "Este producto fue actualizado desde otro dispositivo, ¿Quieres ver los nuevos cambios?", "Si", "No");
+            var x = await DisplayAlert("Actualización", "Este producto fue actualizado desde otro dispositivo, ¿Quieres ver los nuevos cambios?", "Si", "No");
             if (!x)
                 return;
         }

@@ -192,6 +192,7 @@ public partial class ProductEdit : Popup, IProductViewer
                 Modelo.FillWith(newModel);
                 ModelHasChange();
                 Hub?.UpdateProduct(Modelo.Inventory, Modelo.ProductID);
+
             }
 
 
