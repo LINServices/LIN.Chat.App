@@ -70,13 +70,20 @@ public partial class ProductForPick : Grid
     public void LoadModelVisible()
     {
 
-
-
-
         // Datos
         lbName.Text = Modelo.Name;
 
+        if (string.IsNullOrEmpty(Modelo.Code.Trim()))
+        {
+            lbCode.Text = string.Empty;
+            separator.Text = string.Empty;
+        }
+        else
+        {
+            lbCode.Text = Modelo.Code;
+        }
 
+        lbQu.Text = $"{Modelo.Quantity}u";
 
         // Si no hay imagen que mostar
         if (Modelo.Image.Length != 0)

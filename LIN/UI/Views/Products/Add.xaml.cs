@@ -203,18 +203,26 @@ public partial class Add : ContentPage
 
 
         // Respuesta del controlador
-        var response = await Access.Inventory.Controllers.Product.Create(modelo);
+        var response = await Access.Inventory.Controllers.Product.Create(modelo, Session.Instance.Token);
 
-
-        // Organizacion de la interfaz
+        // Organización de la interfaz
         indicador.Hide();
         btn.Show();
 
-        if (response.Response != Responses.Success)
+
+        switch (response.Response)
         {
-            ShowInfo("Hubo un error al agregar el producto");
-            return;
+            case Responses.Success:
+                break;
+            case Responses.Unauthorized:
+                ShowInfo("No tienes permisos para modificar este inventario.");
+                return;
+            default:
+                ShowInfo("Hubo un error al agregar el producto.");
+                return;
+
         }
+
 
         // Actualizacion en tiempo real
         HubConnection?.SendAddModel(InventoryID, response.LastID);

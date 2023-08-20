@@ -65,6 +65,33 @@
                 Text=""
                 VerticalOptions="Center" />
 
+            <StackLayout Orientation="Horizontal">
+
+
+                <Custom:Label
+                    Clicked="EventoClick"
+                    FontFamily="QSM"
+                    FontSize="10"
+                    VerticalOptions="Center">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span
+                                x:Name="lbCode"
+                                FontFamily="QSM"
+                                Text="" />
+                            <Span x:Name="separator" FontFamily="QSB" Text=" | " />
+                            <Span
+                                x:Name="lbQu"
+                                FontFamily="QSM"
+                                Text="" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Custom:Label>
+
+
+            </StackLayout>
+
+
 
 
         </VerticalStackLayout>
