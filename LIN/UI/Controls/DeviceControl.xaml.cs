@@ -63,7 +63,8 @@ public partial class DeviceControl : Grid
             Applications.Inventory => "LIN Inventory",
             Applications.CloudConsole => "LIN Cloud Console",
             Applications.Admin => "LIN Admin",
-            _ => ""
+            Applications.Employee => "LIN Internals",
+            _ => "Aplicación desconocida"
         };
 
 

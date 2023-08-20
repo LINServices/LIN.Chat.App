@@ -145,7 +145,7 @@ public partial class AppShell : Shell
             Platform = MauiProgram.GetPlatform(),
             App = Applications.Inventory,
             DeviceKey = MauiProgram.DeviceSesionKey,
-            Token = Session.Instance.AccountToken
+            Token = Session.Instance.AccountToken,
         };
 
         // Locacion
