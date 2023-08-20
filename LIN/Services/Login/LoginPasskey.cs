@@ -56,7 +56,7 @@ internal class LoginPasskey : ILoginStrategy
             Hub?.SendIntent(intent);
 
 
-            await Task.Delay(30000);
+            await Task.Delay(60000);
 
             Hub?.Disconet();
             Hub = null;
