@@ -50,8 +50,7 @@ internal class LoginPasskey : ILoginStrategy
             var intent = new PassKeyModel()
             {
                 ApplicationName = "Inventario LIN for Windows",
-                User = username,
-                AccountID = Session.Instance.Account.ID
+                User = username
             };
 
             Hub?.SendIntent(intent);
