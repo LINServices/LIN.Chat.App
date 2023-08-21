@@ -64,6 +64,7 @@ public static class MauiProgram
         // Builder
         var builder = MauiApp.CreateBuilder();
 
+
         // Configuración
         builder.UseMauiApp<App>();
 
