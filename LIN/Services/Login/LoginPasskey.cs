@@ -41,7 +41,7 @@ internal class LoginPasskey : ILoginStrategy
             // Ejecucion de OnWaiting
             OnWaiting();
 
-            Hub = new LIN.Access.Auth.Hubs.PassKeyHub(username);
+            Hub = new LIN.Access.Auth.Hubs.PassKeyHub(username, "AJEESKK123");
             await Hub.Suscribe();
 
 
@@ -49,7 +49,6 @@ internal class LoginPasskey : ILoginStrategy
 
             var intent = new PassKeyModel()
             {
-                ApplicationName = "Inventario LIN for Windows",
                 User = username
             };
 
