@@ -62,7 +62,7 @@ public partial class UserPassEdit : Popup
         };
 
 
-        var response = await LIN.Access.Auth.Controllers.Account.UpdatePassword(modelo);
+        var response = await LIN.Access.Auth.Controllers.Account.UpdatePassword(modelo, Session.Instance.AccountToken);
 
         if (response.Response != Responses.Success)
         {
