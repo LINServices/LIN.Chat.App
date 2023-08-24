@@ -190,6 +190,11 @@ public partial class LoginLoading : ContentPage
                     this.Close();
                     return;
 
+                case PassKeyStatus.BlockedByOrg:
+                    new Login("Tu organización no permite que inicies en esta app.").ShowOnTop();
+                    this.Close();
+                    return;
+
                 default:
                     new Login("Hubo un error en Passkey").ShowOnTop();
                     this.Close();
