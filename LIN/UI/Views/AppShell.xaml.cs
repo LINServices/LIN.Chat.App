@@ -10,6 +10,11 @@ public partial class AppShell : Shell
     public static AppShell? Instance { get; set; }
 
 
+    public new IElementHandler? Handler => base.Handler;
+
+
+    public static  IElementHandler? ElementHandler => Instance?.Handler;
+
 
     /// <summary>
     /// Hub de ViewON
@@ -33,7 +38,7 @@ public partial class AppShell : Shell
         InitializeComponent();
         Instance = this;
 
-        Hub ??= new(BuildHub());
+        Hub = new(BuildHub());
 
         // Eventos del HUB
         Hub.OnReceivingCommand += Hub_OnRecieve;
@@ -50,7 +55,7 @@ public partial class AppShell : Shell
     /// </summary>
     private void BatteryService_StatusChange(object? sender, BatteryStatus e)
     {
-
+        
         if (Hub?.DeviceModel == null)
             return;
 

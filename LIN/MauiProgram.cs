@@ -67,7 +67,9 @@ public static class MauiProgram
 
         // Configuración
         builder.UseMauiApp<App>();
-
+#if ANDROID
+        builder.Services.AddTransient<IBackgroundService, LIN.DemoBackground>();
+#endif
         builder.UseCustomControls();
         builder.ConfigureFonts(SetFonts);
         builder.UseMauiCommunityToolkit();

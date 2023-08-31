@@ -9,6 +9,11 @@ namespace LIN;
 public class MainActivity : MauiAppCompatActivity
 {
 
+    public static MainActivity ActivityCurrent { get; set; }
+    public MainActivity()
+    {
+        ActivityCurrent = this;
+    }
 
 
 }
