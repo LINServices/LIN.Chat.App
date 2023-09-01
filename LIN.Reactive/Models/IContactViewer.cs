@@ -16,14 +16,14 @@ public interface IContactViewer
 
 
     /// <summary>
-    /// Renderiza la nueva informacion del modelo
+    /// Renderiza la nueva información del modelo
     /// </summary>
     public void RenderNewData();
 
 
 
     /// <summary>
-    /// Envia los cambios de modelo
+    /// Envía los cambios de modelo
     /// </summary>
     public abstract void ModelHasChange();
 
