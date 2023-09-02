@@ -129,7 +129,7 @@ public partial class EntryControl : Grid
         propertyName: nameof(FocusColor),
         returnType: typeof(Color),
         declaringType: typeof(EntryControl),
-        defaultValue: Color.FromRgb(0, 109, 204),
+        defaultValue: Color.FromRgb(99, 102, 241),
         defaultBindingMode: BindingMode.TwoWay);
 
 

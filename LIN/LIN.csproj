@@ -70,4 +70,23 @@
 	  <ProjectReference Include="..\LIN.Reactive\LIN.React.csproj" />
 	</ItemGroup>
 
+	
+
+	<ItemGroup>
+	  <Compile Update="UI\Controls\Conversation.xaml.cs">
+	    <DependentUpon>Conversation.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	
+
+	<ItemGroup>
+	  <MauiXaml Update="UI\Controls\Conversation.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="UI\Views\Chat.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
 </Project>

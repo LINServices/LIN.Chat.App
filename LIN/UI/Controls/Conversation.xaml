@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Grid
+    x:Class="LIN.UI.Controls.Conversation"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Custom="clr-namespace:LIN.Controls.UI;assembly=LIN.Controls"
+    Margin="1.5"
+    HeightRequest="60">
+    <Grid.Shadow>
+        <Shadow Brush="Black" Opacity="0.02" />
+    </Grid.Shadow>
+
+
+    <!--  Fondo (Border)  -->
+    <Custom:Border
+        BackgroundColor="#FFFFFF"
+        Clicked="SendEventClick"
+        StrokeShape="RoundRectangle 4"
+        StrokeThickness="0" />
+
+
+    <!--  Contenido  -->
+    <Grid Grid.Column="0" ColumnDefinitions="60,*,*">
+
+        <!--  Fondo de la imagen  -->
+        <Custom:Border
+            Grid.Column="0"
+            Margin="7"
+            Padding="3"
+            BackgroundColor="WhiteSmoke"
+            Clicked="SendEventClick"
+            HeightRequest="43"
+            StrokeShape="RoundRectangle 25"
+            VerticalOptions="Center"
+            WidthRequest="43">
+            <Custom:Image
+                x:Name="displayImagen"
+                Clicked="displayImagen_Clicked"
+                Source="caja.png" />
+        </Custom:Border>
+
+
+        <!--  Contenido  -->
+        <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+
+            <!--  Nombre  -->
+            <Custom:Label
+                x:Name="displayName"
+                Clicked="SendEventClick"
+                FontFamily="QSB"
+                FontSize="12"
+                Text="Conversacion Name"
+                TextColor="{StaticResource Gray600}"
+                VerticalOptions="Center" />
+
+            <!--  Categoria  -->
+            <Custom:Label
+                x:Name="displayCategory"
+                Margin="0,-1,0,0"
+                Clicked="SendEventClick"
+                FontFamily="QSM"
+                FontSize="9"
+                Text="Grupo personal"
+                TextColor="{StaticResource Gray500}"
+                VerticalOptions="Center" />
+
+        </VerticalStackLayout>
+
+
+    </Grid>
+
+
+    <!--  Precio y disponibilidad  -->
+    <HorizontalStackLayout HorizontalOptions="EndAndExpand">
+
+
+
+        <!--  Disponibilidad  -->
+        <Custom:Border
+            x:Name="bgCantidad"
+            Margin="0,0,10,0"
+            BackgroundColor="#CDF5D1"
+            Clicked="SendEventClick"
+            HeightRequest="28"
+            HorizontalOptions="EndAndExpand"
+            StrokeShape="RoundRectangle 6"
+            StrokeThickness="0"
+            WidthRequest="110">
+            <Custom:Label
+                x:Name="displayCantidad"
+                Clicked="SendEventClick"
+                FontFamily="QSB"
+                FontSize="10"
+                HorizontalOptions="Center"
+                Text="Nuevos mensajes"
+                TextColor="#41A553"
+                VerticalOptions="Center" />
+        </Custom:Border>
+
+
+    </HorizontalStackLayout>
+
+
+</Grid>

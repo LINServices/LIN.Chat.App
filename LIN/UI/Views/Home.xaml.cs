@@ -3,8 +3,8 @@ namespace LIN.UI.Views;
 public partial class Home : ContentPage
 {
 
-   
 
+    List<Controls.Conversation> Controles = new();
 
 
     /// <summary>
@@ -76,23 +76,61 @@ public partial class Home : ContentPage
             return;
         }
 
-        //// Carga el cache
-        //Controles = LoadCache(Notificacions);
+        // Carga el cache
+        Controles = LoadCache(memberChatModels);
 
-        //// Carga los controles a la vista
-        //LoadControls(Controles);
+        // Carga los controles a la vista
+        LoadControls(Controles);
 
-        //// Si no hay productos
-        //if (!Notificacions.Any())
-        //    //  lbInfo.Text = "No hay nada que mostrar aqui";
+        // Si no hay productos
+        if (!memberChatModels.Any())
+            lbInfo.Text = "No hay nada que mostrar aqui";
 
-        //    // Muestra el mensaje
-        //    indicador.Hide();
-        ////  lbInfo.Show();
+            // Muestra el mensaje
+         indicador.Hide();
+        lbInfo.Show();
 
     }
 
 
+
+
+
+
+    private void LoadControls(List<Controls.Conversation> lista, string? message = null)
+    {
+
+        // Vacia los elementos
+        content.Clear();
+
+        // Mensaje
+         //lbInfo.Text = message ?? $"Se encontraron {lista.Count} invitaciones.";
+
+        // Agrega los controles
+        foreach (var control in lista)
+        {
+            control.Show();
+            control.Clicked += (sender, e) =>
+            {
+                new Chat().Show();
+                //     new ViewItem(control.Modelo).Show();
+            };
+            content.Add(control);
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+    List<MemberChatModel> memberChatModels = new();
 
     /// <summary>
     /// Rellena los datos desde la base de datos
@@ -100,15 +138,15 @@ public partial class Home : ContentPage
     private async Task<bool> RefreshData()
     {
 
-        //// Items
-        //var items = await Inventories.ReadNotifications(Session.Instance.Informacion.ID);
+        // Items
+        var items = await LIN.Access.Communication.Controllers.Conversations.ReadAll(Session.Instance.Token);
 
-        //// Analisis de respuesta
-        //if (items.Response != Responses.Success)
-        //    return false;
+        // Analisis de respuesta
+        if (items.Response != Responses.Success)
+            return false;
 
-        //// Rellena los items
-        //Notificacions = items.Models.ToList();
+        // Rellena los items
+        memberChatModels = items.Models.ToList();
         return true;
 
     }
@@ -136,25 +174,23 @@ public partial class Home : ContentPage
     public View TL => AppShell.Instance.ju;
 
 
-    /// <summary>
-    /// Carga los modelos a los nuevos controles
-    /// </summary>
-    //private static List<Controls.Notificacion> LoadCache(List<LIN.Types.Inventory.Models.Notificacion> lista)
-    //{
+    
+    private static List<Controls.Conversation> LoadCache(List<MemberChatModel> lista)
+    {
 
-    //    // Lista
-    //    List<Controls.Notificacion> listaReturn = new();
+        // Lista
+        List<Controls.Conversation> listaReturn = new();
 
-    //    // Agrega los controles
-    //    foreach (var model in lista)
-    //    {
-    //        var control = new Controls.Notificacion(model ?? new());
-    //        listaReturn.Add(control);
-    //    }
+        // Agrega los controles
+        foreach (var model in lista)
+        {
+            var control = new Controls.Conversation(model ?? new());
+            listaReturn.Add(control);
+        }
 
-    //    return listaReturn;
+        return listaReturn;
 
-    //}
+    }
 
 
 
@@ -209,12 +245,7 @@ public partial class Home : ContentPage
         perfil.Source = ImageEncoder.Decode(Session.Instance.Account.Perfil);
 
 
-        if (Session.Instance.Account.Genero == Genders.Female)
-            lbBienvenido.Text = "Bienvenida, ";
-        else
-            lbBienvenido.Text = "Bienvenido, ";
-
-        lbName.Text = Session.Instance.Account.Nombre.Trim().Split(" ")[0];
+       
 
 
         lbUser.Text = Session.Instance.Account.Nombre;
@@ -264,7 +295,7 @@ public partial class Home : ContentPage
 
     private async void Border_Clicked(object sender, EventArgs e)
     {
-        ValueInventorys.Text = "Cargando...";
+        //ValueInventorys.Text = "Cargando...";
         await Task.Delay(10);
 
        // Ventas();

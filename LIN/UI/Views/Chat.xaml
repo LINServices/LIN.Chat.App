@@ -1,0 +1,61 @@
+﻿<ContentPage
+    x:Class="LIN.UI.Views.Chat"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:custom="clr-namespace:LIN.Controls.UI;assembly=LIN.Controls"
+    Title="Chat">
+    <ContentPage.Content>
+        <StackLayout>
+
+            <ScrollView x:Name="scroll" BackgroundColor="#f8fafc" VerticalOptions="FillAndExpand">
+                <StackLayout x:Name="chatLayout" VerticalOptions="EndAndExpand">
+                    <!--  Aquí se mostrarán los mensajes del chat  -->
+                </StackLayout>
+            </ScrollView>
+            <Border
+                Margin="5,4,5,6"
+                Padding="7"
+                BackgroundColor="#cbd5e1"
+                StrokeShape="RoundRectangle 10"
+                StrokeThickness="0">
+                <StackLayout Orientation="Horizontal">
+                    <Entry
+                        x:Name="mensajeEntry"
+                        Margin="5,6,0,0"
+                        FontFamily="PR"
+                        HorizontalOptions="FillAndExpand"
+                        Placeholder="Escribe un mensaje..."
+                        PlaceholderColor="#475569" />
+
+                    <StackLayout Margin="0,5,0,0" Orientation="Horizontal">
+
+                        <custom:ToggleButton
+                            Margin="0,0,5,0"
+                            ColorBG="#cbd5e1"
+                            HeightRequest="42"
+                            Clicked="SendLocation"
+                            Picture="gps"
+                            WidthRequest="42" />
+
+                        <custom:ToggleButton
+                            ColorBG="#cbd5e1"
+Clicked="OpenImage"
+                            HeightRequest="42"
+                            Picture="boton_imagen"
+                            WidthRequest="42" />
+
+                        <custom:ToggleButton
+                            ColorBG="#cbd5e1"
+                            HeightRequest="42"
+                            Clicked="SendMensaje"
+                            Picture="enviar"
+                            WidthRequest="42" />
+                    </StackLayout>
+
+
+
+                </StackLayout>
+            </Border>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
