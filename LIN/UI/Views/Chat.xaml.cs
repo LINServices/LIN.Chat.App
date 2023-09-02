@@ -1,6 +1,4 @@
-﻿using WinRT;
-
-namespace LIN.UI.Views;
+﻿namespace LIN.UI.Views;
 
 
 public partial class Chat : ContentPage

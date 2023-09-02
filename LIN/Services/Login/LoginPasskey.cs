@@ -41,7 +41,7 @@ internal class LoginPasskey : ILoginStrategy
             // Ejecucion de OnWaiting
             OnWaiting();
 
-            Hub = new LIN.Access.Auth.Hubs.PassKeyHub(username, "AJEESKK123");
+            Hub = new LIN.Access.Auth.Hubs.PassKeyHub(username, "Q333Q");
             await Hub.Suscribe();
 
 
