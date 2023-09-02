@@ -74,6 +74,9 @@
 	
 
 	<ItemGroup>
+	  <Compile Update="UI\Controls\ChatControl.xaml.cs">
+	    <DependentUpon>ChatControl.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="UI\Controls\Conversation.xaml.cs">
 	    <DependentUpon>Conversation.xaml</DependentUpon>
 	  </Compile>
@@ -82,6 +85,9 @@
 	
 
 	<ItemGroup>
+	  <MauiXaml Update="UI\Controls\ChatControl.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="UI\Controls\Conversation.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

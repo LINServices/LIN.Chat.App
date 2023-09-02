@@ -7,15 +7,15 @@
     <ContentPage.Content>
         <StackLayout>
 
-            <ScrollView x:Name="scroll" BackgroundColor="#f8fafc" VerticalOptions="FillAndExpand">
-                <StackLayout x:Name="chatLayout" VerticalOptions="EndAndExpand">
+            <ScrollView x:Name="scroll" BackgroundColor="#f8fafc" VerticalOptions="FillAndExpand" Margin="5,0,5,0">
+                <StackLayout x:Name="chats" VerticalOptions="EndAndExpand" >
                     <!--  Aquí se mostrarán los mensajes del chat  -->
                 </StackLayout>
             </ScrollView>
             <Border
                 Margin="5,4,5,6"
                 Padding="7"
-                BackgroundColor="#cbd5e1"
+                BackgroundColor="{OnPlatform Android='#cbd5e1'}"
                 StrokeShape="RoundRectangle 10"
                 StrokeThickness="0">
                 <StackLayout Orientation="Horizontal">
@@ -27,28 +27,27 @@
                         Placeholder="Escribe un mensaje..."
                         PlaceholderColor="#475569" />
 
-                    <StackLayout Margin="0,5,0,0" Orientation="Horizontal" BackgroundColor="Red">
+                    <StackLayout Margin="0,5,0,0" Spacing="3" Orientation="Horizontal">
 
                         <custom:ToggleButton
-                            Margin="0,0,5,0"
                             ColorBG="#cbd5e1"
                             HeightRequest="42"
                             Clicked="SendLocation"
-                            Picture="bandera"
+                            Picture="bandera.png"
                             WidthRequest="42" />
 
                         <custom:ToggleButton
                             ColorBG="#cbd5e1"
 Clicked="OpenImage"
                             HeightRequest="42"
-                            Picture="montana"
+                            Picture="montana.png"
                             WidthRequest="42" />
 
                         <custom:ToggleButton
                             ColorBG="#cbd5e1"
                             HeightRequest="42"
                             Clicked="SendMensaje"
-                            Picture="paper"
+                            Picture="paper.png"
                             WidthRequest="42" />
                     </StackLayout>
 

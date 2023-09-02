@@ -7,26 +7,44 @@ public partial class Chat : ContentPage
     /// <summary>
     /// Estancia del HUB de Chat
     /// </summary>
-   //private Hub? Hub = null;
+    private ChatHub? Hub = null;
 
+    ConversationModel conversation = new();
 
-    /// <summary>
-    /// Nombre del grupo
-    /// </summary>
-    private string Group { get; set; }
+    bool IsLoadOldChats = false;
 
 
     /// <summary>
     /// Constructor
     /// </summary>
-    public Chat(string group = "A1")
+    public Chat(ConversationModel conversation, ChatHub? hub)
     {
+
         InitializeComponent();
 
-        this.Group = group;
+        this.conversation = conversation;
+        this.Hub = hub;
 
         StarHub();
 
+        GetOld();
+
+    }
+
+
+
+    private async void GetOld()
+    {
+        var olds = await LIN.Access.Communication.Controllers.Messages.ReadAll(conversation.ID);
+
+        foreach(var m in olds.Models)
+        {
+            var cl = new Controls.ChatControl(m.Remitente, m.Contenido);
+            chats.Add(cl);
+        }
+
+        await Task.Delay(10);
+       _ = scroll.ScrollToAsync(0, scroll.Content.Height, true);
     }
 
 
@@ -36,26 +54,24 @@ public partial class Chat : ContentPage
     /// </summary>
     public async void StarHub()
     {
-        //// Nuevo Hub
-        //Hub = new();
 
-        //// Respuesta de conexion
-        //var res = await Hub.Suscribe();
+        if (Hub == null)
+            return;
 
-        //// Evaluacion
-        //if (!res)
-        //{
-        //    await this.DisplayAlert("Error", "Hubo un error al conectar", "Ok");
-        //    return;
-        //}
 
-        //// Unir al grupo
-        //Hub.JoinTo(Group);
 
-        //// Suscribir eventos
-        //Hub.OnRecieveMessage += Hub_OnRecieveMessage;
-        //Hub.OnRecievePicture += Hub_OnRecievePicture;
-        //Hub.OnRecieveLocation += Hub_OnRecieveLocation;
+        Hub.JoinGroup(conversation.ID.ToString(), (e) =>
+        {
+            this.Dispatcher.DispatchAsync(async () =>
+            {
+                chats.Add( new Controls.ChatControl(e.Remitente,e.Contenido));
+                await Task.Delay(100);
+                await scroll.ScrollToAsync(0, scroll.Content.Height + 100, true);
+            });
+
+
+        });
+
     }
 
 
@@ -104,7 +120,7 @@ public partial class Chat : ContentPage
     private bool EvaluateConexion()
     {
         //return Hub == null;
-        return false;
+        return true;
     }
 
 
@@ -114,37 +130,38 @@ public partial class Chat : ContentPage
 
         try
         {
-  // Carga el archivo
-        var result = await FilePicker.Default.PickAsync();
+            // Carga el archivo
+            var result = await FilePicker.Default.PickAsync();
 
-        // analisa el resultado
-        if (result == null)
-            return;
+            // analisa el resultado
+            if (result == null)
+                return;
 
 
-        // Extension del archivo
-        if (result.FileName.EndsWith("jpg", StringComparison.OrdinalIgnoreCase) || result.FileName.EndsWith("png", StringComparison.OrdinalIgnoreCase))
-        {
+            // Extension del archivo
+            if (result.FileName.EndsWith("jpg", StringComparison.OrdinalIgnoreCase) || result.FileName.EndsWith("png", StringComparison.OrdinalIgnoreCase))
+            {
 
-            FileInfo dd = new(result.FullPath);
-            var stream = dd.OpenRead();
+                FileInfo dd = new(result.FullPath);
+                var stream = dd.OpenRead();
 
-            MemoryStream ms = new();
-            stream.CopyTo(ms);
-            var bytes = ms.ToArray();
+                MemoryStream ms = new();
+                stream.CopyTo(ms);
+                var bytes = ms.ToArray();
 
-    //        Hub.SendPicture(bytes, Group);
+                //        Hub.SendPicture(bytes, Group);
 
-            RenderPicture(bytes);
-        }
+                RenderPicture(bytes);
+            }
             else
             {
-              await DisplayAlert("Error", "Formato de imagen invalido", "OK");
+                await DisplayAlert("Error", "Formato de imagen invalido", "OK");
             }
 
         }
 
-      catch (Exception ex) {
+        catch (Exception ex)
+        {
 
             var s = ex;
         }
@@ -179,16 +196,16 @@ public partial class Chat : ContentPage
     public void RenderUbicacion(string ubicacion)
     {
 
-      //var lon =  double.Parse( ubicacion.Split('|')[0].Replace('.', ','));
-      //  var lat = double.Parse( ubicacion.Split('|')[1].Replace('.',','));
+        //var lon =  double.Parse( ubicacion.Split('|')[0].Replace('.', ','));
+        //  var lat = double.Parse( ubicacion.Split('|')[1].Replace('.',','));
 
-      //  var mapa = new Controles.Map(lon, lat)
-      //  {
-      //      HeightRequest = 300,
-      //      WidthRequest = 300
-      //  };
+        //  var mapa = new Controles.Map(lon, lat)
+        //  {
+        //      HeightRequest = 300,
+        //      WidthRequest = 300
+        //  };
 
-      //  chatLayout.Add(mapa);
+        //  chatLayout.Add(mapa);
 
     }
 
@@ -201,7 +218,7 @@ public partial class Chat : ContentPage
     public void RenderPicture(byte[] picture)
     {
         //var control = new Controles.Imagen(Convert.ToBase64String(picture));
-       // chatLayout.Add(control);
+        // chatLayout.Add(control);
         scroll.ScrollToAsync(0, scroll.Content.Height, true);
     }
 
@@ -220,12 +237,12 @@ public partial class Chat : ContentPage
     public void SendMensaje(object sender, EventArgs e)
     {
 
-        //if (EvaluateConexion() || mensajeEntry.Text == null || mensajeEntry.Text.Length <= 0)
-        //    return;
+        if ( mensajeEntry.Text == null || mensajeEntry.Text.Trim().Length <= 0)
+            return;
 
-        //// Envia el mensaje
-        //Hub!.SendMessage(mensajeEntry.Text, Group);
+        Hub!.SendMessage(Session.Instance.Informacion.ID, conversation.ID.ToString(), mensajeEntry.Text);
         //mensajeEntry.Text = string.Empty;
+
 
     }
 

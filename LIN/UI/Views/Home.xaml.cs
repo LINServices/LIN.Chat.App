@@ -4,6 +4,9 @@ public partial class Home : ContentPage
 {
 
 
+    ChatHub ChatHub = new();
+
+
     List<Controls.Conversation> Controles = new();
 
 
@@ -14,11 +17,11 @@ public partial class Home : ContentPage
     {
         Appearing += AppearingEvent;
         AppShell.ActualPage = this;
-       // AppShell.Hub.OnReceiveNotification += Hub_OnReceiveNotification1;
+        // AppShell.Hub.OnReceiveNotification += Hub_OnReceiveNotification1;
         InitializeComponent();
         LoadUserData();
         Load();
-      
+
         SuscribeToHub();
     }
 
@@ -31,11 +34,15 @@ public partial class Home : ContentPage
         Dispatcher.DispatchAsync(Load);
     }
 
- 
 
 
-    private void SuscribeToHub()
+
+    private async void SuscribeToHub()
     {
+        await ChatHub.Suscribe();
+        await ChatHub.ConnectMe(LIN.Access.Communication.Session.Instance.Informacion);
+
+        await DisplayAlert("OK", "OK", "OK");
         //AppShell.Hub.OnReceiveNotification += Hub_OnReceiveNotification;
     }
 
@@ -86,8 +93,8 @@ public partial class Home : ContentPage
         if (!memberChatModels.Any())
             lbInfo.Text = "No hay nada que mostrar aqui";
 
-            // Muestra el mensaje
-         indicador.Hide();
+        // Muestra el mensaje
+        indicador.Hide();
         lbInfo.Show();
 
     }
@@ -104,7 +111,7 @@ public partial class Home : ContentPage
         content.Clear();
 
         // Mensaje
-         //lbInfo.Text = message ?? $"Se encontraron {lista.Count} invitaciones.";
+        //lbInfo.Text = message ?? $"Se encontraron {lista.Count} invitaciones.";
 
         // Agrega los controles
         foreach (var control in lista)
@@ -112,7 +119,7 @@ public partial class Home : ContentPage
             control.Show();
             control.Clicked += (sender, e) =>
             {
-                new Chat().Show();
+                new Chat(control.Modelo.Conversation, ChatHub).Show();
                 //     new ViewItem(control.Modelo).Show();
             };
             content.Add(control);
@@ -169,12 +176,12 @@ public partial class Home : ContentPage
     /// <summary>
     /// Muestra los controles a la vista
     /// </summary>
-   
+
 
     public View TL => AppShell.Instance.ju;
 
 
-    
+
     private static List<Controls.Conversation> LoadCache(List<MemberChatModel> lista)
     {
 
@@ -245,7 +252,7 @@ public partial class Home : ContentPage
         perfil.Source = ImageEncoder.Decode(Session.Instance.Account.Perfil);
 
 
-       
+
 
 
         lbUser.Text = Session.Instance.Account.Nombre;
@@ -298,7 +305,7 @@ public partial class Home : ContentPage
         //ValueInventorys.Text = "Cargando...";
         await Task.Delay(10);
 
-       // Ventas();
+        // Ventas();
     }
 
     private void Label_Clicked(object sender, EventArgs e)
