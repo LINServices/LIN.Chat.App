@@ -13,11 +13,11 @@
 		<Nullable>enable</Nullable>
 		
 		<!-- Display name -->
-		<ApplicationTitle>LIN</ApplicationTitle>
+		<ApplicationTitle>Chat</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.linservices.lin</ApplicationId>
-		<ApplicationIdGuid>7d4c0cde-d05f-42a2-9716-e90d7e38c7b5</ApplicationIdGuid>
+		<ApplicationId>com.linservices.chat</ApplicationId>
+		<ApplicationIdGuid>7d4c0cde-d05f-42a2-9716-e99d7e38c7b5</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>2.0</ApplicationDisplayVersion>
