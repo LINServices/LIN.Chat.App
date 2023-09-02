@@ -4,9 +4,12 @@
 public partial class Chat : ContentPage
 {
 
-    /// <summary>
-    /// Estancia del HUB de Chat
-    /// </summary>
+
+    private readonly LocalDataBase.Data.MessagesDB LocalDB;
+
+
+
+
     private ChatHub? Hub = null;
 
     ConversationModel conversation = new();
@@ -20,6 +23,7 @@ public partial class Chat : ContentPage
     public Chat(ConversationModel conversation, ChatHub? hub)
     {
 
+        LocalDB = new();
         InitializeComponent();
 
         this.conversation = conversation;
@@ -35,9 +39,25 @@ public partial class Chat : ContentPage
 
     private async void GetOld()
     {
-        var olds = await LIN.Access.Communication.Controllers.Messages.ReadAll(conversation.ID);
 
-        foreach(var m in olds.Models)
+        // Obtener los mensajes guardados
+        var oldSaved = await LocalDB.Get(conversation.ID);
+
+        // Ultimo ID
+        int lastID = oldSaved.LastOrDefault()?.ID ?? 0;
+
+
+        var olds = await LIN.Access.Communication.Controllers.Messages.ReadAll(conversation.ID, lastID);
+
+        foreach (var m in olds.Models)
+        {
+            await LocalDB.Save(m);
+        }
+
+
+        oldSaved.AddRange(olds.Models);
+
+        foreach(var m in oldSaved)
         {
             var cl = new Controls.ChatControl(m.Remitente, m.Contenido);
             chats.Add(cl);

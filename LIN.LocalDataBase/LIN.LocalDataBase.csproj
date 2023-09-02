@@ -11,4 +11,8 @@
     <PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Tipos\LIN.Types.Communication\LIN.Types.Communication.csproj" />
+  </ItemGroup>
+
 </Project>
