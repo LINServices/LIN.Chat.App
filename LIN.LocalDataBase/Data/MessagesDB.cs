@@ -101,4 +101,14 @@ public class MessagesDB
 
 
 
+    public async Task Delete()
+    {
+        await Init();
+
+        await Database!.Table<Message>().DeleteAsync(T => 1 == 1);
+
+    }
+
+
+
 }

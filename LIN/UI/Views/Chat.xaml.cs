@@ -1,4 +1,6 @@
-﻿namespace LIN.UI.Views;
+﻿using WinRT;
+
+namespace LIN.UI.Views;
 
 
 public partial class Chat : ContentPage
@@ -57,14 +59,14 @@ public partial class Chat : ContentPage
 
         oldSaved.AddRange(olds.Models);
 
-        foreach(var m in oldSaved)
+        foreach (var m in oldSaved)
         {
             var cl = new Controls.ChatControl(m.Remitente, m.Contenido);
             chats.Add(cl);
         }
 
         await Task.Delay(10);
-       _ = scroll.ScrollToAsync(0, scroll.Content.Height, true);
+        _ = scroll.ScrollToAsync(0, scroll.Content.Height, true);
     }
 
 
@@ -84,7 +86,7 @@ public partial class Chat : ContentPage
         {
             this.Dispatcher.DispatchAsync(async () =>
             {
-                chats.Add( new Controls.ChatControl(e.Remitente,e.Contenido));
+                chats.Add(new Controls.ChatControl(e.Remitente, e.Contenido));
                 await Task.Delay(100);
                 await scroll.ScrollToAsync(0, scroll.Content.Height + 100, true);
             });
@@ -257,7 +259,7 @@ public partial class Chat : ContentPage
     public void SendMensaje(object sender, EventArgs e)
     {
 
-        if ( mensajeEntry.Text == null || mensajeEntry.Text.Trim().Length <= 0)
+        if (mensajeEntry.Text == null || mensajeEntry.Text.Trim().Length <= 0)
             return;
 
         Hub!.SendMessage(Session.Instance.Informacion.ID, conversation.ID.ToString(), mensajeEntry.Text);
