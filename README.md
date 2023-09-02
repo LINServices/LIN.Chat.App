@@ -1,5 +1,5 @@
 
-# LIN Inventory
+# LIN CHAT App
 
 LIN Chat para Windows y Android
 
