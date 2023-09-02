@@ -1,5 +1,4 @@
-﻿using LIN.Access.Inventory.Controllers;
-
+﻿
 namespace LIN.ScriptRuntime;
 
 
@@ -19,125 +18,7 @@ internal class Scripts
     public static void Build()
     {
 
-        // Llamada
-        Actions.Add("call", (param) =>
-        {
-            if (PhoneDialer.Default.IsSupported)
-                PhoneDialer.Default.Open(param);
-        });
-
-
-        // Abrir Producto
-        Actions.Add("openPr", async (param) =>
-        {
-            // Convierte el valor
-            bool can = int.TryParse(param, out int id);
-
-            if (!can)
-                return;
-
-            var model = await Access.Inventory.Controllers.Product.Read(id);
-
-            var form = new UI.Views.Products.ViewItem(model.Model);
-
-            form.Show();
-        });
-
-
-        // Abrir Contactos
-        Actions.Add("openCt", async (param) =>
-        {
-
-            // Convierte el valor
-            bool can = int.TryParse(param, out int id);
-
-            if (!can)
-                return;
-
-            var model = await Access.Inventory.Controllers.Contact.Read(id);
-
-
-            var pop = new UI.Popups.ContactPopup(model.Model);
-
-            await pop.Show();
-
-        });
-
-
-        // Abrir Exportar PDF (Entradas)
-        Actions.Add("exportInflow", async (param) =>
-        {
-
-            // Convierte el valor
-            bool can = int.TryParse(param, out int id);
-
-            if (!can)
-                return;
-
-            var model = await Inflows.Read(id);
-            var form = new UI.Views.Inflows.ViewItem(model.Model, true);
-
-            form.Show();
-
-        });
-
-
-        // Abrir Exportar PDF (Salidas)
-        Actions.Add("exportOutflow", async (param) =>
-        {
-
-            // Convierte el valor
-            bool can = int.TryParse(param, out int id);
-
-            if (!can)
-                return;
-
-
-            var model = await Outflows.Read(id);
-            var form = new UI.Views.Outflows.ViewItem(model.Model, true);
-
-            form.Show();
-
-        });
-
-
-        // Abrir Entrada
-        Actions.Add("openIF", async (param) =>
-        {
-
-            // Convierte el valor
-            bool can = int.TryParse(param, out int id);
-
-            if (!can)
-                return;
-
-
-            var model = await Inflows.Read(id);
-            var form = new UI.Views.Inflows.ViewItem(model.Model);
-
-            form.Show();
-
-        });
-
-
-        // Abrir Salida
-        Actions.Add("openOF", async (param) =>
-        {
-
-            // Convierte el valor
-            bool can = int.TryParse(param, out int id);
-
-            if (!can)
-                return;
-
-            var model = await Outflows.Read(id);
-
-            var form = new UI.Views.Outflows.ViewItem(model.Model);
-
-            form.Show();
-
-        });
-
+       
 
         // Mensaje
         Actions.Add("msg", async (param) =>
@@ -164,20 +45,7 @@ internal class Scripts
         });
 
 
-        // Pantalla de informes
-        Actions.Add("openInformesScreen", (param) =>
-        {
-
-            // Convierte el valor
-            bool can = int.TryParse(param, out int id);
-
-            if (!can)
-                return;
-
-            var form = new UI.Views.Inventorys.Informes(id);
-
-            form.Show();
-        });
+       
 
     }
 

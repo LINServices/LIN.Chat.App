@@ -114,7 +114,7 @@ public partial class Singin : ContentPage
         }
 
 
-        _ = await LIN.Access.Inventory.Session.LoginWith(res.Token);
+      //  _ = await LIN.Access.Inventory.Session.LoginWith(res.Token);
 
 
         await this.ShowPopupAsync(new Popups.Welcome());

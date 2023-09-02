@@ -14,11 +14,6 @@ public partial class AccountPage : ContentPage
 
 
 
-    /// <summary>
-    /// Lista de controles de dispositivos
-    /// </summary>
-    public static List<DeviceControl> DevicesControls { get; set; } = new();
-
 
 
 
@@ -104,18 +99,7 @@ public partial class AccountPage : ContentPage
         Dispatcher.DispatchAsync(new Action(() =>
         {
 
-            // Obtiene los controles
-            var controls = DevicesControls.Where(D => D.Modelo.ID == e);
-
-            // Oculta los controles visibles
-            foreach (var control in controls)
-                control.Hide();
-
-            // Elimina los controles del cache
-            DevicesControls.RemoveAll(D => D.Modelo.ID == e);
-
-            // Elimina los modelos
-            Devices.RemoveAll(T => T.ID == e);
+            
 
         }));
 
@@ -165,44 +149,6 @@ public partial class AccountPage : ContentPage
         Dispatcher.DispatchAsync(() =>
         {
 
-            foreach (var deC in DevicesControls)
-            {
-                deC.MarkedToHide = true;
-            }
-
-            // Recorre los nuevos modelos
-            foreach (var @new in e)
-            {
-
-                // Comprueba si ya existen
-                var have = DevicesControls.Where(T => T.Modelo.DeviceKey == @new.DeviceKey);
-
-                // Si ya existe
-                if (have.Any())
-                {
-                    foreach (var i in have)
-                        i.MarkedToHide = false;
-
-                    continue;
-                }
-
-
-
-                // Renderiza el nuevo modelo
-                Devices.Add(@new);
-
-                RenderDevice(@new);
-
-            }
-
-
-            var items = DevicesControls.FindAll(T => T.MarkedToHide);
-
-            foreach (var i in items)
-            {
-                i.Hide();
-                DevicesControls.Remove(i);
-            }
 
         });
     }
@@ -231,16 +177,6 @@ public partial class AccountPage : ContentPage
     private void Hub_OnSomeoneLeave(object? sender, string e)
     {
 
-        Dispatcher.DispatchAsync(new Action(() =>
-        {
-            var some = DevicesControls.Where(C => C.Modelo.ID == e).FirstOrDefault();
-            if (some != null)
-            {
-                some.Hide();
-                DevicesControls.Remove(some);
-                Devices.RemoveAll(T => T.ID == e);
-            }
-        }));
 
     }
 
@@ -316,7 +252,6 @@ public partial class AccountPage : ContentPage
             contenido.Clear();
 
             // Renderiza los controles
-            DevicesControls.Clear();
             Devices.Clear();
             RenderDevices(Devices);
 
@@ -367,24 +302,12 @@ public partial class AccountPage : ContentPage
 
     private void RenderDevice(DeviceModel modelo)
     {
-        // Control
-        var control = new DeviceControl(modelo, true);
-
-        // Evento
-        control.Clicked += (sender, e) =>
-         {
-             new Views.Devices.Index(modelo).Show();
-         };
-
-        DevicesControls.Add(control);
-        contenido.Add(control);
+       
     }
 
     private async void Button_Clicked(object sender, EventArgs e)
     {
 
-        var pop = new Popups.UserPassEdit();
-        await pop.Show();
 
     }
 
@@ -420,7 +343,6 @@ public partial class AccountPage : ContentPage
 
     private void Control_Clicked(object? sender, EventArgs e)
     {
-        var x = (ProductTemplate)sender;
-        x.Select();
+      
     }
 }

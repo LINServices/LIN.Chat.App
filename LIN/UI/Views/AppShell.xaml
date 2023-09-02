@@ -60,14 +60,7 @@
             Title="Inicio"
             ContentTemplate="{DataTemplate local:Home}"
             Icon="casa.png" />
-        <ShellContent
-            Title="Inventarios"
-            ContentTemplate="{DataTemplate localInv:Index}"
-            Icon="lista.png" />
-        <ShellContent
-            Title="Contactos"
-            ContentTemplate="{DataTemplate localCont:Index}"
-            Icon="personas.png" />
+        
         <ShellContent
             Title="Cuenta"
             ContentTemplate="{DataTemplate local:AccountPage}"

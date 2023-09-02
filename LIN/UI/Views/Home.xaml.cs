@@ -1,22 +1,9 @@
-using LIN.Access.Inventory.Controllers;
-
 namespace LIN.UI.Views;
 
 public partial class Home : ContentPage
 {
 
-    /// <summary>
-    /// Lista de modelos de productos
-    /// </summary>
-    private List<Types.Inventory.Models.Notificacion> Notificacions = new();
-
-
-    /// <summary>
-    /// Lista de los prodructos
-    /// </summary>
-    private List<Controls.Notificacion> Controles = new();
-
-
+   
 
 
 
@@ -31,7 +18,7 @@ public partial class Home : ContentPage
         InitializeComponent();
         LoadUserData();
         Load();
-        Ventas();
+      
         SuscribeToHub();
     }
 
@@ -44,22 +31,7 @@ public partial class Home : ContentPage
         Dispatcher.DispatchAsync(Load);
     }
 
-    private async void Ventas()
-    {
-
-        var id = LIN.Access.Inventory.Session.Instance.Informacion.ID;
-
-        var home = await Access.Inventory.Controllers.Profile.TotalSales(id, 30);
-        var valueTask = Access.Inventory.Controllers.Profile.ValueInventorys(id);
-
-        ventas7.SubTitle = home.Model.Ventas7 + " ventas realizadas.";
-        ventas30.SubTitle = home.Model.Ventas30 + " ventas realizadas.";
-
-        compras30.SubTitle = home.Model.Compras30 + " compras realizadas.";
-        compras7.SubTitle = home.Model.Compras7 + " compras realizadas.";
-        ValueInventorys.Text = (await valueTask).Model.ToString("0.##");
-    }
-
+ 
 
 
     private void SuscribeToHub()
@@ -104,19 +76,19 @@ public partial class Home : ContentPage
             return;
         }
 
-        // Carga el cache
-        Controles = LoadCache(Notificacions);
+        //// Carga el cache
+        //Controles = LoadCache(Notificacions);
 
-        // Carga los controles a la vista
-        LoadControls(Controles);
+        //// Carga los controles a la vista
+        //LoadControls(Controles);
 
-        // Si no hay productos
-        if (!Notificacions.Any())
-            //  lbInfo.Text = "No hay nada que mostrar aqui";
+        //// Si no hay productos
+        //if (!Notificacions.Any())
+        //    //  lbInfo.Text = "No hay nada que mostrar aqui";
 
-            // Muestra el mensaje
-            indicador.Hide();
-        //  lbInfo.Show();
+        //    // Muestra el mensaje
+        //    indicador.Hide();
+        ////  lbInfo.Show();
 
     }
 
@@ -128,15 +100,15 @@ public partial class Home : ContentPage
     private async Task<bool> RefreshData()
     {
 
-        // Items
-        var items = await Inventories.ReadNotifications(Session.Instance.Informacion.ID);
+        //// Items
+        //var items = await Inventories.ReadNotifications(Session.Instance.Informacion.ID);
 
-        // Analisis de respuesta
-        if (items.Response != Responses.Success)
-            return false;
+        //// Analisis de respuesta
+        //if (items.Response != Responses.Success)
+        //    return false;
 
-        // Rellena los items
-        Notificacions = items.Models.ToList();
+        //// Rellena los items
+        //Notificacions = items.Models.ToList();
         return true;
 
     }
@@ -147,40 +119,19 @@ public partial class Home : ContentPage
     /// <summary>
     /// Muestra los controles a la vista
     /// </summary>
-    public void AppendModel(Types.Inventory.Models.Notificacion modelo)
-    {
-        Notificacions.Add(modelo);
-        Controles = LoadCache(Notificacions);
-        LoadControls(Controles);
-    }
+    //public void AppendModel(Types.Inventory.Models.Notificacion modelo)
+    //{
+    //    Notificacions.Add(modelo);
+    //    Controles = LoadCache(Notificacions);
+    //    LoadControls(Controles);
+    //}
 
 
 
     /// <summary>
     /// Muestra los controles a la vista
     /// </summary>
-    private void LoadControls(List<Controls.Notificacion> lista, string? message = null)
-    {
-
-        // Vacia los elementos
-        content.Clear();
-
-        // Mensaje
-        //      lbInfo.Text = message ?? $"Se encontraron {lista.Count} invitaciones.";
-
-        // Agrega los controles
-        foreach (var control in lista)
-        {
-            control.Show();
-            control.Clicked += (sender, e) =>
-            {
-                //     new ViewItem(control.Modelo).Show();
-            };
-            content.Add(control);
-        }
-
-    }
-
+   
 
     public View TL => AppShell.Instance.ju;
 
@@ -188,22 +139,22 @@ public partial class Home : ContentPage
     /// <summary>
     /// Carga los modelos a los nuevos controles
     /// </summary>
-    private static List<Controls.Notificacion> LoadCache(List<LIN.Types.Inventory.Models.Notificacion> lista)
-    {
+    //private static List<Controls.Notificacion> LoadCache(List<LIN.Types.Inventory.Models.Notificacion> lista)
+    //{
 
-        // Lista
-        List<Controls.Notificacion> listaReturn = new();
+    //    // Lista
+    //    List<Controls.Notificacion> listaReturn = new();
 
-        // Agrega los controles
-        foreach (var model in lista)
-        {
-            var control = new Controls.Notificacion(model ?? new());
-            listaReturn.Add(control);
-        }
+    //    // Agrega los controles
+    //    foreach (var model in lista)
+    //    {
+    //        var control = new Controls.Notificacion(model ?? new());
+    //        listaReturn.Add(control);
+    //    }
 
-        return listaReturn;
+    //    return listaReturn;
 
-    }
+    //}
 
 
 
@@ -298,7 +249,7 @@ public partial class Home : ContentPage
     /// </summary>
     private void BtnProductos_Clicked(object sender, EventArgs e)
     {
-        new Inventorys.Index().Show();
+        //new Inventorys.Index().Show();
     }
 
 
@@ -308,17 +259,15 @@ public partial class Home : ContentPage
     /// </summary>
     private void BtnContactos_Clicked(object sender, EventArgs e)
     {
-        new Contacts.Index().Show();
+        //new Contacts.Index().Show();
     }
 
     private async void Border_Clicked(object sender, EventArgs e)
     {
-        ventas7.SubTitle = "Cargando...";
-        ventas30.SubTitle = "Cargando...";
         ValueInventorys.Text = "Cargando...";
         await Task.Delay(10);
 
-        Ventas();
+       // Ventas();
     }
 
     private void Label_Clicked(object sender, EventArgs e)

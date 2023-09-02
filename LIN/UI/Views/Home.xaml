@@ -4,8 +4,6 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:Custom="clr-namespace:LIN.Controls.UI;assembly=LIN.Controls"
-    xmlns:One="clr-namespace:LIN.UI.Controls"
-    xmlns:One2="clr-namespace:LIN.UI.Controls.Markups"
     x:Name="this"
     BackgroundColor="{StaticResource Background}"
     BackgroundImageSource="{OnPlatform Android='bf.jpg'}"
@@ -100,42 +98,7 @@
                 ColumnDefinitions=".5*, .5*"
                 RowDefinitions=".5*,.5*">
 
-                <One:HomeCard
-                    x:Name="ventas7"
-                    Title="Ultimos 7 dias"
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    Margin="12,0,0,12"
-                    BaseColor="{StaticResource Red200}"
-                    ShadowColor="#D93729"
-                    SubTitle="Cargando..." />
-
-                <One:HomeCard
-                    x:Name="ventas30"
-                    Title="Ultimos 30 dias"
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    Margin="12,0,0,12"
-                    BaseColor="#FFF"
-                    SubTitle="Cargando..." />
-
-                <One:HomeCard
-                    x:Name="compras7"
-                    Title="Ultimos 7 Dias"
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    Margin="12,0,0,12"
-                    BaseColor="#FFF"
-                    SubTitle="Informacion" />
-
-                <One:HomeCard
-                    x:Name="compras30"
-                    Title="Ultimos 30 dias"
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    Margin="12,0,0,12"
-                    BaseColor="#FFF"
-                    SubTitle="Informacion" />
+             
 
             </Grid>
 

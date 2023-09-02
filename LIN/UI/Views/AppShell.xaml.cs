@@ -85,9 +85,7 @@ public partial class AppShell : Shell
         };
 
         // Abre el Popup
-        var popup = new Popups.DeviceSelector(command, filtro);
-        await popup.Show();
-
+      
     }
 
 

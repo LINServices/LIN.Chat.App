@@ -9,10 +9,11 @@ internal class Events
 
     public static void OnStart(Activity activity)
     {
+
         var service = AppShell.ElementHandler?.MauiContext?.Services.GetServices<IBackgroundService>().FirstOrDefault();
         service?.Stop();
 
-        if (Session.IsLocalOpen)
+        if (Session.IsOpen)
             AppShell.Hub.ReconnectAndUpdate();
 
     }
