@@ -42,7 +42,6 @@ public partial class Home : ContentPage
         await ChatHub.Suscribe();
         await ChatHub.ConnectMe(LIN.Access.Communication.Session.Instance.Informacion);
 
-        await DisplayAlert("OK", "OK", "OK");
         //AppShell.Hub.OnReceiveNotification += Hub_OnReceiveNotification;
     }
 

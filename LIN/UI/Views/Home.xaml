@@ -75,7 +75,7 @@
                     Margin="0,0,0,0"
                     FontFamily="QSM"
                     FontSize="13"
-                    Text="No definido -- Definir"
+                    Text=""
                     TextColor="{StaticResource Gray600}"
                     VerticalOptions="Center" />
 
