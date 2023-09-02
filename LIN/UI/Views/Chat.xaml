@@ -27,28 +27,28 @@
                         Placeholder="Escribe un mensaje..."
                         PlaceholderColor="#475569" />
 
-                    <StackLayout Margin="0,5,0,0" Orientation="Horizontal">
+                    <StackLayout Margin="0,5,0,0" Orientation="Horizontal" BackgroundColor="Red">
 
                         <custom:ToggleButton
                             Margin="0,0,5,0"
                             ColorBG="#cbd5e1"
                             HeightRequest="42"
                             Clicked="SendLocation"
-                            Picture="gps"
+                            Picture="bandera"
                             WidthRequest="42" />
 
                         <custom:ToggleButton
                             ColorBG="#cbd5e1"
 Clicked="OpenImage"
                             HeightRequest="42"
-                            Picture="boton_imagen"
+                            Picture="montana"
                             WidthRequest="42" />
 
                         <custom:ToggleButton
                             ColorBG="#cbd5e1"
                             HeightRequest="42"
                             Clicked="SendMensaje"
-                            Picture="enviar"
+                            Picture="paper"
                             WidthRequest="42" />
                     </StackLayout>
 
