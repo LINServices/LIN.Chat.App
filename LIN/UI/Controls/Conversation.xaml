@@ -36,7 +36,8 @@
             <Custom:Image
                 x:Name="displayImagen"
                 Clicked="displayImagen_Clicked"
-                Source="caja.png" />
+                Margin="8"
+                Source="people.png" />
         </Custom:Border>
 
 

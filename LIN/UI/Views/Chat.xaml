@@ -2,8 +2,55 @@
     x:Class="LIN.UI.Views.Chat"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Custom="clr-namespace:LIN.Controls.UI;assembly=LIN.Controls"
     xmlns:custom="clr-namespace:LIN.Controls.UI;assembly=LIN.Controls"
     Title="Chat">
+
+
+    <Shell.TitleView>
+
+        <StackLayout
+            HorizontalOptions="EndAndExpand"
+            Orientation="Horizontal"
+            VerticalOptions="Center">
+
+
+            <!--  Fondo de la imagen  -->
+
+
+            <Label
+                x:Name="lbTitle"
+                Margin="3,0,5,0"
+                FontFamily="QSB"
+                FontSize="15"
+                TextColor="{StaticResource Gray900}"
+                HorizontalOptions="End"
+                Text=""
+                VerticalOptions="Center" />
+
+            <Custom:Border
+                Grid.Column="0"
+                Margin="0,0,10,0"
+                Padding="3"
+                BackgroundColor="WhiteSmoke"
+                HeightRequest="36"
+                StrokeShape="RoundRectangle 25"
+                VerticalOptions="EndAndExpand"
+                WidthRequest="36">
+                <Custom:Image Margin="8" Source="people.png" />
+            </Custom:Border>
+            
+        </StackLayout>
+
+    </Shell.TitleView>
+
+
+
+
+
+
+
+
     <ContentPage.Content>
         <StackLayout>
 

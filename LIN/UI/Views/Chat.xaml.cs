@@ -29,11 +29,20 @@ public partial class Chat : ContentPage
         this.conversation = conversation;
         this.Hub = hub;
 
+        Prepare();
         StarHub();
 
         GetOld();
 
     }
+
+
+    private void Prepare()
+    {
+        lbTitle.Text = conversation.Name;
+    }
+
+
 
 
 
