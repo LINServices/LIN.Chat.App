@@ -13,6 +13,10 @@ public partial class ChatControl : ContentView
 			frame.HorizontalOptions = LayoutOptions.EndAndExpand;
 			displayName.Hide();
 			frame.BackgroundColor = Color.FromArgb("#6366f1");
+			frame.StrokeShape = new Microsoft.Maui.Controls.Shapes.RoundRectangle()
+			{
+				CornerRadius = new(10,10,10,0)
+			};
 		}
 		else
 		{
@@ -21,6 +25,10 @@ public partial class ChatControl : ContentView
 			displayName.Text = remitenete.Alias;
             frame.BackgroundColor = Color.FromArgb("#e0e7ff");
 			MessageDesign.TextColor = Color.FromArgb("#0C0A2A ");
+            frame.StrokeShape = new Microsoft.Maui.Controls.Shapes.RoundRectangle()
+            {
+                CornerRadius = new(10, 10, 0, 10)
+            };
         }
 
 		MessageDesign.Text = message;

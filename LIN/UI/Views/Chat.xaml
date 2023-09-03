@@ -13,41 +13,45 @@
                 </StackLayout>
             </ScrollView>
             <Border
-                Margin="5,4,5,6"
+                Margin="5,8,5,6"
                 Padding="7"
-                BackgroundColor="{OnPlatform Android='#cbd5e1'}"
+                BackgroundColor="{OnPlatform Android='#c7d2fe'}"
                 StrokeShape="RoundRectangle 10"
                 StrokeThickness="0">
                 <StackLayout Orientation="Horizontal">
                     <Entry
                         x:Name="mensajeEntry"
-                        Margin="5,6,0,0"
+                        Margin="5,0,0,0"
+                        VerticalOptions="CenterAndExpand"
                         FontFamily="PR"
                         HorizontalOptions="FillAndExpand"
                         Placeholder="Escribe un mensaje..."
                         PlaceholderColor="#475569" />
 
-                    <StackLayout Margin="0,5,0,0" Spacing="3" Orientation="Horizontal">
+                    <StackLayout Margin="0,5,0,0" Spacing="3" Orientation="Horizontal"   VerticalOptions="CenterAndExpand">
 
                         <custom:ToggleButton
-                            ColorBG="#cbd5e1"
+                            ColorBG="Transparent"
                             HeightRequest="42"
                             Clicked="SendLocation"
-                            Picture="bandera.png"
+                            Picture="map.png"
+                              VerticalOptions="CenterAndExpand"
                             WidthRequest="42" />
 
                         <custom:ToggleButton
-                            ColorBG="#cbd5e1"
+                            ColorBG="Transparent"
 Clicked="OpenImage"
                             HeightRequest="42"
-                            Picture="montana.png"
+                              VerticalOptions="CenterAndExpand"
+                            Picture="landscape.png"
                             WidthRequest="42" />
 
                         <custom:ToggleButton
-                            ColorBG="#cbd5e1"
+                           ColorBG="Transparent"
                             HeightRequest="42"
                             Clicked="SendMensaje"
-                            Picture="paper.png"
+                              VerticalOptions="CenterAndExpand"
+                            Picture="send.png"
                             WidthRequest="42" />
                     </StackLayout>
 

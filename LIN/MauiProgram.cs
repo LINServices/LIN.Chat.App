@@ -1,4 +1,5 @@
-﻿using static LIN.Controls.Builder;
+﻿using Microsoft.Maui.Platform;
+using static LIN.Controls.Builder;
 
 namespace LIN;
 
@@ -63,6 +64,29 @@ public static class MauiProgram
 
         // Builder
         var builder = MauiApp.CreateBuilder();
+
+
+
+
+
+
+        Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping(nameof(Entry), (handler, view) =>
+        {
+            if (view is Entry)
+            {
+#if __ANDROID__
+
+                handler.PlatformView.SetBackgroundColor(Colors.Transparent.ToPlatform());
+#elif __IOS__
+              handler  .PlatformView.BorderStyle = UIKit.UITextBorderStyle.None;
+#elif WINDOWS
+                handler.PlatformView.FocusVisualPrimaryBrush = new Microsoft.UI.Xaml.Media.SolidColorBrush(Windows.UI.Color.FromArgb(100, 81, 43, 212));
+                handler.PlatformView.FocusVisualSecondaryBrush = new Microsoft.UI.Xaml.Media.SolidColorBrush(Windows.UI.Color.FromArgb(100, 81, 43, 212));
+#endif
+            }
+        });
+
+
 
 
         // Configuración

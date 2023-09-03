@@ -13,7 +13,7 @@
                StrokeThickness="0"
                WidthRequest="250"
                x:Name="frame"
-                StrokeShape="RoundRectangle 9"
+                StrokeShape="RoundRectangle 10"
                Padding="0"
                VerticalOptions="Start"
                HorizontalOptions="Start">
