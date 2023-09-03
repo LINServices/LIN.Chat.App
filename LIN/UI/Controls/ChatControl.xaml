@@ -1,28 +1,32 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="LIN.UI.Controls.ChatControl">
+<ContentView
+    x:Class="LIN.UI.Controls.ChatControl"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <VerticalStackLayout Margin="0,10,0,0">
-        <Label Text="Juanito"
-               FontSize="10"
-               FontFamily="QSB"
-               TextColor="#ABAAB6"
-               x:Name="displayName"
-               Margin="0,4,0,2"></Label>
-        <Border Margin="0,0,0,0"
-               StrokeThickness="0"
-               WidthRequest="250"
-               x:Name="frame"
-                StrokeShape="RoundRectangle 10"
-               Padding="0"
-               VerticalOptions="Start"
-               HorizontalOptions="Start">
-            <Label Text="Hola mejor amiguito"
-                   TextColor="White"
-                   VerticalTextAlignment="Center"
-                   Margin="15"
-                   FontFamily="QSM"
-                   x:Name="MessageDesign"></Label>
+        <Label
+            x:Name="displayName"
+            Margin="0,4,0,2"
+            FontFamily="QSB"
+            FontSize="10"
+            Text="Juanito"
+            TextColor="#ABAAB6" />
+        <Border
+            x:Name="frame"
+            Margin="0,0,0,0"
+            Padding="0"
+            HorizontalOptions="Start"
+            StrokeShape="RoundRectangle 10"
+            StrokeThickness="0"
+            VerticalOptions="Start"
+            WidthRequest="250">
+            <Label
+                x:Name="MessageDesign"
+                Margin="15"
+                FontFamily="QSM"
+                Text="Hola mejor amiguito"
+                TextColor="White"
+                VerticalTextAlignment="Center" />
         </Border>
     </VerticalStackLayout>
 </ContentView>

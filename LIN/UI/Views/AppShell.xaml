@@ -60,7 +60,7 @@
             Title="Inicio"
             ContentTemplate="{DataTemplate local:Home}"
             Icon="casa.png" />
-        
+
         <ShellContent
             Title="Cuenta"
             ContentTemplate="{DataTemplate local:AccountPage}"

@@ -7,8 +7,12 @@
     <ContentPage.Content>
         <StackLayout>
 
-            <ScrollView x:Name="scroll" BackgroundColor="#f8fafc" VerticalOptions="FillAndExpand" Margin="5,0,5,0">
-                <StackLayout x:Name="chats" VerticalOptions="EndAndExpand" >
+            <ScrollView
+                x:Name="scroll"
+                Margin="5,0,5,0"
+                BackgroundColor="#f8fafc"
+                VerticalOptions="FillAndExpand">
+                <StackLayout x:Name="chats" VerticalOptions="EndAndExpand">
                     <!--  Aquí se mostrarán los mensajes del chat  -->
                 </StackLayout>
             </ScrollView>
@@ -22,36 +26,40 @@
                     <Entry
                         x:Name="mensajeEntry"
                         Margin="5,0,0,0"
-                        VerticalOptions="CenterAndExpand"
                         FontFamily="PR"
                         HorizontalOptions="FillAndExpand"
                         Placeholder="Escribe un mensaje..."
-                        PlaceholderColor="#475569" />
+                        PlaceholderColor="#475569"
+                        VerticalOptions="CenterAndExpand" />
 
-                    <StackLayout Margin="0,5,0,0" Spacing="3" Orientation="Horizontal"   VerticalOptions="CenterAndExpand">
+                    <StackLayout
+                        Margin="0,5,0,0"
+                        Orientation="Horizontal"
+                        Spacing="3"
+                        VerticalOptions="CenterAndExpand">
 
                         <custom:ToggleButton
-                            ColorBG="Transparent"
-                            HeightRequest="42"
                             Clicked="SendLocation"
-                            Picture="map.png"
-                              VerticalOptions="CenterAndExpand"
-                            WidthRequest="42" />
-
-                        <custom:ToggleButton
                             ColorBG="Transparent"
-Clicked="OpenImage"
                             HeightRequest="42"
-                              VerticalOptions="CenterAndExpand"
-                            Picture="landscape.png"
+                            Picture="map.png"
+                            VerticalOptions="CenterAndExpand"
                             WidthRequest="42" />
 
                         <custom:ToggleButton
-                           ColorBG="Transparent"
+                            Clicked="OpenImage"
+                            ColorBG="Transparent"
                             HeightRequest="42"
+                            Picture="landscape.png"
+                            VerticalOptions="CenterAndExpand"
+                            WidthRequest="42" />
+
+                        <custom:ToggleButton
                             Clicked="SendMensaje"
-                              VerticalOptions="CenterAndExpand"
+                            ColorBG="Transparent"
+                            HeightRequest="42"
                             Picture="send.png"
+                            VerticalOptions="CenterAndExpand"
                             WidthRequest="42" />
                     </StackLayout>
 
