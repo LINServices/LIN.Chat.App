@@ -12,7 +12,7 @@ public partial class Chat : ContentPage
 
     private ChatHub? Hub = null;
 
-    ConversationModel conversation = new();
+   public ConversationModel conversation = new();
 
     bool IsLoadOldChats = false;
 
@@ -87,22 +87,19 @@ public partial class Chat : ContentPage
         if (Hub == null)
             return;
 
-
-
-        Hub.JoinGroup(conversation.ID.ToString(), (e) =>
-        {
-            this.Dispatcher.DispatchAsync(async () =>
-            {
-                chats.Add(new Controls.ChatControl(e.Remitente, e.Contenido));
-                await Task.Delay(100);
-                await scroll.ScrollToAsync(0, scroll.Content.Height + 100, true);
-            });
-
-
-        });
+        await Hub.JoinGroup(conversation.ID);
 
     }
 
+    public void ReceiveMessage(MessageModel e)
+    {
+        this.Dispatcher.DispatchAsync(async () =>
+        {
+            chats.Add(new Controls.ChatControl(e.Remitente, e.Contenido));
+            await Task.Delay(100);
+            await scroll.ScrollToAsync(0, scroll.Content.Height + 100, true);
+        });
+    }
 
 
 
@@ -263,14 +260,14 @@ public partial class Chat : ContentPage
     /// <summary>
     /// Enviar mensaje
     /// </summary>
-    public void SendMensaje(object sender, EventArgs e)
+    public async  void SendMensaje(object sender, EventArgs e)
     {
 
         if (mensajeEntry.Text == null || mensajeEntry.Text.Trim().Length <= 0)
             return;
 
-        Hub!.SendMessage(Session.Instance.Informacion.ID, conversation.ID.ToString(), mensajeEntry.Text);
-        //mensajeEntry.Text = string.Empty;
+        await Hub!.SendMessage( conversation.ID, mensajeEntry.Text);
+        mensajeEntry.Text = string.Empty;
 
 
     }

@@ -23,9 +23,9 @@
                 Margin="3,0,5,0"
                 FontFamily="QSB"
                 FontSize="15"
-                TextColor="{StaticResource Gray900}"
                 HorizontalOptions="End"
                 Text=""
+                TextColor="{StaticResource Gray900}"
                 VerticalOptions="Center" />
 
             <Custom:Border
@@ -39,7 +39,7 @@
                 WidthRequest="36">
                 <Custom:Image Margin="8" Source="people.png" />
             </Custom:Border>
-            
+
         </StackLayout>
 
     </Shell.TitleView>

@@ -4,10 +4,13 @@ public partial class Home : ContentPage
 {
 
 
-    ChatHub ChatHub = new();
+    ChatHub ChatHub = new(LIN.Access.Communication.Session.Instance.Informacion);
 
 
     List<Controls.Conversation> Controles = new();
+
+
+    List<Chat> Pages = new();
 
 
     /// <summary>
@@ -40,9 +43,21 @@ public partial class Home : ContentPage
     private async void SuscribeToHub()
     {
         await ChatHub.Suscribe();
-        await ChatHub.ConnectMe(LIN.Access.Communication.Session.Instance.Informacion);
+
+        ChatHub.OnReceiveMessage += OnReceiveMessage;
 
         //AppShell.Hub.OnReceiveNotification += Hub_OnReceiveNotification;
+    }
+
+    private void OnReceiveMessage(object? sender, MessageModel e)
+    {
+        var cm = Pages.Where(T => T.conversation.ID == e.Conversacion.ID).FirstOrDefault();
+
+        if (cm == null)
+            return;
+
+        cm.ReceiveMessage(e);
+
     }
 
     private void Hub_OnReceiveNotification(object? sender, string e)
@@ -118,7 +133,15 @@ public partial class Home : ContentPage
             control.Show();
             control.Clicked += (sender, e) =>
             {
-                new Chat(control.Modelo.Conversation, ChatHub).Show();
+                var actualPage = Pages.Where(T => T.conversation.ID == control.Modelo.Conversation.ID).FirstOrDefault();
+
+                if (actualPage == null)
+                {
+                    actualPage = new Chat(control.Modelo.Conversation, ChatHub);
+                    Pages.Add(actualPage);
+                }
+
+               actualPage.Show();
                 //     new ViewItem(control.Modelo).Show();
             };
             content.Add(control);
