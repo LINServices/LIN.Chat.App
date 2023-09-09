@@ -29,6 +29,7 @@ public partial class LoginLoading : ContentPage
 
 
 
+
     private bool IsCompleted = false;
 
 
