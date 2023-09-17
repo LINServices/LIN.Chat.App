@@ -23,11 +23,10 @@
 
                     <Border
                         Grid.Row="0"
-                        Padding="6"
                         HeightRequest="70"
                         StrokeShape="RoundRectangle 35"
                         WidthRequest="70">
-                        <Image x:Name="perfil" Source="perfil.png" />
+                        <Image x:Name="perfil"   HeightRequest="70" WidthRequest="70" Source="perfil.png" />
                     </Border>
 
                     <Border
