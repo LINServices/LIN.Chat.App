@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LIN.LocalDataBase", "LIN.Lo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LIN.Controls", "LIN.Controls\LIN.Controls.csproj", "{0BCDCC40-7326-4CC7-B066-F6D8DEAE136A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SILF.Script", "..\..\SILFScript\SILF.Script\SILF.Script\SILF.Script.csproj", "{4DBCF948-44E2-4D93-A121-038977612A20}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LIN.Types", "..\..\Tipos\LIN.Types\LIN.Types.csproj", "{62EFEC57-7E2C-41BA-B551-88BD88E2D1A5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LIN.Modules", "..\..\Tipos\LIN.Modules\LIN.Modules.csproj", "{21479039-D839-4B9F-87E5-310DDECE97B1}"
@@ -24,6 +22,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LIN.Access.Communication", "..\..\AccesoAPI\LIN.Access.Communication\LIN.Access.Communication.csproj", "{7D016A06-AB03-42D0-B271-F3944054FD64}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LIN.Types.Communication", "..\..\Tipos\LIN.Types.Communication\LIN.Types.Communication.csproj", "{1BC30588-D56C-46C2-86EB-5DE86D9A6456}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SILF.Script", "..\..\..\SILF\SILF\SILF.Script\SILF.Script.csproj", "{6EA49231-3395-48AB-8704-75C7D9920B7F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,18 +71,6 @@ Global
 		{0BCDCC40-7326-4CC7-B066-F6D8DEAE136A}.Release|ARM32.Build.0 = Release|ARM32
 		{0BCDCC40-7326-4CC7-B066-F6D8DEAE136A}.Release|x86.ActiveCfg = Release|Any CPU
 		{0BCDCC40-7326-4CC7-B066-F6D8DEAE136A}.Release|x86.Build.0 = Release|Any CPU
-		{4DBCF948-44E2-4D93-A121-038977612A20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4DBCF948-44E2-4D93-A121-038977612A20}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4DBCF948-44E2-4D93-A121-038977612A20}.Debug|ARM32.ActiveCfg = Debug|Any CPU
-		{4DBCF948-44E2-4D93-A121-038977612A20}.Debug|ARM32.Build.0 = Debug|Any CPU
-		{4DBCF948-44E2-4D93-A121-038977612A20}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{4DBCF948-44E2-4D93-A121-038977612A20}.Debug|x86.Build.0 = Debug|Any CPU
-		{4DBCF948-44E2-4D93-A121-038977612A20}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4DBCF948-44E2-4D93-A121-038977612A20}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4DBCF948-44E2-4D93-A121-038977612A20}.Release|ARM32.ActiveCfg = Release|Any CPU
-		{4DBCF948-44E2-4D93-A121-038977612A20}.Release|ARM32.Build.0 = Release|Any CPU
-		{4DBCF948-44E2-4D93-A121-038977612A20}.Release|x86.ActiveCfg = Release|Any CPU
-		{4DBCF948-44E2-4D93-A121-038977612A20}.Release|x86.Build.0 = Release|Any CPU
 		{62EFEC57-7E2C-41BA-B551-88BD88E2D1A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{62EFEC57-7E2C-41BA-B551-88BD88E2D1A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62EFEC57-7E2C-41BA-B551-88BD88E2D1A5}.Debug|ARM32.ActiveCfg = Debug|Any CPU
@@ -173,6 +161,18 @@ Global
 		{1BC30588-D56C-46C2-86EB-5DE86D9A6456}.Release|ARM32.Build.0 = Release|Any CPU
 		{1BC30588-D56C-46C2-86EB-5DE86D9A6456}.Release|x86.ActiveCfg = Release|Any CPU
 		{1BC30588-D56C-46C2-86EB-5DE86D9A6456}.Release|x86.Build.0 = Release|Any CPU
+		{6EA49231-3395-48AB-8704-75C7D9920B7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EA49231-3395-48AB-8704-75C7D9920B7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EA49231-3395-48AB-8704-75C7D9920B7F}.Debug|ARM32.ActiveCfg = Debug|Any CPU
+		{6EA49231-3395-48AB-8704-75C7D9920B7F}.Debug|ARM32.Build.0 = Debug|Any CPU
+		{6EA49231-3395-48AB-8704-75C7D9920B7F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6EA49231-3395-48AB-8704-75C7D9920B7F}.Debug|x86.Build.0 = Debug|Any CPU
+		{6EA49231-3395-48AB-8704-75C7D9920B7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EA49231-3395-48AB-8704-75C7D9920B7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EA49231-3395-48AB-8704-75C7D9920B7F}.Release|ARM32.ActiveCfg = Release|Any CPU
+		{6EA49231-3395-48AB-8704-75C7D9920B7F}.Release|ARM32.Build.0 = Release|Any CPU
+		{6EA49231-3395-48AB-8704-75C7D9920B7F}.Release|x86.ActiveCfg = Release|Any CPU
+		{6EA49231-3395-48AB-8704-75C7D9920B7F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

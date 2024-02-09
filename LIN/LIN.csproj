@@ -1,8 +1,8 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
 	<PropertyGroup>
-		<TargetFrameworks>net7.0-android;</TargetFrameworks>
-		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
+		<TargetFrameworks>net8.0-android;</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net8.0-windows10.0.19041.0</TargetFrameworks>
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
 		<!-- <TargetFrameworks>$(TargetFrameworks);net7.0-tizen</TargetFrameworks> -->
 		<OutputType>Exe</OutputType>
@@ -23,19 +23,19 @@
 		<ApplicationDisplayVersion>2.0</ApplicationDisplayVersion>
 		<ApplicationVersion>2</ApplicationVersion>
 
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">24.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(TargetFramework)' == 'net7.0-android'">
-		<MauiVersion>7.0.58</MauiVersion>
-	</PropertyGroup>
-	
+
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
-	<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.1" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 	</ItemGroup>
+	
 
 	<ItemGroup>
 		
@@ -56,21 +56,13 @@
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <None Remove="Resources\Images\gallery.png" />
-	  <None Remove="Resources\Images\landscape.png" />
-	  <None Remove="Resources\Images\map.png" />
-	  <None Remove="Resources\Images\people.png" />
-	  <None Remove="Resources\Images\place.png" />
-	  <None Remove="Resources\Images\send.png" />
-	</ItemGroup>
 
 	
 
 	<ItemGroup>
+	  <ProjectReference Include="..\..\..\..\SILF\SILF\SILF.Script\SILF.Script.csproj" />
 	  <ProjectReference Include="..\..\..\AccesoAPI\LIN.Access.Auth\LIN.Access.Auth.csproj" />
 	  <ProjectReference Include="..\..\..\AccesoAPI\LIN.Access.Communication\LIN.Access.Communication.csproj" />
-	  <ProjectReference Include="..\..\..\SILFScript\SILF.Script\SILF.Script\SILF.Script.csproj" />
 	  <ProjectReference Include="..\..\..\Tipos\LIN.Modules\LIN.Modules.csproj" />
 	  <ProjectReference Include="..\..\..\Tipos\LIN.Types.Auth\LIN.Types.Auth.csproj" />
 	  <ProjectReference Include="..\..\..\Tipos\LIN.Types.Communication\LIN.Types.Communication.csproj" />
