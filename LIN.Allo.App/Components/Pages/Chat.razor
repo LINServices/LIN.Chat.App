@@ -1,0 +1,252 @@
+﻿@page "/"
+
+@* Propiedades *@
+@inject NavigationManager navigationManager
+@inject IJSRuntime JSRuntime
+
+
+<style>
+    .bg-image {
+        background-image: url('./img/playa.jpg');
+        background-size: cover;
+        background-position: center center;
+    }
+</style>
+
+
+@* Pantalla de carga *@
+@{
+    Instance = this;
+}
+
+@if (!Access.Communication.Session.IsOpen)
+{
+    <div class="flex justify-center items-center h-screen w-full">
+        <CircleLoader />
+    </div>
+
+    Task.Run(async () =>
+    {
+        navigationManager.NavigateTo("/login");
+    });
+    return;
+}
+
+
+@* Drawer Emma *@
+<Emma @ref="EmmaDrawer" />
+
+@* Drawer Nueva conversación *@
+<NewGroup OnSuccess="ForceRetrieveData" @ref="NewGroupModal" />
+
+@*Dropdown menu*@
+<DropdownMenu />
+
+@* Drawer de integrantes *@
+<Members @ref="MemberDrawer" />
+
+
+<div class="">
+    <div class="w-screen">
+        <div class="h-dvh min-h-dvh max-h-dvh">
+            <div class="flex flex-row h-full ">
+
+                @* Left *@
+                <div class="w-full lg:w-1/3 flex @(ActualSection != 0 ? "hidden lg:flex" : "") flex-col">
+
+                    @* Header *@
+                    <div class="px-5 pt-3 pb-1 flex flex-row justify-between items-center border-r dark:border-shark-800">
+                        <div class="flex items-center">
+
+                            @* Dropdown Open *@
+                            @if (Img64.Length <= 0)
+                            {
+
+                                <div class="relative inline-flex items-center justify-center w-9 h-9 overflow-hidden bg-zinc-200 rounded-full dark:bg-shark-800 border dark:border-shark-600">
+                                    <span class="font-medium text-gray-600 dark:text-shark-300">@LIN.Modules.Text.GetInitials(LIN.Access.Communication.Session.Instance.Account.Name)</span>
+                                </div>
+
+                            }
+                            else
+                            {
+                                 <button @onclick="E" type="button" class="flex bg-white dark:bg-zinc-700 text-sm rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button">
+                                <span class="sr-only">Open</span>
+
+                             
+                                    <img class="w-8 h-8 p-1 rounded-full ring-2 ring-gray-300" src="data:image/png;base64,@Img64">
+                                
+                            </button>
+                            }
+
+
+                           
+
+                            @* Datos personales *@
+                            <div class="flex flex-col ml-2">
+                                <label class="text-sm font-bold dark:text-shark-200">@Access.Communication.Session.Instance.Profile.Alias</label>
+                                <label class=" text-xs dark:text-shark-300" style="margin-top:-3px">@@@(Access.Communication.Session.Instance.Account.Identity.Unique)</label>
+                            </div>
+
+                        </div>
+
+                        @* Botones de acción *@
+                        <div class="flex justify-center items-center gap-3">
+
+                            @* Emma *@
+                                <button class="h-5 w-5 hover:animate-pulse rounded-full">
+                                    <img @onclick="OpenEmma" src="./arroba.png" />
+                                </button>
+
+                            @* Actualizar *@
+                            
+                                <div @onclick="ForceRetrieveData"
+                                 class="flex group items-center justify-center border border-[#52525b] border-2 hover:bg-zinc-200 rounded-full group-active:bg-zinc-600">
+
+                                <img class="h-2.5 w-2.5 m-1 group-hover:hover:rotate-90 duration-300" src="./icons/reload.png" />
+
+                                </div>
+
+                            @* Nuevo grupo *@
+                                <button @onclick="OpenNewGroup" title="Nueva conversación"
+                                        class="group cursor-pointer outline-none hover:rotate-90 duration-300">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                         viewBox="0 0 24 24"
+                                         class="stroke-zinc-600 dark:stroke-zinc-200 fill-none dark:group-hover:fill-zinc-800 group-hover:fill-zinc-200 group-active:stroke-zinc-200 group-active:fill-zinc-600 group-active:duration-0 duration-300 w-6 h-6">
+                                        <path d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"
+                                              stroke-width="1.5"></path>
+
+                                        <path d="M8 12H16" stroke-width="1.5"></path>
+                                        <path d="M12 16V8" stroke-width="1.5"></path>
+                                    </svg>
+                                </button>
+
+                        </div>
+
+                    </div>
+
+
+                    @* Lista de conversaciones *@
+                    <div class="flex-1 overflow-auto border-r dark:bg-shark-950 dark:border-shark-800">
+
+                        <div class="px-5 mt-4">
+
+                            @* Titulo *@
+                            <label class="text-base font-bold text-gray-800 dark:text-shark-200">Conversaciones</label>
+
+
+                            @* Entrada de búsqueda *@
+                            <div class="mt-2 mb-5">
+                                <input @oninput="Search" type="text" autocomplete="off" required="" class="block w-full appearance-none rounded-md border border-gray-200 bg-gray-50 px-3 py-2 text-gray-900 placeholder-gray-400 focus:border-sky-600 focus:bg-white focus:outline-none focus:ring-sky-600 sm:text-sm dark:bg-shark-900 dark:focus:bg-shark-900 dark:text-shark-200 dark:border-shark-700" placeholder="Buscar">
+                            </div>
+
+
+
+                            <div class="mb-5 hidden">
+                                <div class="bg-yellow-50 border border-yellow-200 text-sm text-yellow-800 rounded-lg p-4 dark:bg-yellow-800/10 dark:border-yellow-900 dark:text-yellow-500" role="alert">
+                                    <div class="flex">
+                                        <div class="flex-shrink-0">
+                                            <svg class="flex-shrink-0 h-4 w-4 mt-0.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" /><path d="M12 9v4" /><path d="M12 17h.01" /></svg>
+                                        </div>
+                                        <div class="ms-4">
+                                            <h3 class="text-sm font-semibold">
+                                                No se pudo conectar al servidor.
+                                            </h3>
+                                            <div class="mt-1 text-sm text-yellow-700">
+                                                Actualmente tenemos problemas para acceder a LIN Allo.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            @if (IsConversationsLoad)
+                            {
+                                // Si no hay conversaciones.
+                                if (ConversationsObserver.Data.Values.Count <= 0 && !IsSearching)
+                                {
+                                    <div class="flex rounded-lg justify-center items-center border-dashed border-2 border-gray-300 w-full py-10 mt-3 dark:border-shark-400">
+                                        <label class="text-gray-400 dark:text-shark-300">No tienes ninguna conversación</label>
+                                    </div>
+                                }
+
+                                // Esta buscando.
+                                else if (IsSearching)
+                                {
+                                    if (SearchResult == null)
+                                    {
+                                        <div class="flex items-center justify-center">
+                                            <div class="animate-spin inline-block w-6 h-6 border-[3px] border-current border-t-transparent text-sky-600 rounded-full dark:text-sky-500" role="status" aria-label="loading">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                        </div>
+                                    }
+                                    else if (SearchResult.Count == 0)
+                                    {
+                                        <label>Sin resultados</label>
+                                    }
+                                    else
+                                    {
+                                        <div class="select-none">
+                                            <label class="dark:text-gray-300">Resultados de búsqueda para "@Pattern" </label>
+                                            <div class="flex flex-col gap-2 mt-3">
+                                                @foreach (var e in SearchResult)
+                                                {
+                                                    <NewFriend UserInformation="@e" />
+                                                }
+                                            </div>
+                                        </div>
+                                        
+                                    }
+                                }
+
+                                // Renderizar las conversaciones.
+                                else
+                                {
+                                    foreach (var conversation in ConversationsObserver.Data.Values)
+                                    {
+                                        <Control Member="@(conversation.Conversation)" OnClick="Select" IsSelect=@(SelectedConversation?.ID == conversation.Conversation.ID) />
+                                    }
+                                }
+
+                            }
+                            else
+                            {
+                                @* Cargando las conversaciones *@
+                                <ControlSkeleton />
+                                <ControlSkeleton />
+                                <ControlSkeleton />
+                                <ControlSkeleton />
+                            }
+
+
+                        </div>
+                    </div>
+
+                </div>
+
+                @* Right *@
+                <div class="w-full @(ActualSection != 1 ? "hidden lg:flex" : "") lg:w-2/3 flex flex-col">
+
+                    @* Mostrar el chat *@
+                    @if (ChatSection.Hub != null && SelectedConversation != null)
+                    {
+                        <ChatSection @ref="ChatPage" Drawer="MemberDrawer" Iam="ConversationsObserver.Get(SelectedConversation.ID)" OnBackPress="() =>{ ActualSection = 0; SelectedConversation = null;}" />
+                    }
+
+                    // No esta seleccionado.
+                    else
+                    {
+                        <div class="flex flex-col h-full w-full items-center justify-center dark:bg-shark-950 select-none">
+                            <img class="h-56 w-56" src="./presdraw.svg" />
+                            <label class="text-3xl font-bold dark:text-white">Bienvenido a LIN Allo</label>
+                            <label class="text-gray-600 mt-1 dark:text-gray-400">Bienvenido a LIN Allo para <span class="text-blue-600">Windows</span> </label>
+                        </div>
+                    }
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
