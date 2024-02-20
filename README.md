@@ -1,13 +1,15 @@
 
-# LIN CHAT App
+# LIN Allo App
 
-LIN Chat para Windows y Android
+LIN Allo para Windows y Android es una difurcación del proyecto LIN Allo Web.
+
+Cliente nativo construido en .NET Maui & Blazor Hybrid App.
+
 
 ## Caracteristicas
 
-- Actualizacion en tiempo real
-- Passkey para iniciar con huella digital
-- Administracion de sesiones (Dispositivos)
-- Multiplataforma (Android y Windows)
+- Multiplataforma (Android (APK) y Windows)
 - Enviar imagenes
 - Enviar ubicacion
+- Mensajes
+- Grupos de personas
