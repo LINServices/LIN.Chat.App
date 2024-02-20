@@ -13,3 +13,8 @@ Cliente nativo construido en .NET Maui & Blazor Hybrid App.
 - Enviar ubicacion
 - Mensajes
 - Grupos de personas
+
+
+![Login](./img/Login.png)
+![Home](./img/Home.png)
+![Chat](./img/Chat.png)
