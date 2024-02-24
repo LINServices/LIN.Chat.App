@@ -17,6 +17,9 @@
 
 html, body {
     font-family: 'Gilroy', sans-serif !important;
+    height: 100vh !important;
+    margin: 0 !important;
+    overflow: hidden !important;
 }
 
 

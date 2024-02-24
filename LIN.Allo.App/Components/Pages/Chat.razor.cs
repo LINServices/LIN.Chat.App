@@ -1,4 +1,7 @@
-﻿namespace LIN.Allo.App.Components.Pages;
+﻿using LIN.Allo.App.Components.Elements;
+using LIN.Allo.App.Components.Pages.Sections;
+
+namespace LIN.Allo.App.Components.Pages;
 
 
 public partial class Chat
@@ -302,13 +305,21 @@ public partial class Chat
             // Obtiene las conversaciones actuales
             var chats = await Access.Communication.Controllers.Conversations.ReadAll(token, Access.Communication.Session.Instance.AccountToken);
 
-            // 
-            chats.AlternativeObject = System.Text.Json.JsonSerializer.Deserialize<List<AccountModel>>(chats.AlternativeObject.ToString() ?? "");
+            try
+            {
+chats.AlternativeObject = System.Text.Json.JsonSerializer.Deserialize<List<AccountModel>>(chats.AlternativeObject.ToString() ?? "");
             if (chats.AlternativeObject is List<AccountModel> lista)
             {
                 accounts.AddRange(lista);
             }
 
+            }
+            catch
+            {
+
+            }
+            // 
+            
 
             // Si hubo un error
             if (chats.Response != Responses.Success)
@@ -419,7 +430,7 @@ public partial class Chat
             var oldMessages = await Access.Communication.Controllers.Messages.ReadAll(SelectedConversation.ID, 0, Access.Communication.Session.Instance.Token);
 
             // Establece los mensajes
-            SelectedConversation.Mensajes.AddRange(oldMessages.Models);
+            SelectedConversation?.Mensajes.AddRange(oldMessages.Models);
            // cache.IsLoad = true;
         }
 
@@ -450,5 +461,11 @@ public partial class Chat
         StateHasChanged();
     }
 
+    void Close()
+    {
+        LIN.Access.Communication.Session.CloseSession();
+        new LIN.LocalDataBase.Data.UserDB().DeleteUsers();
+        navigationManager.NavigateTo("/");
+    }
 
 }

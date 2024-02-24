@@ -8,11 +8,8 @@
 
             Application.Current.RequestedThemeChanged += (s, a) =>
             {
-                MauiProgram.Aa();
+                MauiProgram.LoadColor();
             };
-
-           
-
         }
     }
 }

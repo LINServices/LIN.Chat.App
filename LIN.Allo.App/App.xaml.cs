@@ -9,10 +9,7 @@ namespace LIN.Allo.App
             InitializeComponent();
 
             MainPage = new MainPage();
-
-
             App.Current.On<Microsoft.Maui.Controls.PlatformConfiguration.Android>().UseWindowSoftInputModeAdjust(WindowSoftInputModeAdjust.Resize);
-
 
         }
     }
