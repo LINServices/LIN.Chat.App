@@ -32,6 +32,7 @@ public static class MauiProgram
 		builder.Logging.AddDebug();
 #endif
 
+        LIN.Allo.App.Services.Scripts.Build();
         // Iniciar.
         LIN.Access.Auth.Build.Init();
         LIN.Access.Communication.Build.Init();
@@ -56,7 +57,7 @@ public static class MauiProgram
 
         if (currentTheme == AppTheme.Light)
         {
-            currentActivity.Window.SetStatusBarColor(new(247, 248, 253));
+            currentActivity.Window.SetStatusBarColor(new(252, 252, 255));
             currentActivity.Window.DecorView.SystemUiVisibility = (StatusBarVisibility)SystemUiFlags.LightStatusBar;
         }
         else

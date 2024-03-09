@@ -109,8 +109,34 @@ Después:
             ]
         };
 
+
+        // Acción.
+        SILFFunction actionSelect =
+        new(async (param) =>
+        {
+
+            // Propiedades.
+            var id = param.Where(T => T.Name == "id").FirstOrDefault();
+
+            // Obtener la conversación.
+            _ = int.TryParse(id?.Value.ToString(), out int idInt);
+
+
+            Chat.Instance.Select(idInt);
+
+        })
+        {
+            Name = "select",
+            Parameters =
+            [
+                new Parameter("id", new("number"))
+            ]
+        };
+
+
+
         // Agregar.
-        Actions.AddRange([actionMessage]);
+        Actions.AddRange([actionMessage, actionSelect]);
 
     }
 

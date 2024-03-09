@@ -42,11 +42,7 @@ public partial class Emma
     /// <summary>
     /// Respuesta de Emma.
     /// </summary>
-    private string EmmaResponse { get; set; } = string.Empty;
-
-
-
-
+    private ReadOneResponse<Types.Emma.Models.ResponseIAModel>? EmmaResponse { get; set; } = null;
 
 
 
@@ -84,13 +80,20 @@ public partial class Emma
             app.AddDefaultFunctions(Services.Scripts.Actions);
             app.Run();
 
-            EmmaResponse = "Perfecto";
+            EmmaResponse = new()
+            {
+                Response = Responses.Success,
+                Model = new()
+                {
+                    Content = "Perfecto"
+                }
+            };
             StateHasChanged();
             return;
         }
 
         // Establece la respuesta de Emma.
-        EmmaResponse = response.Model.Content;
+        EmmaResponse = response;
         StateHasChanged();
 
     }

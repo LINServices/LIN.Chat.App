@@ -1,11 +1,14 @@
 ﻿using LIN.Allo.App.Components.Elements;
-using LIN.Allo.App.Components.Pages.Sections;
 
 namespace LIN.Allo.App.Components.Pages;
 
 
 public partial class Chat
 {
+
+    [Parameter]
+    [SupplyParameterFromQuery]
+    public int Id { get; set; }
 
 
     /// <summary>
@@ -36,9 +39,32 @@ public partial class Chat
 
 
 
+    protected override Task OnParametersSetAsync()
+    {
+
+
+        if (Id <= 0)
+        {
+            SelectedConversation = null;
+            ActualSection = 0;
+            StateHasChanged();
+            return Task.Run(() => { });
+        }
 
 
 
+        Select(Id);
+
+        return base.OnParametersSetAsync();
+
+
+    }
+
+
+    void Nav()
+    {
+        navigationManager.NavigateTo("/home");
+    }
 
 
 
@@ -60,7 +86,7 @@ public partial class Chat
 
 
 
-  
+
 
 
 
@@ -103,7 +129,7 @@ public partial class Chat
     public bool IsSearching { get; set; }
 
 
-   
+
 
 
 
@@ -194,7 +220,7 @@ public partial class Chat
         try
         {
 
-            ConversationsObserver.PushMessage(e.Conversacion.ID,e);
+            ConversationsObserver.PushMessage(e.Conversacion.ID, e);
 
         }
         catch
@@ -225,17 +251,6 @@ public partial class Chat
         StateHasChanged();
 
     }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -307,11 +322,11 @@ public partial class Chat
 
             try
             {
-chats.AlternativeObject = System.Text.Json.JsonSerializer.Deserialize<List<AccountModel>>(chats.AlternativeObject.ToString() ?? "");
-            if (chats.AlternativeObject is List<AccountModel> lista)
-            {
-                accounts.AddRange(lista);
-            }
+                chats.AlternativeObject = System.Text.Json.JsonSerializer.Deserialize<List<AccountModel>>(chats.AlternativeObject.ToString() ?? "");
+                if (chats.AlternativeObject is List<AccountModel> lista)
+                {
+                    accounts.AddRange(lista);
+                }
 
             }
             catch
@@ -319,7 +334,7 @@ chats.AlternativeObject = System.Text.Json.JsonSerializer.Deserialize<List<Accou
 
             }
             // 
-            
+
 
             // Si hubo un error
             if (chats.Response != Responses.Success)
@@ -389,12 +404,36 @@ chats.AlternativeObject = System.Text.Json.JsonSerializer.Deserialize<List<Accou
     /// Seleccionar un chat
     /// </summary>
     /// <param name="chat"></param>
-    private async void Select(ConversationModel chat)
+    private void Go(ConversationLocal chat)
     {
+        var uri = navigationManager.GetUriWithQueryParameter("Id", chat.Conversation.ID);
+        navigationManager.NavigateTo(uri);
+    }
+
+
+
+    /// <summary>
+    /// Seleccionar un chat
+    /// </summary>
+    /// <param name="chat"></param>
+    private void Select(ConversationModel chat)
+    {
+        Select(chat.ID);
+    }
+
+
+
+    /// <summary>
+    /// Seleccionar un chat
+    /// </summary>
+    /// <param name="chat"></param>
+    public async void Select(int chat)
+    {
+
 
         // Consulta al cache
         var cache = (from C in ConversationsObserver.Data.Values
-                     where C.Conversation.ID == chat.ID
+                     where C.Conversation.ID == chat
                      select C).FirstOrDefault();
 
 
@@ -409,7 +448,7 @@ chats.AlternativeObject = System.Text.Json.JsonSerializer.Deserialize<List<Accou
 
         if (SelectedConversation?.ID == cache.Conversation.ID)
         {
-          //  cache.Control?.Unselect();
+            //  cache.Control?.Unselect();
             SelectedConversation = null;
             ActualSection = 0;
             StateHasChanged();
@@ -419,38 +458,24 @@ chats.AlternativeObject = System.Text.Json.JsonSerializer.Deserialize<List<Accou
         // Member
         SelectedConversation = null;
         StateHasChanged();
-      //  await Task.Delay(50);
+        //  await Task.Delay(50);
 
         SelectedConversation = cache.Conversation;
-       // cache.Control?.Select();
+        // cache.Control?.Select();
 
         // Si los chats (mensajes) no se han cargado.
-        if (!false)
+        if (cache.Messages == null)
         {
             var oldMessages = await Access.Communication.Controllers.Messages.ReadAll(SelectedConversation.ID, 0, Access.Communication.Session.Instance.Token);
 
             // Establece los mensajes
-            SelectedConversation?.Mensajes.AddRange(oldMessages.Models);
-           // cache.IsLoad = true;
+            cache.Messages = oldMessages.Models;
+            // cache.IsLoad = true;
         }
 
         // Cambia la sección a (1)
         ActualSection = 1;
         StateHasChanged();
-
-    }
-
-
-
-    /// <summary>
-    /// Seleccionar un chat
-    /// </summary>
-    /// <param name="chat"></param>
-    public async void Select(int chat)
-    {
-
-      
-
     }
 
 
