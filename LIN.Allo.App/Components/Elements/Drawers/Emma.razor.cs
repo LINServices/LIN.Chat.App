@@ -1,11 +1,21 @@
-﻿using SILF.Script.Enums;
+﻿using LIN.Types.Exp.Search.Models;
+using SILF.Script.Elements.Functions;
+using SILF.Script.Enums;
 using SILF.Script.Interfaces;
+using static LIN.Allo.App.Services.Scripts;
 
 namespace LIN.Allo.App.Components.Elements.Drawers;
 
 
 public partial class Emma
 {
+
+
+    ReadAllResponse<SearchResult> SearchModels { get; set; } = new();
+
+
+    public ReadOneResponse< Weather> Modelo { get; set; }
+
 
     /// <summary>
     /// Id único del elemento.
@@ -18,6 +28,7 @@ public partial class Emma
     /// Actual estado.
     /// </summary>
     private State ActualState { get; set; } = State.Witting;
+    private HeaderState HeaderActualState { get; set; } = HeaderState.Titles;
 
 
 
@@ -28,6 +39,17 @@ public partial class Emma
     {
         Witting,
         Responding
+    }
+
+
+    /// <summary>
+    /// Lista de estados.
+    /// </summary>
+    private enum HeaderState
+    {
+        Titles,
+        Weather,
+        Search
     }
 
 
@@ -51,6 +73,7 @@ public partial class Emma
     /// </summary>
     public async void Show()
     {
+
         await js.InvokeAsync<object>("ShowDrawer", $"drawerEmma-{UniqueId}", $"close-drawerEmma-{UniqueId}");
         StateHasChanged();
     }
@@ -65,6 +88,7 @@ public partial class Emma
 
         // Cambia el estado.
         ActualState = State.Responding;
+        HeaderActualState = HeaderState.Titles;
         StateHasChanged();
 
         // Respuesta.
@@ -78,7 +102,8 @@ public partial class Emma
         {
             var app = new SILF.Script.App(response.Model.Content.Remove(0, 1), new A());
             app.AddDefaultFunctions(Services.Scripts.Actions);
-            app.Run();
+            app.AddDefaultFunctions(Load());
+
 
             EmmaResponse = new()
             {
@@ -88,12 +113,15 @@ public partial class Emma
                     Content = "Perfecto"
                 }
             };
+
+            app.Run();
             StateHasChanged();
             return;
         }
 
         // Establece la respuesta de Emma.
         EmmaResponse = response;
+        HeaderActualState = HeaderState.Titles;
         StateHasChanged();
 
     }
@@ -112,12 +140,117 @@ public partial class Emma
     }
 
 
+    IEnumerable<SILFFunction> Load()
+    {
+
+
+        // Acción.
+        SILFFunction actionMessage =
+        new((param) =>
+        {
+
+            // Propiedades.
+            var content = param.Where(T => T.Name == "contenido").FirstOrDefault();
+
+            EmmaResponse = new()
+            {
+                Message = content?.Objeto.Value.ToString(),
+                Response = Responses.Success,
+                Model = new()
+                {
+                    Content = content?.Objeto.Value.ToString(),
+                    IsSuccess = true
+                }
+            };
+
+            HeaderActualState = HeaderState.Titles;
+
+            StateHasChanged();
+
+
+        })
+        {
+            Name = "say",
+            Parameters =
+            [
+                new Parameter("contenido", new("string"))
+            ]
+        };
+
+
+        // Acción.
+        SILFFunction weather =
+        new(async (param) =>
+        {
+
+            Modelo = new()
+            {
+                Response = Responses.IsLoading
+            };
+
+            StateHasChanged();
+
+            // Propiedades.
+            var content = param.Where(T => T.Name == "contenido").FirstOrDefault();
+
+            var city = await LIN.Access.Search.Controllers.Weather.Get(content.Objeto.Value.ToString());
+
+            Modelo = city;
+
+            HeaderActualState = HeaderState.Weather;
+
+            StateHasChanged();
+
+
+        })
+        {
+            Name = "weather",
+            Parameters =
+            [
+                new Parameter("contenido", new("string"))
+            ]
+        };
+
+
+        // Acción.
+        SILFFunction search =
+        new(async (param) =>
+        {
+
+            // Propiedades.
+            var content = param.Where(T => T.Name == "contenido").FirstOrDefault();
+
+            var city = await LIN.Access.Search.Controllers.Search.Get(content.Objeto.Value.ToString());
+
+            SearchModels = city;
+
+            HeaderActualState = HeaderState.Search;
+
+            StateHasChanged();
+
+
+        })
+        {
+            Name = "search",
+            Parameters =
+            [
+                new Parameter("contenido", new("string"))
+            ]
+        };
+
+        return [actionMessage, weather, search];
+
+
+
+    }
+
+
 
 }
 
 class A : IConsole
 {
-    public void InsertLine(string result, LogLevel logLevel)
+    public void InsertLine(string error, string result, LogLevel logLevel)
     {
         var s = "";
     }

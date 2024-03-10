@@ -6,9 +6,12 @@
     class="fixed top-0 right-0 z-40 h-dvh max-h-dvh transition-transform translate-x-full min-w-80 w-80 backdrop-blur-md bg-white/50 dark:bg-zinc-800/70"
     tabindex="-1" aria-labelledby="drawer-right-label">
 
-    <div class="flex flex-col justify-between h-dvh p-4">
+    <div class="flex flex-col justify-between h-dvh p-4 ">
 
-        @* Títulos *@
+
+        @if (HeaderActualState == HeaderState.Titles)
+        {
+               @* Títulos *@
         <div class="flex flex-col justify-center items-center w-full mt-10">
 
            @* Icono de Emma *@
@@ -35,8 +38,54 @@
             <div class="flex w-full h-full items-center justify-center">
                 <label class="dark:text-zinc-200">@EmmaResponse.Model.Content</label>
             </div>
+            }
         }
-        
+
+
+        else if (HeaderActualState == HeaderState.Weather)
+        {
+            <div class="flex items-center justify-end h-full">
+                @if (Modelo.Response == Responses.IsLoading)
+                {
+                    <label>Cargando pronostico del tiempo</label>
+                }
+                else if (Modelo.Response == Responses.Success)
+                {
+                    <WeatherWidget Model="Modelo.Model"></WeatherWidget>
+                }
+                else
+                {
+                    <label>El servicio actualmente no esta disponible</label>
+                }
+            </div>
+           
+        }
+
+        else if (HeaderActualState == HeaderState.Search)
+        {
+            <div class="flex flex-col gap-2 pb-2 overflow-auto [&::-webkit-scrollbar]:w-2
+  [&::-webkit-scrollbar-track]:rounded-full
+  [&::-webkit-scrollbar-track]:bg-transparent
+  [&::-webkit-scrollbar-thumb]:rounded-full
+  [&::-webkit-scrollbar-thumb]:bg-gray-300
+  dark:[&::-webkit-scrollbar-track]:bg-zinc-900
+  dark:[&::-webkit-scrollbar-thumb]:bg-zinc-800">
+
+            <div class="flex gap-2 items-center w-full h-10">
+                <img class="h-5 w-5" src="./img/bing.png" />
+                <label class="dark:text-zinc-400">Con tecnología de Bing</label>
+
+            </div>
+
+                @foreach(var e in SearchModels.Models)
+                {
+                    <SearchResultControl Modelo="e"></SearchResultControl>
+                }
+
+            </div>
+
+        }
+
 
         @* Entrada *@
         @if (ActualState == State.Witting)

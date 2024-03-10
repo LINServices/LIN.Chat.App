@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34616.47
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LIN.Allo.App", "LIN.Allo.App\LIN.Allo.App.csproj", "{D54CEF2B-8147-4B4A-8131-E754EF25BC95}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LIN.Allo.App", "LIN.Allo.App\LIN.Allo.App.csproj", "{D54CEF2B-8147-4B4A-8131-E754EF25BC95}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LIN.Types", "..\..\Tipos\LIN.Types\LIN.Types.csproj", "{05C4E88F-FADA-442F-85D7-248E6C9B759E}"
 EndProject
@@ -20,6 +20,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SILF.Script", "..\..\..\SILF\SILF\SILF.Script\SILF.Script.csproj", "{688ADD93-68DB-4DF4-AED6-53D9F8FB3B9F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LIN.Access", "..\..\AccesoAPI\LIN.Access\LIN.Access\LIN.Access.csproj", "{51C62FA7-6B03-4CD9-AA0F-59456272F26E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LIN.Access.Search", "..\..\AccesoAPI\LIN.Access.Search\LIN.Access.Search.csproj", "{AC059D71-EAEF-4288-93B1-2293E05B16AF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LIN.Types.Exp.Search", "..\..\Tipos\LIN.Types.Exp.Search\LIN.Types.Exp.Search.csproj", "{2ADC40B7-71DE-49B3-BE40-036BD175F9FC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,6 +69,14 @@ Global
 		{51C62FA7-6B03-4CD9-AA0F-59456272F26E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51C62FA7-6B03-4CD9-AA0F-59456272F26E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51C62FA7-6B03-4CD9-AA0F-59456272F26E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC059D71-EAEF-4288-93B1-2293E05B16AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC059D71-EAEF-4288-93B1-2293E05B16AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC059D71-EAEF-4288-93B1-2293E05B16AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC059D71-EAEF-4288-93B1-2293E05B16AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2ADC40B7-71DE-49B3-BE40-036BD175F9FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2ADC40B7-71DE-49B3-BE40-036BD175F9FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2ADC40B7-71DE-49B3-BE40-036BD175F9FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2ADC40B7-71DE-49B3-BE40-036BD175F9FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

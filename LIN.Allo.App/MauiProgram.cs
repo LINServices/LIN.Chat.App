@@ -36,7 +36,8 @@ public static class MauiProgram
         // Iniciar.
         LIN.Access.Auth.Build.Init();
         LIN.Access.Communication.Build.Init();
-
+        LIN.Access.Search.Build.Init();
+       
         return builder.Build();
     }
 

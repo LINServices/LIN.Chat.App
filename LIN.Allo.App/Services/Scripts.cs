@@ -1,7 +1,8 @@
-﻿using LIN.Allo.App.Components.Pages.Sections;
-using SILF.Script;
+﻿using SILF.Script;
+using SILF.Script.Elements;
 using SILF.Script.Elements.Functions;
 using SILF.Script.Interfaces;
+using SILF.Script.Runtime;
 
 namespace LIN.Allo.App.Services;
 
@@ -16,7 +17,7 @@ internal class Scripts
         public string Name { get; set; } = string.Empty;
         public List<Parameter> Parameters { get; set; } = new();
 
-
+        Context IFunction.Context { get; set; }
         Action<List<SILF.Script.Elements.ParameterValue>> Action;
 
         public SILFFunction(Action<List<SILF.Script.Elements.ParameterValue>> action)
@@ -26,12 +27,11 @@ internal class Scripts
 
 
 
-        public FuncContext Run(Instance instance, List<SILF.Script.Elements.ParameterValue> values)
+        public FuncContext Run(Instance instance, List<SILF.Script.Elements.ParameterValue> values, ObjectContext @object)
         {
             Action.Invoke(values);
             return new();
         }
-
 
     }
 
@@ -59,16 +59,16 @@ internal class Scripts
             var content = param.Where(T => T.Name == "contenido").FirstOrDefault();
 
             // Obtener la conversación.
-            _ = int.TryParse(id?.Value.ToString(), out int idInt);
+            _ = int.TryParse(id?.Objeto.Value.ToString(), out int idInt);
 
             // Obtener el observador.
 
-/* Cambio no fusionado mediante combinación del proyecto 'LIN.Allo.App (net8.0-windows10.0.19041.0)'
-Antes:
-            var conversation = Components.ConversationsObserver.Get(idInt);
-Después:
-            var conversation = ConversationsObserver.Get(idInt);
-*/
+            /* Cambio no fusionado mediante combinación del proyecto 'LIN.Allo.App (net8.0-windows10.0.19041.0)'
+            Antes:
+                        var conversation = Components.ConversationsObserver.Get(idInt);
+            Después:
+                        var conversation = ConversationsObserver.Get(idInt);
+            */
             var conversation = Services.ConversationsObserver.Get(idInt);
 
             // No existe.
@@ -80,15 +80,15 @@ Después:
 
             // Publicar el mensaje en local.
 
-/* Cambio no fusionado mediante combinación del proyecto 'LIN.Allo.App (net8.0-windows10.0.19041.0)'
-Antes:
-            Components.ConversationsObserver.PushMessage(conversation.Conversation.ID, new()
-Después:
-            ConversationsObserver.PushMessage(conversation.Conversation.ID, new()
-*/
+            /* Cambio no fusionado mediante combinación del proyecto 'LIN.Allo.App (net8.0-windows10.0.19041.0)'
+            Antes:
+                        Components.ConversationsObserver.PushMessage(conversation.Conversation.ID, new()
+            Después:
+                        ConversationsObserver.PushMessage(conversation.Conversation.ID, new()
+            */
             Services.ConversationsObserver.PushMessage(conversation.Conversation.ID, new()
             {
-                Contenido = content?.Value.ToString(),
+                Contenido = content?.Objeto.Value.ToString(),
                 Time = DateTime.Now,
                 Guid = guid,
                 IsLocal = true,
@@ -97,7 +97,7 @@ Después:
             });
 
             // Enviar el mensaje al servicio.
-            await ChatSection.Hub!.SendMessage(conversation.Conversation.ID, content?.Value.ToString() ?? "", guid);
+            await ChatSection.Hub!.SendMessage(conversation.Conversation.ID, content?.Objeto.Value.ToString() ?? "", guid);
 
         })
         {
@@ -110,6 +110,11 @@ Después:
         };
 
 
+
+      
+
+
+
         // Acción.
         SILFFunction actionSelect =
         new(async (param) =>
@@ -119,10 +124,10 @@ Después:
             var id = param.Where(T => T.Name == "id").FirstOrDefault();
 
             // Obtener la conversación.
-            _ = int.TryParse(id?.Value.ToString(), out int idInt);
+            _ = int.TryParse(id?.Objeto.Value.ToString(), out int idInt);
 
 
-            Chat.Instance.Select(idInt);
+            Chat.Instance?.Select(idInt);
 
         })
         {

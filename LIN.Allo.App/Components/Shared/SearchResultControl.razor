@@ -1,0 +1,50 @@
+﻿
+@code{
+
+    [Parameter]
+    public LIN.Types.Exp.Search.Models.SearchResult Modelo { get; set; }
+
+
+
+    static string LimpiarTexto(string input, int count = -1)
+    {
+        // Eliminar etiquetas HTML
+        string textoSinEtiquetas = System.Text.RegularExpressions. Regex.Replace(input, "<.*?>", string.Empty);
+
+        // Convertir entidades HTML a caracteres legibles
+        string textoLimpio = System.Net.WebUtility.HtmlDecode(textoSinEtiquetas);
+
+        if (count != -1)
+        {
+            textoLimpio = new string( textoLimpio.Take(count).ToArray());
+        }
+
+        return textoLimpio;
+    }
+
+
+    void Go()
+    {
+        try
+        {
+ Launcher.Default.OpenAsync(Modelo.Link);
+        }
+        catch
+        {
+            
+        }
+       
+    }
+
+
+}
+
+<div @onclick="Go" class="flex flex-col w-full py-3 px-5 bg-white/40 dark:bg-zinc-500/40 rounded-lg">
+
+    <img class="h-4 w-4" src="./img/web.png" />
+
+    <label class="font-bold text-sm dark:text-zinc-300 mt-1">@LimpiarTexto(Modelo.Title)</label>
+   
+    <p class="text-xs dark:text-zinc-400">@LimpiarTexto(Modelo.Snippet, 175)</p>
+
+</div>
