@@ -92,7 +92,7 @@ public partial class Emma
         StateHasChanged();
 
         // Respuesta.
-        var response = await Access.Communication.Controllers.Messages.ToEmma(Prompt, Access.Communication.Session.Instance.Token);
+        var response = await Access.Communication.Controllers.Messages.ToEmma(Prompt, Access.Communication.Session.Instance.AccountToken);
 
         // Cambia el estado.
         ActualState = State.Witting;
@@ -142,7 +142,6 @@ public partial class Emma
 
     IEnumerable<SILFFunction> Load()
     {
-
 
         // Acción.
         SILFFunction actionMessage =
