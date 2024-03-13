@@ -11,6 +11,8 @@ public partial class Emma
 {
 
 
+    string Raw = "";
+
     ReadAllResponse<SearchResult> SearchModels { get; set; } = new();
 
 
@@ -96,6 +98,8 @@ public partial class Emma
 
         // Cambia el estado.
         ActualState = State.Witting;
+
+        Raw = response.Model.Content;
 
         // Es un comando.
         if (response.Model.Content.StartsWith("#"))
