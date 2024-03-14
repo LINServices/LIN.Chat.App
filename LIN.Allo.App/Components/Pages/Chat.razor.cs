@@ -318,6 +318,10 @@ public partial class Chat
 
     public static void Suscribe(ConversationModel conversation)
     {
+
+        if (conversation == null)
+            return;
+
         // Lista.
         ChatSection.Hub!.OnReceiveMessage?.Add(OnReceiveMessage);
 

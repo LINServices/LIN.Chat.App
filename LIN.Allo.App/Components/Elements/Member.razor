@@ -1,6 +1,4 @@
-﻿
-
-@code {
+﻿@code {
 
 
     // Cache
@@ -14,6 +12,13 @@
 
     [Parameter]
     public SessionModel<MemberChatModel>? e { get; set; } = null;
+
+
+
+    [Parameter]
+    public Action<int> OnDelete { get; set; }
+
+
 
 
     public IsOnlineResult? isOnline = null;
@@ -47,47 +52,48 @@
         <div class="">
 
 
-             @* Imagen de perfil *@
-  @if (e.Account.Profile.Length <= 0)
-  {
-      <div class="relative inline-block mr-2">
+            @* Imagen de perfil *@
+            @if (e.Account.Profile.Length <= 0)
+            {
 
-          <div class="relative inline-block">
-              <div class="inline-flex items-center justify-center w-10 h-10 border border-shark-100 rounded-full bg-zinc-100 p-2 font-bold text-zinc-600 leading-none dark:border-zinc-600 dark:bg-zinc-900 dark:text-zinc-200">
-                  <label class="w-max h-max text-center content-center mt-0.5 lg:mt-0">@(LIN.Modules.Text.GetInitials(e.Profile.Profile.Alias))</label>
-              </div>
-              <span class="absolute bottom-0 end-0 block h-2.5 w-2.5 rounded-full transform  ring-2 ring-white bg-green-500 text-[8px]">
-              </span>
-          </div>
-     
+                <div class="relative inline-block mr-2">
 
-
+                    <div class="relative inline-block">
+                        <div class="inline-flex items-center justify-center w-10 h-10 border border-shark-100 rounded-full bg-zinc-100 p-2 font-bold text-zinc-600 leading-none dark:border-zinc-600 dark:bg-zinc-900 dark:text-zinc-200">
+                            <label class="w-max h-max text-center content-center mt-0.5 lg:mt-0">@(LIN.Modules.Text.GetInitials(e.Profile.Profile.Alias))</label>
+                        </div>
+                        <span class="absolute bottom-0 end-0 block h-2.5 w-2.5 rounded-full transform  ring-2 ring-white bg-green-500 text-[8px]">
+                        </span>
+                    </div>
 
 
-      @if (isOnline != null && isOnline.IsOnline)
-      {
-          <span class="absolute bottom-0 end-0 block h-2.5 w-2.5 rounded-full transform  ring-2 ring-white bg-green-500 text-[8px]">
-          </span>
-      }
-      else if (isOnline != null && isOnline.LastTime != default)
-      {
-          <span class="absolute bottom-0 end-0 block h-2.5 w-2.5 rounded-full transform  ring-2 ring-white bg-orange-500 text-[8px]">
-          </span>
-      }
-      else
-      {
-          <span class="absolute bottom-0 end-0 block h-2.5 w-2.5 rounded-full transform  ring-2 ring-white bg-red-500 text-[8px]">
-          </span>
-      }
 
-  </div>
-  }
-  else
-  {
-      <img class="w-10 h-10 mr-2 p-1 rounded-full ring-2 ring-gray-400" src="data:image/png;base64,@Img64" alt="Bordered avatar">
-  }
 
-         
+
+                    @if (isOnline != null && isOnline.IsOnline)
+                    {
+                        <span class="absolute bottom-0 end-0 block h-2.5 w-2.5 rounded-full transform  ring-2 ring-white bg-green-500 text-[8px]">
+                        </span>
+                    }
+                    else if (isOnline != null && isOnline.LastTime != default)
+                    {
+                        <span class="absolute bottom-0 end-0 block h-2.5 w-2.5 rounded-full transform  ring-2 ring-white bg-orange-500 text-[8px]">
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="absolute bottom-0 end-0 block h-2.5 w-2.5 rounded-full transform  ring-2 ring-white bg-red-500 text-[8px]">
+                        </span>
+                    }
+
+                </div>
+            }
+            else
+            {
+                <img class="w-10 h-10 mr-2 p-1 rounded-full ring-2 ring-gray-400" src="data:image/png;base64,@Img64" alt="Bordered avatar">
+            }
+
+
 
         </div>
 
@@ -112,7 +118,7 @@
 
 
     <div class="flex justify-end items-center mr-3 hover:cursor-pointer">
-        <span class="inline-flex justify-center items-center bg-red-100 hover:bg-red-200 text-red-800 hover:text-red-950 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full w-28">
+        <span @onclick="()=>OnDelete(Id)" class="inline-flex justify-center items-center bg-red-100 hover:bg-red-200 text-red-800 hover:text-red-950 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full w-28">
             <span class="w-2 h-2 mr-1 bg-red-500 rounded-full"></span>
             @(e.Account.Id == Access.Communication.Session.Instance.Account.Id ? "Salir" : "Expulsar")
         </span>
@@ -128,7 +134,7 @@
     public async void Confirm()
     {
 
-        Console.WriteLine("Confirm "+Id);
+        Console.WriteLine("Confirm " + Id);
         var inCache = Cache.Where(t => t.Item1 == Id).FirstOrDefault();
 
 

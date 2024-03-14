@@ -1,5 +1,4 @@
 ﻿using LIN.Access.Communication;
-using LIN.Types.Cloud.Identity.Abstracts;
 
 namespace LIN.Allo.App.Components.Elements.Drawers;
 
@@ -209,6 +208,31 @@ public partial class Members
 
         StateHasChanged();
 
+    }
+
+
+
+    async void Remove(int profile)
+    {
+
+        var remove = await LIN.Access.Communication.Controllers.Conversations.Remove(ConversationContext.ID, profile, LIN.Access.Communication.Session.Instance.Token);
+
+        try
+        {
+            Cache.Where(t => t.Item1 == ConversationContext.ID).FirstOrDefault().Item2.RemoveAll(t => t.Profile.Profile.ID == profile);
+        }
+        catch
+        {
+        }
+
+        if (Chat.Instance.Id == ConversationContext.ID && profile == LIN.Access.Communication.Session.Instance.Profile.ID)
+        {
+            ConversationsObserver.Remove(ConversationContext.ID);
+            Chat.Instance.Go(0);
+        }
+
+        await LoadData(ConversationContext.ID);
+        StateHasChanged();
     }
 
 }
