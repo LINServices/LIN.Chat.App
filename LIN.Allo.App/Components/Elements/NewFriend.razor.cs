@@ -81,29 +81,20 @@ public partial class NewFriend
         }
 
 
-        //// Crear o encontrar la conversación en la API.
-        //var apiConversation = await Access.Communication.Controllers.Conversations.Read(conversation.LastID, session.Token, session.AccountToken);
+        // Crear o encontrar la conversación en la API.
+        var apiConversation = await Access.Communication.Controllers.Conversations.Read(conversation.LastID, session.Token, session.AccountToken);
 
-        //// Agregar información de las cuentas.
-        //if (apiConversation.AlternativeObject is List<AccountModel> Accounts)
-        //    Chat.Accounts.AddRange(Accounts);
+        // Agregar información de las cuentas.
+        if (apiConversation.AlternativeObject is List<AccountModel> Accounts)
+            Chat.Accounts.AddRange(Accounts);
 
-        //// Modelo de conversación.
-        //Chat.Conversations.Add(new()
-        //{
-        //    Control = null,
-        //    IsLoad = false,
-        //    Id = conversation.LastID,
-        //    Chat = apiConversation.Model
-        //});
+        // Modelo de conversación.
 
-        //// Suscribir el evento.
-        //_ = ChatSection.Hub!.JoinGroup(conversation.LastID);
 
-        //// Cambiar los estados.
-        //Chat.Instance.IsSearching = false;
-        //Chat.Instance?.StateChange();
-        //Chat.Instance?.Select(conversation.LastID);
+        Chat.Suscribe(apiConversation.Model.Conversation);
+
+        Chat.Instance.IsSearching = false;
+        Chat.Instance.Go(apiConversation.Model.Conversation.ID);
 
     }
 

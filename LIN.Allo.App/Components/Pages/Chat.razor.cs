@@ -250,8 +250,11 @@ public partial class Chat
 
         try
         {
+            Nav();
+
             ChatSection.Hub!.OnReceiveMessage ??= new();
             ChatSection.Hub!.OnReceiveMessage.Clear();
+            ConversationsObserver.Data.Clear();
             IsConversationsLoad = false;
             StateHasChanged();
 
@@ -270,7 +273,6 @@ public partial class Chat
                 {
                     Accounts.AddRange(lista);
                 }
-
             }
             catch
             {
@@ -291,16 +293,11 @@ public partial class Chat
             // Lista.
             ChatSection.Hub!.OnReceiveMessage?.Add(OnReceiveMessage);
 
-
             // Suscribir los eventos del hub
             foreach (var conversation in chats.Models)
             {
 
-
-                ConversationsObserver.Create(conversation.Conversation);
-
-                // Suscribir evento.
-                _ = ChatSection.Hub!.JoinGroup(conversation.Conversation.ID);
+                Suscribe(conversation.Conversation);
 
             }
 
@@ -317,6 +314,20 @@ public partial class Chat
 
     }
 
+
+
+    public static void Suscribe(ConversationModel conversation)
+    {
+        // Lista.
+        ChatSection.Hub!.OnReceiveMessage?.Add(OnReceiveMessage);
+
+
+        ConversationsObserver.Create(conversation);
+
+        // Suscribir evento.
+        _ = ChatSection.Hub!.JoinGroup(conversation.ID);
+
+    }
 
 
     public static List<Message> MessageTasker { get; set; } = new();

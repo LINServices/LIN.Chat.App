@@ -22,7 +22,7 @@
 
         <div class="flex flex-col">
             <label class="text-gray-700 font-bold dark:text-gray-100">
-                @Iam.Conversation.Name
+                @(Iam?.Conversation?.Name ?? "")
             </label>
             <label style="margin-top:-2px" class="text-gray-500 text-xs dark:text-gray-500">
                 Grupo personal.
@@ -62,7 +62,7 @@
 
 
 @* Mensajes *@
-<div id="CM-@Iam.Conversation.ID" class="flex-1 overflow-auto [&::-webkit-scrollbar]:w-2
+<div id="CM-@(Iam?.Conversation?.ID ?? 0)" class="flex-1 overflow-auto [&::-webkit-scrollbar]:w-2
   [&::-webkit-scrollbar-track]:rounded-full
   [&::-webkit-scrollbar-track]:bg-gray-100
   [&::-webkit-scrollbar-thumb]:rounded-full
@@ -70,7 +70,7 @@
   dark:[&::-webkit-scrollbar-track]:bg-zinc-900
   dark:[&::-webkit-scrollbar-thumb]:bg-zinc-800">
 
-    <div id="CM-@Iam.Conversation.ID" class="py-2 px-3">
+    <div id="CM-@(Iam?.Conversation?.ID ?? 0)" class="py-2 px-3">
 
 
         @* Creación del chat *@
@@ -95,7 +95,7 @@
 
 
         @* Renderizado de mensajes *@
-        @foreach (var message in Iam.Messages ?? [])
+        @foreach (var message in Iam?.Messages ?? [])
         {
             oldTime ??= message.Time;
 
