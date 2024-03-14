@@ -68,25 +68,25 @@ public partial class NewFriend
             return;
         }
 
-        // Encuentra la conversación local.
-        //var localConversation = Chat.Conversations.FirstOrDefault(c => c.Id == conversation.LastID);
-
-        //// Si existe local.
-        //if (localConversation != null)
-        //{
-        //    // Seleccionar la conversación.
-        //    Chat.Instance.IsSearching = false;
-        //    Chat.Instance.Select(localConversation.Id);
-        //    return;
-        //}
+        //Encuentra la conversación local.
+        var localConversation = ConversationsObserver.Get(conversation.LastID);
+        
+        // Si existe local.
+        if (localConversation != null)
+        {
+            // Seleccionar la conversación.
+            Chat.Instance.IsSearching = false;
+            Chat.Instance.Go(localConversation.Conversation.ID);
+            return;
+        }
 
 
         //// Crear o encontrar la conversación en la API.
         //var apiConversation = await Access.Communication.Controllers.Conversations.Read(conversation.LastID, session.Token, session.AccountToken);
 
         //// Agregar información de las cuentas.
-        //if (apiConversation.AlternativeObject is List<AccountModel> accounts)
-        //    Chat.accounts.AddRange(accounts);
+        //if (apiConversation.AlternativeObject is List<AccountModel> Accounts)
+        //    Chat.Accounts.AddRange(Accounts);
 
         //// Modelo de conversación.
         //Chat.Conversations.Add(new()

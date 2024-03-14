@@ -14,7 +14,7 @@
 
             var member = Member.Conversation.Members.FirstOrDefault(t => t.Profile.AccountID != LIN.Access.Communication.Session.Instance.Account.Id);
 
-            var profile = Chat.accounts.Where(a => a.Id == member?.Profile.AccountID).FirstOrDefault();
+            var profile = Chat.Accounts.Where(a => a.Id == member?.Profile.AccountID).FirstOrDefault();
 
 
             @if (profile?.Profile == null || profile.Profile.Length <= 0)
@@ -64,7 +64,7 @@
 
             @{
                 var message = Member.Messages?.LastOrDefault();
-                string bs64 = Convert.ToBase64String( Chat.accounts.FirstOrDefault(t => t.Id == message?.Remitente.AccountID)?.Profile ?? []);
+                string bs64 = Convert.ToBase64String( Chat.Accounts.FirstOrDefault(t => t.Id == message?.Remitente.AccountID)?.Profile ?? []);
                 <div class="flex">
 
                     @if (bs64 != "")

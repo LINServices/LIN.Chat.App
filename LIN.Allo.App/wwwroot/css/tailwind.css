@@ -1848,6 +1848,10 @@ video {
   gap: 1rem;
 }
 
+.gap-5 {
+  gap: 1.25rem;
+}
+
 .gap-x-1 {
   -moz-column-gap: 0.25rem;
        column-gap: 0.25rem;
@@ -3873,10 +3877,6 @@ h1:focus {
 .hover\:text-slate-100:hover {
   --tw-text-opacity: 1;
   color: rgb(241 245 249 / var(--tw-text-opacity));
-}
-
-.hover\:opacity-25:hover {
-  opacity: 0.25;
 }
 
 .hover\:shadow-gray-400:hover {
