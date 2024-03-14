@@ -3,15 +3,14 @@
 @code{
 
 
-
     /// <summary>
-    /// Imagen de perfil en base64
+    /// Imagen de perfil en base64.
     /// </summary>
     private string Img64 => Convert.ToBase64String(Access.Communication.Session.Instance.Account.Profile);
 
 
 
-    private void Close()
+    private void Close() 
     {
         navigationManager.NavigateTo("/logout");
     }
@@ -34,9 +33,6 @@
             <span class="block text-sm text-gray-900">Hola, @Access.Communication.Session.Instance.Account.Name</span>
         </div>
 
-       
-
-
     </div>
 
 
@@ -45,8 +41,6 @@
         <button class="bg-transparent h-7 w-7 rounded-lg hover:bg-gray-100 p-1 hover:p-2">
             <img src="img/Products/chat.png"/>
         </button>
-
-     
 
         <button class="bg-transparent h-7 w-7 rounded-lg hover:bg-gray-100 p-1 hover:p-2">
             <img src="img/map.png"/>
@@ -81,6 +75,5 @@
         <li @onclick="Close">
             <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Cerrar sesión</a>
         </li>
-
     </ul>
 </div>
