@@ -1,9 +1,7 @@
-﻿using LIN.Allo.App.Components.Elements;
-
-namespace LIN.Allo.App.Components.Pages;
+﻿namespace LIN.Allo.App.Components.Pages;
 
 
-public partial class Chat
+public partial class Chat : IChatViewer
 {
 
 
@@ -68,12 +66,6 @@ public partial class Chat
     /// </summary>
     public static List<AccountModel> Accounts { get; set; } = [];
 
-
-
-    /// <summary>
-    /// Estancia actual.
-    /// </summary>
-    public static Chat? Instance { get; set; }
 
 
 
@@ -231,8 +223,8 @@ public partial class Chat
         }
 
         // Crear el hub
-        ChatSection.Hub = new(Access.Communication.Session.Instance.Profile);
-        await ChatSection.Hub.Suscribe();
+        RealTime.Hub = new(Access.Communication.Session.Instance.Profile);
+        await RealTime.Hub.Suscribe();
 
         // Obtiene la data
         RetrieveData();
@@ -252,8 +244,8 @@ public partial class Chat
         {
             Nav();
 
-            ChatSection.Hub!.OnReceiveMessage ??= new();
-            ChatSection.Hub!.OnReceiveMessage.Clear();
+            RealTime.Hub!.OnReceiveMessage ??= new();
+            RealTime.Hub!.OnReceiveMessage.Clear();
             ConversationsObserver.Data.Clear();
             IsConversationsLoad = false;
             StateHasChanged();
@@ -291,7 +283,7 @@ public partial class Chat
 
 
             // Lista.
-            ChatSection.Hub!.OnReceiveMessage?.Add(OnReceiveMessage);
+            RealTime.Hub!.OnReceiveMessage?.Add(OnReceiveMessage);
 
             // Suscribir los eventos del hub
             foreach (var conversation in chats.Models)
@@ -316,26 +308,22 @@ public partial class Chat
 
 
 
-    public static void Suscribe(ConversationModel conversation)
+    public void Suscribe(ConversationModel conversation)
     {
 
         if (conversation == null)
             return;
 
         // Lista.
-        ChatSection.Hub!.OnReceiveMessage?.Add(OnReceiveMessage);
+        RealTime.Hub!.OnReceiveMessage?.Add(OnReceiveMessage);
 
 
         ConversationsObserver.Create(conversation);
 
         // Suscribir evento.
-        _ = ChatSection.Hub!.JoinGroup(conversation.ID);
+        _ = RealTime.Hub!.JoinGroup(conversation.ID);
 
     }
-
-
-    public static List<Message> MessageTasker { get; set; } = new();
-
 
 
 
@@ -462,6 +450,7 @@ public partial class Chat
     {
         StateHasChanged();
     }
+
 
     void Close()
     {

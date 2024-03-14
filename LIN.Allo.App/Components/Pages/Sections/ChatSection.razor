@@ -5,7 +5,7 @@
 
 
 @* Elementos *@
-<LIN.Allo.App.Components.Elements.Popups.EmojiPanel @ref="EmojiPanel" Press="(e)=>{Message+=e; StateHasChanged();}" />
+<LIN.Allo.Shared.Components.Elements.Popups.EmojiPanel @ref="EmojiPanel" Press="(e)=>{Message+=e; StateHasChanged();}" />
 
 
 
@@ -128,7 +128,7 @@
                 oldTime = message.Time;
             }
 
-            <Message MessageModel="@message" />
+            <LIN.Allo.Shared.Components.Elements.Message MessageModel="@message" />
 
         }
 

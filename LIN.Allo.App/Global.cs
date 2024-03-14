@@ -13,12 +13,13 @@ global using LIN.Types.Responses;
 
 global using LIN.Types.Communication.Enumerations;
 global using LIN.Types.Communication.Models;
+global using LIN.Allo.Shared.Components.Elements.Drawers;
+global using LIN.Allo.Shared.Components.Elements.Popups;
 
 global using LIN.Access.Auth.Hubs;
 
-global using LIN.Allo.App.Services;
+global using LIN.Allo.Shared.Services;
 
-global using LIN.Allo.App.Components.Elements.Drawers;
 global using Microsoft.JSInterop;
 
 global using LIN.Allo.App.Components.Pages;

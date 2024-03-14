@@ -7,7 +7,7 @@
 
 @* Pantalla de carga *@
 @{
-    Instance = this;
+    LIN.Allo.Shared.Services.ChatPage.ChatViewer = this;
 }
 
 @if (!Access.Communication.Session.IsOpen)
@@ -153,7 +153,7 @@
                                             <div class="flex flex-col gap-2 mt-3">
                                                 @foreach (var e in SearchResult)
                                                 {
-                                                    <NewFriend UserInformation="@e" />
+                                                    <LIN.Allo.Shared.Components.Elements.NewFriend UserInformation="@e" />
                                                 }
                                             </div>
                                         </div>
@@ -166,7 +166,7 @@
                                 {
                                     foreach (var conversation in ConversationsObserver.Data.Values)
                                     {
-                                        <Control Member="@(conversation)" OnClick="Go" IsSelect=@(SelectedConversation?.ID == conversation.Conversation.ID) />
+                                        <LIN.Allo.Shared.Components.Elements.Control Member="@(conversation)" OnClick="Go" IsSelect=@(SelectedConversation?.ID == conversation.Conversation.ID) />
                                     }
                                 }
 
@@ -174,10 +174,10 @@
                             else
                             {
                                 @* Cargando las conversaciones *@
-                                <ControlSkeleton />
-                                <ControlSkeleton />
-                                <ControlSkeleton />
-                                <ControlSkeleton />
+                                <LIN.Allo.Shared.Components.Elements.ControlSkeleton />
+                                <LIN.Allo.Shared.Components.Elements.ControlSkeleton />
+                                <LIN.Allo.Shared.Components.Elements.ControlSkeleton />
+                                <LIN.Allo.Shared.Components.Elements.ControlSkeleton />
                             }
 
                         </div>
@@ -198,7 +198,7 @@
             <div class="w-full @(ActualSection != 1 ? "hidden lg:flex" : "") lg:w-2/3 flex flex-col">
 
                 @* Mostrar el chat *@
-                @if (ChatSection.Hub != null && SelectedConversation != null)
+                @if (RealTime.Hub != null && SelectedConversation != null)
                 {
                     <ChatSection Drawer="MemberDrawer" Iam="ConversationsObserver.Get(SelectedConversation.ID)" OnBackPress="Nav" />
                 }

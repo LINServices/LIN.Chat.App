@@ -32,7 +32,7 @@ public static class MauiProgram
 		builder.Logging.AddDebug();
 #endif
 
-        LIN.Allo.App.Services.Scripts.Build();
+        LIN.Allo.Shared.Services.Scripts.Build();
         // Iniciar.
         LIN.Access.Auth.Build.Init();
         LIN.Access.Communication.Build.Init();
