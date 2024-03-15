@@ -43,7 +43,6 @@ public partial class ChatSection : IDisposable, IMessageChanger, IConversationVi
                 if (value == null)
                     return;
 
-
                 ConversationsObserver.Suscribe(value.Conversation.ID, (IMessageChanger)this);
                 ConversationsObserver.Suscribe(value.Conversation.ID, (IConversationViewer)this);
 
@@ -112,6 +111,7 @@ public partial class ChatSection : IDisposable, IMessageChanger, IConversationVi
 
         // Id único.
         var guid = Guid.NewGuid().ToString();
+
 
         // Generar evento.
         ConversationsObserver.PushMessage(Iam.Conversation.ID, new()

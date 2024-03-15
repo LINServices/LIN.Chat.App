@@ -4,7 +4,6 @@
 public partial class Chat : IChatViewer
 {
 
-
     [Parameter]
     [SupplyParameterFromQuery]
     public int Id { get; set; }
@@ -26,6 +25,8 @@ public partial class Chat : IChatViewer
     /// Drawer de Miembros.
     /// </summary>
     private Members? MemberDrawer { get; set; }
+
+
 
 
 
@@ -65,6 +66,26 @@ public partial class Chat : IChatViewer
     /// Cuentas.
     /// </summary>
     public static List<AccountModel> Accounts { get; set; } = [];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public static List<AccountModel> accounts = new List<AccountModel>();
+
+
+
 
 
 
@@ -198,13 +219,57 @@ public partial class Chat : IChatViewer
 
         try
         {
+
             ConversationsObserver.PushMessage(e.Conversacion.ID, e);
+
         }
         catch
         {
+
         }
 
+
+
     }
+
+
+
+
+
+
+
+
+
+
+
+
+    private async Task E()
+    {
+
+        await JSRuntime.InvokeAsync<object>("E");
+
+        StateHasChanged();
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -263,8 +328,9 @@ public partial class Chat : IChatViewer
                 chats.AlternativeObject = System.Text.Json.JsonSerializer.Deserialize<List<AccountModel>>(chats.AlternativeObject.ToString() ?? "");
                 if (chats.AlternativeObject is List<AccountModel> lista)
                 {
-                    Accounts.AddRange(lista);
+                    accounts.AddRange(lista);
                 }
+
             }
             catch
             {
@@ -285,12 +351,12 @@ public partial class Chat : IChatViewer
             // Lista.
             RealTime.Hub!.OnReceiveMessage?.Add(OnReceiveMessage);
 
+
             // Suscribir los eventos del hub
             foreach (var conversation in chats.Models)
             {
 
                 Suscribe(conversation.Conversation);
-
             }
 
             // Actualiza la vista
@@ -308,12 +374,9 @@ public partial class Chat : IChatViewer
 
 
 
+
     public void Suscribe(ConversationModel conversation)
     {
-
-        if (conversation == null)
-            return;
-
         // Lista.
         RealTime.Hub!.OnReceiveMessage?.Add(OnReceiveMessage);
 
@@ -324,6 +387,7 @@ public partial class Chat : IChatViewer
         _ = RealTime.Hub!.JoinGroup(conversation.ID);
 
     }
+
 
 
 
@@ -345,6 +409,7 @@ public partial class Chat : IChatViewer
         ForceRetrieveData();
 
     }
+
 
 
     /// <summary>
@@ -373,7 +438,6 @@ public partial class Chat : IChatViewer
         var uri = navigationManager.GetUriWithQueryParameter("Id", chat);
         navigationManager.NavigateTo(uri);
     }
-
 
 
 
@@ -443,20 +507,25 @@ public partial class Chat : IChatViewer
 
 
 
-
-
-
     public void StateChange()
     {
         StateHasChanged();
     }
 
 
-
-
     public void RefreshUI()
     {
-        StateHasChanged();
+        this.InvokeAsync(StateHasChanged);
     }
 
+
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+
+        LIN.Allo.Shared.Services.ChatPage.ChatViewer = this;
+
+        base.OnAfterRender(firstRender);
+
+    }
 }
