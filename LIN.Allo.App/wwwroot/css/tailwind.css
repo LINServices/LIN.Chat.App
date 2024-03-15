@@ -2440,6 +2440,11 @@ video {
   background-color: rgb(199 210 254 / var(--tw-bg-opacity));
 }
 
+.bg-current-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(129 140 248 / var(--tw-bg-opacity));
+}
+
 .bg-current-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(99 102 241 / var(--tw-bg-opacity));
@@ -2557,6 +2562,11 @@ video {
 .bg-zinc-200 {
   --tw-bg-opacity: 1;
   background-color: rgb(228 228 231 / var(--tw-bg-opacity));
+}
+
+.bg-zinc-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(212 212 216 / var(--tw-bg-opacity));
 }
 
 .bg-zinc-900 {
@@ -2730,6 +2740,14 @@ video {
 .object-scale-down {
   -o-object-fit: scale-down;
      object-fit: scale-down;
+}
+
+.p-0 {
+  padding: 0px;
+}
+
+.p-0\.5 {
+  padding: 0.125rem;
 }
 
 .p-1 {
@@ -4065,6 +4083,10 @@ h1:focus {
     display: block;
   }
 
+  .dl\:hidden {
+    display: none;
+  }
+
   .dl\:w-full {
     width: 100%;
   }
@@ -4229,6 +4251,10 @@ h1:focus {
   .dark\:bg-zinc-900 {
     --tw-bg-opacity: 1;
     background-color: rgb(24 24 27 / var(--tw-bg-opacity));
+  }
+
+  .dark\:bg-zinc-900\/50 {
+    background-color: rgb(24 24 27 / 0.5);
   }
 
   .dark\:bg-zinc-950 {

@@ -386,9 +386,9 @@ public partial class Chat : IChatViewer
 
 
         // Consulta al cache
-        var cache = (from C in ConversationsObserver.Data.Values
-                     where C.Conversation.ID == chat
-                     select C).FirstOrDefault();
+        var cache = (from C in ConversationsObserver.Data
+                     where C.Item2.Conversation.ID == chat
+                     select C).FirstOrDefault().Item2;
 
 
         if (cache == null)
@@ -457,6 +457,12 @@ public partial class Chat : IChatViewer
         LIN.Access.Communication.Session.CloseSession();
         new LIN.LocalDataBase.Data.UserDB().DeleteUsers();
         navigationManager.NavigateTo("/");
+    }
+
+
+    public void RefreshUI()
+    {
+        StateHasChanged();
     }
 
 }
