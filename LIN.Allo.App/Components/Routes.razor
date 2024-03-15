@@ -1,6 +1,14 @@
-﻿<Router AppAssembly="@typeof(MauiProgram).Assembly">
+﻿@inject NavigationManager nav
+<Router AppAssembly="@typeof(MauiProgram).Assembly">
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(Layout.MainLayout)" />
         <FocusOnNavigate RouteData="@routeData" Selector="h1" />
     </Found>
+
+    <NotFound>
+        <label>No</label>
+        @(nav.Uri.ToString())
+    </NotFound>
+
+
 </Router>

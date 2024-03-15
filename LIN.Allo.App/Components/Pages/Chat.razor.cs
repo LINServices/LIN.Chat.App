@@ -452,12 +452,6 @@ public partial class Chat : IChatViewer
     }
 
 
-    void Close()
-    {
-        LIN.Access.Communication.Session.CloseSession();
-        new LIN.LocalDataBase.Data.UserDB().DeleteUsers();
-        navigationManager.NavigateTo("/");
-    }
 
 
     public void RefreshUI()
