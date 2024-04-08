@@ -59,11 +59,13 @@ public static class MauiProgram
         if (currentTheme == AppTheme.Light)
         {
             currentActivity.Window.SetStatusBarColor(new(252, 252, 255));
+            currentActivity.Window.SetNavigationBarColor(new(252, 252, 255));
             currentActivity.Window.DecorView.SystemUiVisibility = (StatusBarVisibility)SystemUiFlags.LightStatusBar;
         }
         else
         {
             currentActivity.Window.SetStatusBarColor(new(0, 0, 0));
+            currentActivity.Window.SetNavigationBarColor(new(0, 0, 0));
             currentActivity.Window.DecorView.SystemUiVisibility = (StatusBarVisibility)SystemUiFlags.LightStatusBar;
         }
 #endif
