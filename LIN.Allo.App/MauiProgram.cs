@@ -64,7 +64,7 @@ public static class MauiProgram
         }
         else
         {
-            currentActivity.Window.SetStatusBarColor(new(0, 0, 0));
+            currentActivity.Window.SetStatusBarColor(new(0,0,0));
             currentActivity.Window.SetNavigationBarColor(new(0, 0, 0));
             currentActivity.Window.DecorView.SystemUiVisibility = (StatusBarVisibility)SystemUiFlags.LightStatusBar;
         }
