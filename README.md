@@ -1,16 +1,16 @@
 <div align="center">
   <p align="center">
-    <img alt="heyform logo" height="60" src="./Img/icon.svg">
+    <img alt="logo" height="60" src="./assets/icon.svg">
   </p>
   <p>LIN Allo para Windows y Android es una bifurcación del proyecto LIN Allo Web.</p>
  <p align="center">
-    <img alt="heyform logo" height="20" src="./Img/computer.png">
-    <img alt="heyform logo" height="20" src="./Img/android.png">
+    <img alt="windows logo" height="20" src="./assets/computer.png">
+    <img alt="android logo" height="20" src="./assets/android.png">
   </p>
 </div>
 
 
-![Login](./img/roma.png)
+![Login](./assets/roma.png)
 ```ROMA VERSION```
 
 
@@ -25,10 +25,10 @@ Cliente nativo construido en .NET Maui & Blazor Hybrid App.
 - Integrado con Emma Assistant
 
 
-![Login](./img/Login.png)
-![Home](./img/Home.png)
-![Chat](./img/Chat.png)
-![Emma](./img/Emma.png)
+![Login](./assets/Login.png)
+![Home](./assets/Home.png)
+![Chat](./assets/Chat.png)
+![Emma](./assets/Emma.png)
 
 
 ## ¿Que sigue?
