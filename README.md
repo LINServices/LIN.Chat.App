@@ -44,8 +44,8 @@ Allo integra **Emma** el asistente inteligente de LIN.
 
 ## Windows
 
-![Login](./assets/login.png)
-![Home](./assets/home.png)
+![Login](./assets/loginWindows.png)
+![Home](./assets/start.png)
 
 
 ## ¿Que sigue?
