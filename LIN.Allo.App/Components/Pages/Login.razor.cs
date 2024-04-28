@@ -81,15 +81,6 @@ public partial class Login
     private PassKeyHub? hub = null;
 
 
-    /// <summary>
-    /// Constructor.
-    /// </summary>
-    public Login()
-    {
-        MauiProgram.LoadColor();
-    }
-
-
 
    /// <summary>
    /// Evento.

@@ -16,4 +16,16 @@ public partial class MainPage : ContentPage
 
         Application.Current.RequestedThemeChanged += (s, a) => OnColorRequest();
     }
+
+
+
+    /// <summary>
+    /// Evento al abrir la app.
+    /// </summary>
+    protected override void OnAppearing()
+    {
+        // Establecer colores.
+        OnColorRequest();
+        base.OnAppearing();
+    }
 }
