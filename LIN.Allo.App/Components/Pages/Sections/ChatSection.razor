@@ -24,7 +24,7 @@
 
 
             <div class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-zinc-100 bg-zinc-100 p-2 font-bold leading-none text-zinc-600 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-200">
-                <label class="mt-0.5 h-max w-max content-center text-center lg:mt-0">@(Global.Utilities.Strings.GetInitials(Iam.Conversation.Name))</label>
+                <label class="mt-0.5 h-max w-max content-center text-center lg:mt-0">@(Global.Utilities.Strings.GetInitials(Iam?.Conversation?.Name ?? ""))</label>
             </div>
 
 

@@ -184,12 +184,19 @@
                 @* Mostrar el chat *@
                 @if (RealTime.Hub != null && SelectedConversation != null)
                 {
+                    MainPage.OnColorRequest = MauiProgram.LoadColorSelect;
+                    MainPage.OnColorRequest();
+
                     <ChatSection EmmaClick="OpenEmma" Drawer="MemberDrawer" Iam="ConversationsObserver.Get(SelectedConversation.ID)" OnBackPress="Nav" />
                 }
 
                 // No esta seleccionado.
                 else
                 {
+
+                    MainPage.OnColorRequest = MainPage.OnColorRequestDefault;
+                    MainPage.OnColorRequest();
+
                     <div class="flex h-full w-full select-none flex-col items-center justify-center dark:bg-zinc-950">
                         <img class="h-56 w-56" src="./img/presdraw.svg" />
                         <label class="text-3xl font-bold dark:text-white">Bienvenido a LIN Allo</label>

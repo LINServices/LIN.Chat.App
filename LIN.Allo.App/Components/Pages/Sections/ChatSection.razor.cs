@@ -1,6 +1,4 @@
-﻿
-
-namespace LIN.Allo.App.Components.Pages.Sections;
+﻿namespace LIN.Allo.App.Components.Pages.Sections;
 
 
 public partial class ChatSection : IDisposable, IMessageChanger, IConversationViewer

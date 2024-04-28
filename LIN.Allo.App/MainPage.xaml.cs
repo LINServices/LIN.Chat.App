@@ -1,15 +1,19 @@
-﻿namespace LIN.Allo.App
-{
-    public partial class MainPage : ContentPage
-    {
-        public MainPage()
-        {
-            InitializeComponent();
+﻿namespace LIN.Allo.App;
 
-            Application.Current.RequestedThemeChanged += (s, a) =>
-            {
-                MauiProgram.LoadColor();
-            };
-        }
+
+public partial class MainPage : ContentPage
+{
+
+
+    public static Action OnColorRequest = () => OnColorRequestDefault();
+
+    public static Action OnColorRequestDefault = () => MauiProgram.LoadColor();
+
+
+    public MainPage()
+    {
+        InitializeComponent();
+
+        Application.Current.RequestedThemeChanged += (s, a) => OnColorRequest();
     }
 }

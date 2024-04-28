@@ -72,4 +72,39 @@ public static class MauiProgram
     }
 
 
+
+    /// <summary>
+    /// Color del status bar.
+    /// </summary>
+    public static void LoadColorSelect()
+    {
+#if ANDROID
+        var currentActivity = Platform.CurrentActivity;
+
+        if (currentActivity == null || currentActivity.Window == null)
+            return;
+
+        var currentTheme = AppInfo.RequestedTheme;
+
+        if (currentTheme == AppTheme.Light)
+        {
+            currentActivity.Window.SetStatusBarColor(new(255, 255, 255));
+            currentActivity.Window.SetNavigationBarColor(new(245, 240, 234));
+            currentActivity.Window.DecorView.SystemUiVisibility = (StatusBarVisibility)SystemUiFlags.LightStatusBar;
+        }
+        else
+        {
+            currentActivity.Window.SetStatusBarColor(new(0,0,0));
+            currentActivity.Window.SetNavigationBarColor(new(0, 0, 0));
+            currentActivity.Window.DecorView.SystemUiVisibility = (StatusBarVisibility)SystemUiFlags.LightStatusBar;
+        }
+#endif
+    }
+
+
+
+
+
+
+
 }
