@@ -105,6 +105,7 @@
         @* Renderizado de mensajes *@
         @foreach (var message in Iam?.Messages ?? [])
         {
+            
             oldTime ??= message.Time;
 
             if (new DateTime(oldTime.Value.Year, oldTime.Value.Month, oldTime.Value.Day) < new DateTime(message.Time.Year, message.Time.Month, message.Time.Day))
@@ -136,8 +137,9 @@
                 oldTime = message.Time;
             }
 
-            <LIN.Allo.Shared.Components.Elements.Message MessageModel="@message" />
+            <LIN.Allo.Shared.Components.Elements.Message MessageModel="@message" ShowTittle="(lastMessage?.Time != message.Time) || lastMessage == null || lastMessage.Remitente.ID != message.Remitente.ID" />
 
+            lastMessage = message;
         }
 
         @(oldTime = null)
