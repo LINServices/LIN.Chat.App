@@ -25,10 +25,19 @@ Cliente nativo construido en .NET Maui & Blazor Hybrid App.
 - Integrado con Emma Assistant
 
 
-![Login](./assets/Login.png)
-![Home](./assets/Home.png)
-![Chat](./assets/Chat.png)
-![Emma](./assets/Emma.png)
+## Android
+
+#### Modo claro
+![light](./assets/light.png)
+
+#### Modo oscuro
+![dark](./assets/dark.png)
+
+
+## Windows
+
+![Login](./assets/login.png)
+![Home](./assets/home.png)
 
 
 ## ¿Que sigue?
