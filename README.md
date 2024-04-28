@@ -10,8 +10,6 @@
 </div>
 
 
-![Login](./assets/roma.png)
-```ROMA VERSION```
 
 
 Cliente nativo construido en .NET Maui & Blazor Hybrid App.
@@ -24,6 +22,16 @@ Cliente nativo construido en .NET Maui & Blazor Hybrid App.
 - Grupos de personas
 - Integrado con Emma Assistant
 
+
+
+
+## Emma Assistant
+Allo integra **Emma** el asistente inteligente de LIN.
+
+- Preguntar sobre el clima actual.
+- Redactar y enviar mensajes.
+- Abrir conversaciones.
+- Información desde otras apps.
 
 ## Android
 
@@ -42,6 +50,8 @@ Cliente nativo construido en .NET Maui & Blazor Hybrid App.
 
 ## ¿Que sigue?
 
+Actualmente se esta trabajando esto:
+
 * Enviar ubicación.
 * Enviar imágenes.
-* Mejoras de UI.
+* Mejoras de UI .
