@@ -106,10 +106,8 @@ public partial class ChatSection : IDisposable, IMessageChanger, IConversationVi
     /// <summary>
     /// Enviar un mensaje.
     /// </summary>
-    private void SendMessage()
+    private async void SendMessage()
     {
-
-
 
         if (string.IsNullOrWhiteSpace(Message) || Iam == null)
             return;
@@ -132,13 +130,27 @@ public partial class ChatSection : IDisposable, IMessageChanger, IConversationVi
             IsLocal = true
         });
 
-
-
         // Envía el mensaje al hub
-        RealTime.Hub?.SendMessage(Iam.Conversation.ID, Message, guid);
+        var responseMessage = await RealTime.Hub?.SendMessage(Iam.Conversation.ID, Message, guid, LIN.Access.Communication.Session.Instance.Token);
 
         // Reestablece el texto
         Message = "";
+
+        if (responseMessage)
+        {
+            ConversationsObserver.PushMessage(Iam.Conversation.ID, new()
+            {
+                Contenido = Message,
+                Conversacion = new()
+                {
+                    ID = Iam.Conversation.ID
+                },
+                Remitente = Access.Communication.Session.Instance.Profile,
+                Time = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, 0),
+                Guid = guid,
+                IsLocal = true
+            });
+        }
 
         // Actualiza la vista
         StateHasChanged();
