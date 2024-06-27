@@ -108,8 +108,24 @@ public partial class ChatSection : IDisposable, IMessageChanger, IConversationVi
     /// </summary>
     private async void SendMessage()
     {
+        await SendMessage(Message);
 
-        if (string.IsNullOrWhiteSpace(Message) || Iam == null)
+        // Reestablece el texto
+        Message = "";
+    }
+
+
+
+
+
+
+    /// <summary>
+    /// Enviar un mensaje.
+    /// </summary>
+    private async Task SendMessage(string value)
+    {
+
+        if (string.IsNullOrWhiteSpace(value) || Iam == null)
             return;
 
         // Id único.
@@ -119,7 +135,7 @@ public partial class ChatSection : IDisposable, IMessageChanger, IConversationVi
         // Generar evento.
         ConversationsObserver.PushMessage(Iam.Conversation.ID, new()
         {
-            Contenido = Message,
+            Contenido = value,
             Conversacion = new()
             {
                 ID = Iam.Conversation.ID
@@ -131,16 +147,13 @@ public partial class ChatSection : IDisposable, IMessageChanger, IConversationVi
         });
 
         // Envía el mensaje al hub
-        var responseMessage = await RealTime.Hub?.SendMessage(Iam.Conversation.ID, Message, guid, LIN.Access.Communication.Session.Instance.Token);
-
-        // Reestablece el texto
-        Message = "";
+        var responseMessage = await RealTime.Hub?.SendMessage(Iam.Conversation.ID, value, guid, LIN.Access.Communication.Session.Instance.Token);
 
         if (responseMessage)
         {
             ConversationsObserver.PushMessage(Iam.Conversation.ID, new()
             {
-                Contenido = Message,
+                Contenido = value,
                 Conversacion = new()
                 {
                     ID = Iam.Conversation.ID
