@@ -60,19 +60,11 @@
 	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">
 		<MauiIcon Include="Resources\AppIcon\appiconwin.svg" ForegroundFile="Resources\AppIcon\appiconfgwin.svg" Color="#00FF0000" />
 	</ItemGroup>
+	
 	<ItemGroup>
-	  <Content Remove="wwwroot\favicon.svg" />
-	</ItemGroup>
-	<ItemGroup>
-	  <None Include="wwwroot\favicon.svg" />
-	  <None Include="wwwroot\js\flowbite.js" />
-	  <None Include="wwwroot\js\flowbite.min.js" />
-	</ItemGroup>
-
-	<ItemGroup>
-        <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
-        <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="$(MauiVersion)" />
+        <PackageReference Include="Microsoft.Maui.Controls" Version="8.0.82" />
+        <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.82" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="8.0.82" />
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
     </ItemGroup>
 
