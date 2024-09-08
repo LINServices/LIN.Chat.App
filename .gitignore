@@ -399,3 +399,5 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 /LIN.Allo.App/wwwroot/css/tailwind.css
+/LIN.Allo.App/wwwroot/css/tailwind.build.css
+/LIN.Allo.App/wwwroot/css/tailwind.build.css
