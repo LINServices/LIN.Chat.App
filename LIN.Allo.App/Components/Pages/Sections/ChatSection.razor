@@ -1,11 +1,8 @@
-﻿
-@* Dependencias *@
+﻿@* Dependencias *@
 @inject IJSRuntime JSRuntime
 
 @* Elementos *@
 <LIN.Allo.Shared.Components.Elements.Popups.EmojiPanel @ref="EmojiPanel" Press="(e)=>{Message+=e; StateHasChanged();}" />
-
-
 
 @* Cabecera *@
 <div class="flex flex-row items-center justify-between border-gray-300 px-3 py-3 dark:border-zinc-600">
@@ -46,10 +43,7 @@
                 </label>
             </div>
         </div>
-      
-
     </div>
-
 
     @* Botones *@
     <div class="flex items-center justify-center">
@@ -70,12 +64,10 @@
 
 </div>
 
-
 @* Mensajes *@
-<div id="CM-@(Iam?.Conversation?.ID ?? 0)" class="flex-1 bg-[#F5F0EA] scroll-ui overflow-auto dark:bg-black">
+<div id="CM-@(Iam?.Conversation?.ID ?? 0)" class="flex-1 scroll-ui overflow-auto bg-[#F5F0EA] dark:bg-black">
 
     <div id="CM-@(Iam?.Conversation?.ID ?? 0)" class="px-3 py-2">
-
 
         @* Creación del chat *@
         <div class="my-7 mb-2 flex justify-center">
@@ -86,7 +78,6 @@
             </div>
         </div>
 
-
         @* Recomendación *@
         <div class="mb-4 flex justify-center">
             <div class="rounded-lg bg-yellow-100 px-4 py-2">
@@ -95,8 +86,6 @@
                 </p>
             </div>
         </div>
-
-
 
         @* Renderizado de mensajes *@
         @foreach (var message in Iam?.Messages ?? [])
@@ -141,13 +130,7 @@
         @(oldTime = null)
 
     </div>
-
-
 </div>
-
-
-
-
 
 @{
     string[] emojis = "🙌;👍;😁;👌;😍;❤️;😂;😊".Split(';');
@@ -161,7 +144,7 @@
         @foreach (var emoji in emojis)
         {
             <div @onclick="()=>SendMessage(emoji)" class="group flex h-8 w-8 items-center justify-center rounded-full hover:bg-gray-100">
-                <label class="text-xl group-hover:animate-pulse">@emoji</label>
+                <label class="group-hover:animate-pulse text-xl">@emoji</label>
             </div>
         }
     </div>
@@ -183,4 +166,3 @@
     </div>
 
 </div>
-
