@@ -2,6 +2,7 @@
 using Android.Views;
 #endif
 using Microsoft.Extensions.Logging;
+using LIN.Access.Auth;
 
 namespace LIN.Allo.App
 {
@@ -22,16 +23,15 @@ namespace LIN.Allo.App
                 });
 
             builder.Services.AddMauiBlazorWebView();
+            builder.Services.AddAuthenticationService();
 
 #if DEBUG
     		builder.Services.AddBlazorWebViewDeveloperTools();
     		builder.Logging.AddDebug();
 #endif
 
-
             LIN.Allo.Shared.Services.Scripts.Build();
             // Iniciar.
-            LIN.Access.Auth.Build.Init();
             LIN.Access.Communication.Build.Init();
             LIN.Access.Search.Build.Init();
 
