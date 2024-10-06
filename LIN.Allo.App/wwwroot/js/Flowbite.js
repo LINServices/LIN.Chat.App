@@ -32,7 +32,7 @@ function showDrawer(id, dotnetHelper, ...idCloseBtn) {
  * @param {string} btn - El ID del elemento que activa el Popover.
  * @param {object} dotnetHelper - El objeto DotNetHelper para invocar métodos de .NET.
  */
-function showPopover(id, btn, dotnetHelper) {
+function showPopover(id, dotnetHelper, btn) {
     const targetEl = document.getElementById(id);
     const triggerEl = document.getElementById(btn);
 
