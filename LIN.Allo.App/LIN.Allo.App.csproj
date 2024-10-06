@@ -69,8 +69,6 @@
     </ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\..\AccesoAPI\LIN.Access.Auth\LIN.Access.Auth.csproj" />
-		<ProjectReference Include="..\..\..\AccesoAPI\LIN.Access.Communication\LIN.Access.Communication.csproj" />
 		<ProjectReference Include="..\..\..\AccesoAPI\LIN.Access.Search\LIN.Access.Search.csproj" />
 		<ProjectReference Include="..\..\..\Components\LIN.Allo.Shared\LIN.Allo.Shared\LIN.Allo.Shared.csproj" />
 		<ProjectReference Include="..\..\..\Components\LIN.Emma.UI\LIN.Emma.UI\LIN.Emma.UI.csproj" />
