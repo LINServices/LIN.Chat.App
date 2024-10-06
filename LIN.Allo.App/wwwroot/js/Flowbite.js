@@ -9,7 +9,7 @@ function showDrawer(id, dotnetHelper, ...idCloseBtn) {
 
     const options = {
         placement: "right",
-        backdropClasses: 'bg-zinc-900 bg-opacity-50 fixed inset-0 z-30',
+        backdropClasses: 'bg-zinc-700 bg-opacity-40 fixed inset-0 z-30 dark:bg-zinc-900/40',
         onHide: () => dotnetHelper?.invokeMethodAsync("OnHide"),
         onShow: () => dotnetHelper?.invokeMethodAsync("OnShow")
     };
