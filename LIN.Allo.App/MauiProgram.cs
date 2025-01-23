@@ -3,6 +3,7 @@ using Android.Views;
 #endif
 using Microsoft.Extensions.Logging;
 using LIN.Access.Auth;
+using LIN.Access.Communication;
 
 namespace LIN.Allo.App
 {
@@ -32,7 +33,8 @@ namespace LIN.Allo.App
 
             LIN.Allo.Shared.Services.Scripts.Build();
             // Iniciar.
-            LIN.Access.Communication.Build.Init();
+
+            builder.Services.AddCommunicationService();
             LIN.Access.Search.Build.Init();
 
             return builder.Build();
