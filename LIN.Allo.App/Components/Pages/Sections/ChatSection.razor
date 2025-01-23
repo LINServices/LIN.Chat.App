@@ -122,7 +122,7 @@
                 oldTime = message.Time;
             }
 
-            <LIN.Allo.Shared.Components.Elements.Message MessageModel="@message" ShowTittle="(lastMessage?.Time != message.Time) || lastMessage == null || lastMessage.Remitente.Id != message.Remitente.ID" />
+            <LIN.Allo.Shared.Components.Elements.Message MessageModel="@message" ShowTittle="(lastMessage?.Time != message.Time) || lastMessage == null || lastMessage.Remitente.Id != message.Remitente.Id" />
 
             lastMessage = message;
         }
