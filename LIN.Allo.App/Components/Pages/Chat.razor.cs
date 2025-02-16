@@ -112,12 +112,6 @@ public partial class Chat : IChatViewer
 
 
     /// <summary>
-    /// Imagen de perfil en base64
-    /// </summary>
-    private static string Img64 => Convert.ToBase64String(Access.Communication.Session.Instance.Account.Profile);
-
-
-    /// <summary>
     /// Conversación seleccionada.
     /// </summary>
     private ConversationModel? SelectedConversation { get; set; }
