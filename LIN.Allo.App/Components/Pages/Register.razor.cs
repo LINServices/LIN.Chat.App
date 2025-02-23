@@ -121,7 +121,7 @@ public partial class Register
                 LocalDataBase.Data.UserDB database = new();
 
                 // Guardar información.
-                await database.SaveUser(new() { ID = res.LastID, UserU = User, Password = Password });
+                await database.SaveUser(new() { ID = res.LastId, UserU = User, Password = Password });
 
                 Section = 1;
                 StateHasChanged();
