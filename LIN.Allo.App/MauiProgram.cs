@@ -1,9 +1,12 @@
 ﻿#if ANDROID
 using Android.Views;
+using LIN.Allo.App.Platforms.Android.Services.Web;
 #endif
 using Microsoft.Extensions.Logging;
 using LIN.Access.Auth;
 using LIN.Access.Communication;
+using Microsoft.AspNetCore.Components.WebView.Maui;
+
 
 namespace LIN.Allo.App
 {
@@ -26,8 +29,20 @@ namespace LIN.Allo.App
             builder.Services.AddMauiBlazorWebView();
             builder.Services.AddAuthenticationService();
 
+#if ANDROID
+
+            BlazorWebViewHandler.ViewMapper.AppendToMapping("Permissions", (handler, view) =>
+            {
+                // Cast correcto al WebView nativo de Android
+                if (handler.PlatformView is Android.Webkit.WebView webView)
+                {
+                    webView.SetWebChromeClient(new PermissiveWebChromeClient());
+                }
+            });
+#endif
+
 #if DEBUG
-    		builder.Services.AddBlazorWebViewDeveloperTools();
+            builder.Services.AddBlazorWebViewDeveloperTools();
     		builder.Logging.AddDebug();
 #endif
 

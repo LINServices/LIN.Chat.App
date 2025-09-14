@@ -72,6 +72,10 @@ public partial class ChatSection : IDisposable, IMessageChanger, IConversationVi
     public Action? OnBackPress { get; set; }
 
 
+    private void Call()
+    {
+        Navigation.NavigateTo($"/room/{Iam.Conversation.Id}");
+    }
 
     /// <summary>
     /// Mensaje a enviar.

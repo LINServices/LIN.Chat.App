@@ -33,7 +33,7 @@
             <div class="flex h-full w-full flex-col lg:w-1/3 @(ActualSection != 0 ? "hidden lg:flex" : "")">
 
                 @* Header *@
-                <div class="border-r-0 flex flex-row items-center justify-between px-5 py-4 dark:border-zinc-800 lg:border-r">
+                <div class="flex flex-row items-center justify-between border-r-0 px-5 py-4 lg:border-r dark:border-zinc-800">
                    
                     <div class="flex items-center">
 
@@ -72,26 +72,26 @@
                 </div>
 
                 @* Búsqueda *@
-                <div class="border-r-0 px-5 dark:border-zinc-800 lg:border-r">
+                <div class="border-r-0 px-5 lg:border-r dark:border-zinc-800">
 
                     @* Titulo *@
                     <label class="text-base font-bold text-gray-800 dark:text-zinc-200">Conversaciones</label>
 
                     @* Entrada de búsqueda *@
-                    <div class="mb-5 mt-2 w-full">
+                    <div class="mt-2 mb-5 w-full">
                         <div class="relative">
                             <div class="pointer-events-none absolute inset-y-0 start-0 top-0 flex items-center ps-3.5">
 
                                 <svg class="h-4 w-4 fill-zinc-400 dark:fill-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" /></svg>
 
                             </div>
-                            <input @oninput="Search" type="text" autocomplete="off" required="" class="block w-full appearance-none rounded-xl border border-gray-200 bg-gray-50 px-3 py-2 ps-10 text-gray-900 placeholder-gray-400 focus:ring-1 focus:border-current-500 focus:bg-white focus:outline-none focus:ring-current-600 dark:bg-zinc-950 dark:text-zinc-200 dark:border-zinc-800 sm:text-sm dark:focus:bg-zinc-900" placeholder="Buscar">
+                            <input @oninput="Search" type="text" autocomplete="off" required="" class="placeholder-gray-400 block w-full appearance-none rounded-xl border border-gray-200 bg-gray-50 px-3 py-2 ps-10 text-gray-900 focus:border-current-500 focus:bg-white focus:ring-1 focus:ring-current-600 focus:outline-none sm:text-sm dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-200 dark:focus:bg-zinc-900" placeholder="Buscar">
                         </div>
                     </div>
                 </div>
 
                 @* Lista de conversaciones *@
-                <div class="flex h-full w-full overflow-auto dark:border-zinc-800 lg:border-r [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-transparent dark:[&::-webkit-scrollbar-thumb]:bg-zinc-800">
+                <div class="flex h-full w-full overflow-auto lg:border-r dark:border-zinc-800 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-transparent dark:[&::-webkit-scrollbar-thumb]:bg-zinc-800">
 
                     <div class="flex h-max w-full flex-col overflow-auto">
 
@@ -104,7 +104,7 @@
                                 if (ConversationsObserver.Data.Count <= 0 && !IsSearching)
                                 {
                                     <div class="px-5">
-                                        <div class="border-2 mt-3 flex w-full items-center justify-center rounded-lg border-dashed border-gray-300 py-10 dark:border-zinc-600">
+                                        <div class="mt-3 flex w-full items-center justify-center rounded-lg border-2 border-dashed border-gray-300 py-10 dark:border-zinc-600">
                                             <label class="text-gray-400 dark:text-zinc-400">No tienes ninguna conversación</label>
                                         </div>
                                     </div>
@@ -125,7 +125,7 @@
                                     }
                                     else
                                     {
-                                        <div class="select-none px-5 py-1">
+                                        <div class="px-5 py-1 select-none">
                                             <label class="dark:text-gray-300">Resultados de búsqueda para "@Pattern" </label>
                                             <div class="mt-3 flex flex-col gap-2">
                                                 @foreach (var e in SearchResult)
@@ -181,7 +181,7 @@
                     MainPage.OnColorRequest = MainPage.OnColorRequestDefault;
                     MainPage.OnColorRequest();
 
-                    <div class="flex h-full w-full select-none flex-col items-center justify-center dark:bg-zinc-950">
+                    <div class="flex h-full w-full flex-col items-center justify-center select-none dark:bg-zinc-950">
                         <img class="h-56 w-56" src="./img/presdraw.svg" />
                         <label class="text-3xl font-bold dark:text-white">Bienvenido a LIN Allo</label>
                         <label class="mt-1 text-gray-600 dark:text-gray-400">Tu app de mensajería instantánea disponible en todos lados</label>
@@ -205,3 +205,10 @@
 
 @* Drawer de integrantes *@
 <Members @ref="MemberDrawer" />
+
+<NotificationBubble @ref="notif"
+                    Title="Tim Cook"
+                    Subtitle="Calling you"
+                    AvatarUrl="images/tim.jpg"
+                    SoundUrl="audio/teams.mp3"
+                    ShowProgressBar="true" />

@@ -1,4 +1,8 @@
-﻿namespace LIN.Allo.App.Components.Pages;
+﻿using LIN.Allo.App.Components.Pages.Sections;
+using LIN.Allo.Shared.Components.Shared;
+using LIN.Types.Cloud.Identity.Models.Identities;
+
+namespace LIN.Allo.App.Components.Pages;
 
 
 public partial class Chat : IChatViewer
@@ -304,7 +308,11 @@ public partial class Chat : IChatViewer
             Nav();
 
             RealTime.Hub!.OnReceiveMessage ??= new();
+            RealTime.Hub!.OnReceiveCall ??= new();
+
             RealTime.Hub!.OnReceiveMessage.Clear();
+            RealTime.Hub!.OnReceiveCall.Clear();
+
             ConversationsObserver.Data.Clear();
             IsConversationsLoad = false;
             StateHasChanged();
@@ -319,11 +327,11 @@ public partial class Chat : IChatViewer
 
             try
             {
-                chats.AlternativeObject = System.Text.Json.JsonSerializer.Deserialize<List<AccountModel>>(chats.AlternativeObject.ToString() ?? "");
-                if (chats.AlternativeObject is List<AccountModel> lista)
-                {
-                    accounts.AddRange(lista);
-                }
+                //chats.AlternativeObject = System.Text.Json.JsonSerializer.Deserialize<List<AccountModel>>(chats.AlternativeObject.ToString() ?? "");
+                //if (chats.AlternativeObject is List<AccountModel> lista)
+                //{
+                //    accounts.AddRange(lista);
+                //}
 
             }
             catch
@@ -344,7 +352,7 @@ public partial class Chat : IChatViewer
 
             // Lista.
             RealTime.Hub!.OnReceiveMessage?.Add(OnReceiveMessage);
-
+            RealTime.Hub!.OnReceiveCall?.Add(OnReceiveCall);
 
             // Suscribir los eventos del hub
             foreach (var conversation in chats.Models)
@@ -510,6 +518,43 @@ public partial class Chat : IChatViewer
     public void RefreshUI()
     {
         this.InvokeAsync(StateHasChanged);
+    }
+
+
+
+    private NotificationBubble? notif;
+
+
+
+
+    public async void OnReceiveCall(string s)
+    {
+        try
+        {
+            if (notif == null)
+                return;
+
+            if (CallSection.IsThisDeviceOnCall)
+                return;
+
+            notif.OnAccept = () =>
+            {
+                navigationManager.NavigateTo("/room/" + s);
+            };
+            await notif.Open();
+        }
+        catch
+        {
+        }
+    }
+
+
+
+
+    public void OnSuccess()
+    {
+        NewGroupModal?.Hide();
+        ForceRetrieveData();
     }
 
 

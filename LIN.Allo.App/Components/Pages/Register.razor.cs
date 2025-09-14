@@ -1,4 +1,6 @@
-﻿namespace LIN.Allo.App.Components.Pages;
+﻿using LIN.Types.Cloud.Identity.Models.Identities;
+
+namespace LIN.Allo.App.Components.Pages;
 
 
 public partial class Register
