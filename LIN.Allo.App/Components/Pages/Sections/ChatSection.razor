@@ -3,7 +3,7 @@
 @inject NavigationManager Navigation
 
 @* Elementos *@
-<LIN.Allo.Shared.Components.Elements.Popups.EmojiPanel @ref="EmojiPanel" Press="(e)=>{Message+=e; StateHasChanged();}" />
+<LIN.Allo.Shared.Components.Elements.Popups.EmojiPanel @ref="EmojiPanel" Press="(e) => { Message += e; StateHasChanged(); }" />
 
 @* Cabecera *@
 <div class="flex flex-row items-center justify-between border-gray-300 px-3 py-3 dark:border-zinc-600">
@@ -12,13 +12,13 @@
     @* Nombre y tipo *@
     <div class="flex items-center">
 
-        <svg @onclick="OnBackPress" class="visible mr-3 h-5 w-5 fill-black hover:fill-current-500 lg:hidden dark:fill-gray-100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+        <svg @onclick="OnBackPress" class="visible mr-3 h-5 w-5 fill-black hover:fill-current-500 dark:fill-gray-100 lg:hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
             <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
         </svg>
 
         <div class="flex items-center gap-2.5">
 
-            <div class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-zinc-100 bg-zinc-100 p-2 leading-none font-bold text-zinc-600 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-200">
+            <div class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-zinc-100 bg-zinc-100 p-2 font-bold leading-none text-zinc-600 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-200">
                 <label class="mt-0.5 h-max w-max content-center text-center lg:mt-0">@(Global.Utilities.Strings.GetInitials(Iam?.Conversation?.Name ?? ""))</label>
             </div>
 
@@ -28,7 +28,7 @@
                 </label>
                 <label style="margin-top:-2px" class="text-xs text-zinc-700 dark:text-gray-500">
 
-                     @switch (Iam?.Conversation?.Type)
+                    @switch (Iam?.Conversation?.Type)
                     {
                         case ConversationsTypes.Personal:
                             @("Chat personal")
@@ -79,7 +79,7 @@
 
         @* Creación del chat *@
         <div class="my-7 mb-2 flex justify-center">
-            <div class="rounded bg-current-200 px-4 py-2 dark:bg-current-500/30 dark:text-zinc-200" >
+            <div class="rounded bg-current-200 px-4 py-2 dark:bg-current-500/30 dark:text-zinc-200">
                 <p class="text-sm uppercase dark:text-zinc-200">
                     @DateTime.Now.ToString("MMMM dd, yyyy")
                 </p>
@@ -98,7 +98,7 @@
         @* Renderizado de mensajes *@
         @foreach (var message in Iam?.Messages ?? [])
         {
-            
+
             oldTime ??= message.Time;
 
             if (new DateTime(oldTime.Value.Year, oldTime.Value.Month, oldTime.Value.Day) < new DateTime(message.Time.Year, message.Time.Month, message.Time.Day))
@@ -108,7 +108,7 @@
                 var isToday = dateMess == Today;
 
 
-                <div class="mt-5 mb-2 flex justify-center">
+                <div class="mb-2 mt-5 flex justify-center">
                     <div class="rounded-lg bg-current-100 px-4 py-2 dark:bg-current-500/30 dark:text-zinc-200">
                         <p class="text-sm uppercase">
                             @if (isToday)
@@ -130,8 +130,20 @@
                 oldTime = message.Time;
             }
 
-            <LIN.Allo.Shared.Components.Elements.Message MessageModel="@message" ShowTittle="(lastMessage?.Time != message.Time) || lastMessage == null || lastMessage.Remitente.Id != message.Remitente.Id" />
-
+            @if (message.Type == MessageTypes.Call)
+            {
+                <div class="mb-4 flex justify-center">
+                    <div class="rounded-lg bg-current-100 px-4 py-2">
+                        <p class="text-xs">
+                            @message.Contenido
+                        </p>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <LIN.Allo.Shared.Components.Elements.Message MessageModel="@message" ShowTittle="(lastMessage?.Time != message.Time) || lastMessage == null || lastMessage.Remitente.Id != message.Remitente.Id" />
+            }
             lastMessage = message;
         }
 
@@ -151,20 +163,20 @@
     <div class="flex w-full justify-end">
         @foreach (var emoji in emojis)
         {
-            <div @onclick="()=>SendMessage(emoji)" class="group flex h-8 w-8 items-center justify-center rounded-full hover:bg-gray-100">
+            <div @onclick="() => SendMessage(emoji)" class="group flex h-8 w-8 items-center justify-center rounded-full hover:bg-gray-100">
                 <label class="text-xl group-hover:animate-pulse">@emoji</label>
             </div>
         }
     </div>
 
     <div class="mt-2 flex items-center rounded-xl bg-white px-4 py-4 dark:bg-zinc-800">
-        <div @onclick="()=> EmojiPanel?.Show()">
+        <div @onclick="() => EmojiPanel?.Show()">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="fill-[#263238] dark:fill-white">
                 <path opacity=".45" d="M9.153 11.603c.795 0 1.439-.879 1.439-1.962s-.644-1.962-1.439-1.962-1.439.879-1.439 1.962.644 1.962 1.439 1.962zm-3.204 1.362c-.026-.307-.131 5.218 6.063 5.551 6.066-.25 6.066-5.551 6.066-5.551-6.078 1.416-12.129 0-12.129 0zm11.363 1.108s-.669 1.959-5.051 1.959c-3.505 0-5.388-1.164-5.607-1.959 0 0 5.912 1.055 10.658 0zM11.804 1.011C5.609 1.011.978 6.033.978 12.228s4.826 10.761 11.021 10.761S23.02 18.423 23.02 12.228c.001-6.195-5.021-11.217-11.216-11.217zM12 21.354c-5.273 0-9.381-3.886-9.381-9.159s3.942-9.548 9.215-9.548 9.548 4.275 9.548 9.548c-.001 5.272-4.109 9.159-9.382 9.159zm3.108-9.751c.795 0 1.439-.879 1.439-1.962s-.644-1.962-1.439-1.962-1.439.879-1.439 1.962.644 1.962 1.439 1.962z"></path>
             </svg>
         </div>
         <div class="mx-4 flex-1">
-            <input @oninput="GetValue" @bind=Message @onkeydown="SendMessageKey" class="w-full border-0 bg-transparent ring-0 focus:border-0 focus:ring-0 focus:outline-none dark:text-gray-100" placeholder="Escribe tu mensaje..." type="text" />
+            <input @oninput="GetValue" @bind=Message @onkeydown="SendMessageKey" class="w-full border-0 bg-transparent ring-0 focus:border-0 focus:outline-none focus:ring-0 dark:text-gray-100" placeholder="Escribe tu mensaje..." type="text" />
         </div>
         <div @onclick="SendMessage">
             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-send-fill mr-3 h-5 w-5 fill-zinc-500 hover:fill-current-500 dark:fill-300" viewBox="0 0 16 16">

@@ -62,11 +62,13 @@ window.webrtc = (function () {
         console.log("SignalR connected");
     }
 
-    async function join(rid) {
+    async function join(rid, token) {
         requestWakeLock();
         roomId = rid;
         await getMedia();
-        await connection.invoke("Join", rid);
+        console.log("Joining")
+        await connection.invoke("Join", rid, token);
+        console.log("Joined")
     }
 
     async function getMedia() {
@@ -251,7 +253,6 @@ window.webrtc = (function () {
         init, join, hangup, setEls: (m) => Object.assign(els, m),
         startScreenShare, stopScreenShare, toggleMute, toggleCamera
     };
-
 
 })();
 
