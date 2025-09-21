@@ -139,4 +139,12 @@ public partial class CallSection
     {
         devicesDrawer?.Show();
     }
+
+    /// <summary>
+    /// Enviar evento para pasar la llamada.
+    /// </summary>
+    private void ContinueOn(DeviceOnAccountModel device)
+    {
+        HubClient.SendCommand(device.ConnectionId, RoomId);
+    }
 }

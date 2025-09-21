@@ -1,6 +1,5 @@
 ﻿namespace LIN.Allo.App.Components.Pages;
 
-
 public partial class Login
 {
 

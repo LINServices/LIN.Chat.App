@@ -4,7 +4,6 @@ using LIN.Types.Cloud.Identity.Models.Identities;
 
 namespace LIN.Allo.App.Components.Pages;
 
-
 public partial class Chat : IChatViewer
 {
 
@@ -285,9 +284,12 @@ public partial class Chat : IChatViewer
             return;
         }
 
-        // Crear el hub
-        RealTime.Hub = new(Access.Communication.Session.Instance.Profile, Device);
-        await RealTime.Hub.Suscribe();
+        // Iniciar el hub.
+        if (!HubClient.Started)
+        {
+            await HubClient.SubscribeAsync(Access.Communication.Session.Instance.Profile);
+        }
+
 
         // Obtiene la data
         RetrieveData();
@@ -307,12 +309,6 @@ public partial class Chat : IChatViewer
         {
             Nav();
 
-            RealTime.Hub!.OnReceiveMessage ??= new();
-            RealTime.Hub!.OnReceiveCall ??= new();
-
-            RealTime.Hub!.OnReceiveMessage.Clear();
-            RealTime.Hub!.OnReceiveCall.Clear();
-
             ConversationsObserver.Data.Clear();
             IsConversationsLoad = false;
             StateHasChanged();
@@ -320,7 +316,6 @@ public partial class Chat : IChatViewer
             // Variables
             var profile = Access.Communication.Session.Instance.Profile;
             var token = Access.Communication.Session.Instance.Token ?? string.Empty;
-
 
             // Obtiene las conversaciones actuales
             var chats = await Access.Communication.Controllers.Conversations.ReadAll(token, Access.Communication.Session.Instance.AccountToken);
@@ -349,15 +344,14 @@ public partial class Chat : IChatViewer
                 return;
             }
 
-
             // Lista.
-            RealTime.Hub!.OnReceiveMessage?.Add(OnReceiveMessage);
-            RealTime.Hub!.OnReceiveCall?.Add(OnReceiveCall);
+            HubClient.OnCall(OnReceiveCall);
+            HubClient.OnMessage(OnReceiveMessage);
+            HubClient.OnCommand(OnCommand);
 
             // Suscribir los eventos del hub
             foreach (var conversation in chats.Models)
             {
-
                 Suscribe(conversation.Conversation);
             }
 
@@ -379,14 +373,10 @@ public partial class Chat : IChatViewer
 
     public void Suscribe(ConversationModel conversation)
     {
-        // Lista.
-        RealTime.Hub!.OnReceiveMessage?.Add(OnReceiveMessage);
-
-
         ConversationsObserver.Create(conversation);
 
         // Suscribir evento.
-        _ = RealTime.Hub!.JoinGroup(conversation.Id);
+        HubClient.JoinGroupAsync(conversation.Id);
 
     }
 
@@ -402,14 +392,12 @@ public partial class Chat : IChatViewer
     /// </summary>
     private void RetrieveData()
     {
-
         // Si ya hay chats
         if (IsConversationsLoad)
             return;
 
         // Obtiene los datos
         ForceRetrieveData();
-
     }
 
 
@@ -542,6 +530,20 @@ public partial class Chat : IChatViewer
                 navigationManager.NavigateTo("/room/" + s);
             };
             await notif.Open();
+        }
+        catch
+        {
+        }
+    }
+
+    public async void OnCommand(string s)
+    {
+        try
+        {
+            if (CallSection.IsThisDeviceOnCall)
+                return;
+
+            navigationManager.NavigateTo("/room/" + s);
         }
         catch
         {

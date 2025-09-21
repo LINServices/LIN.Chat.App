@@ -1,9 +1,10 @@
 ﻿@page "/home"
 
-@* Propiedades *@
 @inject NavigationManager navigationManager
 @inject IJSRuntime JSRuntime
 @inject DeviceOnAccountModel Device
+@inject IRealtimeHubClient HubClient
+
 
 @* Pantalla de carga *@
 @{
@@ -166,14 +167,13 @@
             <div class="flex w-full flex-col lg:w-2/3 @(ActualSection != 1 ? "hidden lg:flex" : "")">
 
                 @* Mostrar el chat *@
-                @if (RealTime.Hub != null && SelectedConversation != null)
+                @if (SelectedConversation != null)
                 {
                     MainPage.OnColorRequest = MauiProgram.LoadColorSelect;
                     MainPage.OnColorRequest();
 
                     <ChatSection EmmaClick="OpenEmma" Drawer="MemberDrawer" Iam="ConversationsObserver.Get(SelectedConversation.Id)" OnBackPress="Nav" />
                 }
-
                 // No esta seleccionado.
                 else
                 {
