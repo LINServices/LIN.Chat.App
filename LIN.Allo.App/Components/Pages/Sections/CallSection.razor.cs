@@ -129,7 +129,7 @@ public partial class CallSection
         LIN.Allo.App.Services.AudioSession.End();
 #endif
         NavigationContext.NavigateTo("/home");
-        IsThisDeviceOnCall = true;
+        IsThisDeviceOnCall = false;
     }
 
     /// <summary>
@@ -145,6 +145,7 @@ public partial class CallSection
     /// </summary>
     private void ContinueOn(DeviceOnAccountModel device)
     {
+        Hang();
         HubClient.SendCommand(device.ConnectionId, RoomId);
     }
 }

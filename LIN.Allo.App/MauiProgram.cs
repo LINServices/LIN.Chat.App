@@ -57,12 +57,12 @@ namespace LIN.Allo.App
             var device = app.Services.GetService<DeviceOnAccountModel>();
 
             device.Name = DeviceInfo.Name;
-            device.SurfaceFrom = "native";
+            device.SurfaceFrom = Types.Enumerations.SurfaceFrom.NativeApp;
 
 #if ANDROID
-            device.OperativeSystem = "android";
+            device.Platform = Types.Enumerations.Platforms.Android;
 #elif WINDOWS
-            device.OperativeSystem = "windows";
+            device.Platform = Types.Enumerations.Platforms.Windows;
 #endif
             return app;
         }
