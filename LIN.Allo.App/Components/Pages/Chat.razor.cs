@@ -286,7 +286,7 @@ public partial class Chat : IChatViewer
         }
 
         // Crear el hub
-        RealTime.Hub = new(Access.Communication.Session.Instance.Profile);
+        RealTime.Hub = new(Access.Communication.Session.Instance.Profile, Device);
         await RealTime.Hub.Suscribe();
 
         // Obtiene la data

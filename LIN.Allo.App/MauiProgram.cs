@@ -2,10 +2,10 @@
 using Android.Views;
 using LIN.Allo.App.Platforms.Android.Services.Web;
 #endif
-using Microsoft.Extensions.Logging;
 using LIN.Access.Auth;
 using LIN.Access.Communication;
 using Microsoft.AspNetCore.Components.WebView.Maui;
+using Microsoft.Extensions.Logging;
 
 
 namespace LIN.Allo.App
@@ -43,16 +43,28 @@ namespace LIN.Allo.App
 
 #if DEBUG
             builder.Services.AddBlazorWebViewDeveloperTools();
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             LIN.Allo.Shared.Services.Scripts.Build();
-            // Iniciar.
 
+            // Iniciar.
             builder.Services.AddCommunicationService();
             LIN.Access.Search.Build.Init();
 
-            return builder.Build();
+            var app = builder.Build();
+
+            var device = app.Services.GetService<DeviceOnAccountModel>();
+
+            device.Name = DeviceInfo.Name;
+            device.SurfaceFrom = "native";
+
+#if ANDROID
+            device.OperativeSystem = "android";
+#elif WINDOWS
+            device.OperativeSystem = "windows";
+#endif
+            return app;
         }
 
 
@@ -64,25 +76,25 @@ namespace LIN.Allo.App
         public static void LoadColor()
         {
 #if ANDROID
-        var currentActivity = Platform.CurrentActivity;
+            var currentActivity = Platform.CurrentActivity;
 
-        if (currentActivity == null || currentActivity.Window == null)
-            return;
+            if (currentActivity == null || currentActivity.Window == null)
+                return;
 
-        var currentTheme = AppInfo.RequestedTheme;
+            var currentTheme = AppInfo.RequestedTheme;
 
-        if (currentTheme == AppTheme.Light)
-        {
-            currentActivity.Window.SetStatusBarColor(new(255, 255, 255));
-            currentActivity.Window.SetNavigationBarColor(new(255, 255, 255));
-            currentActivity.Window.DecorView.SystemUiVisibility = (StatusBarVisibility)SystemUiFlags.LightStatusBar;
-        }
-        else
-        {
-            currentActivity.Window.SetStatusBarColor(new(0,0,0));
-            currentActivity.Window.SetNavigationBarColor(new(0, 0, 0));
-            currentActivity.Window.DecorView.SystemUiVisibility = (StatusBarVisibility)SystemUiFlags.Visible;
-        }
+            if (currentTheme == AppTheme.Light)
+            {
+                currentActivity.Window.SetStatusBarColor(new(255, 255, 255));
+                currentActivity.Window.SetNavigationBarColor(new(255, 255, 255));
+                currentActivity.Window.DecorView.SystemUiVisibility = (StatusBarVisibility)SystemUiFlags.LightStatusBar;
+            }
+            else
+            {
+                currentActivity.Window.SetStatusBarColor(new(0, 0, 0));
+                currentActivity.Window.SetNavigationBarColor(new(0, 0, 0));
+                currentActivity.Window.DecorView.SystemUiVisibility = (StatusBarVisibility)SystemUiFlags.Visible;
+            }
 #endif
         }
 
@@ -94,25 +106,25 @@ namespace LIN.Allo.App
         public static void LoadColorSelect()
         {
 #if ANDROID
-        var currentActivity = Platform.CurrentActivity;
+            var currentActivity = Platform.CurrentActivity;
 
-        if (currentActivity == null || currentActivity.Window == null)
-            return;
+            if (currentActivity == null || currentActivity.Window == null)
+                return;
 
-        var currentTheme = AppInfo.RequestedTheme;
+            var currentTheme = AppInfo.RequestedTheme;
 
-        if (currentTheme == AppTheme.Light)
-        {
-            currentActivity.Window.SetStatusBarColor(new(255, 255, 255));
-            currentActivity.Window.SetNavigationBarColor(new(245, 240, 234));
-            currentActivity.Window.DecorView.SystemUiVisibility = (StatusBarVisibility)SystemUiFlags.LightStatusBar;
-        }
-        else
-        {
-            currentActivity.Window.SetStatusBarColor(new(0,0,0));
-            currentActivity.Window.SetNavigationBarColor(new(0, 0, 0));
-            currentActivity.Window.DecorView.SystemUiVisibility = (StatusBarVisibility)SystemUiFlags.Visible;
-        }
+            if (currentTheme == AppTheme.Light)
+            {
+                currentActivity.Window.SetStatusBarColor(new(255, 255, 255));
+                currentActivity.Window.SetNavigationBarColor(new(245, 240, 234));
+                currentActivity.Window.DecorView.SystemUiVisibility = (StatusBarVisibility)SystemUiFlags.LightStatusBar;
+            }
+            else
+            {
+                currentActivity.Window.SetStatusBarColor(new(0, 0, 0));
+                currentActivity.Window.SetNavigationBarColor(new(0, 0, 0));
+                currentActivity.Window.DecorView.SystemUiVisibility = (StatusBarVisibility)SystemUiFlags.Visible;
+            }
 #endif
         }
 

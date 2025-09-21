@@ -9,6 +9,11 @@ public partial class CallSection
     public string RoomId { get; set; } = string.Empty;
 
     /// <summary>
+    /// Cajon share.
+    /// </summary>
+    private DevicesDrawer? devicesDrawer;
+
+    /// <summary>
     /// Estado del micrófono.
     /// </summary>
     bool MicroState { get; set; } = true;
@@ -123,7 +128,15 @@ public partial class CallSection
 #if ANDROID
         LIN.Allo.App.Services.AudioSession.End();
 #endif
-        NavigationContext.NavigateTo("/");
+        NavigationContext.NavigateTo("/home");
         IsThisDeviceOnCall = true;
+    }
+
+    /// <summary>
+    /// Continuar en otro dispositivo.
+    /// </summary>
+    private void ContinueOn()
+    {
+        devicesDrawer?.Show();
     }
 }

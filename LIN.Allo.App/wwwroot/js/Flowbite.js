@@ -1,15 +1,20 @@
 ﻿/**
- * Abre un Drawer
+ * Abre un Drawer con configuración flexible
  * @param {string} id - El ID del elemento del Drawer.
  * @param {object} dotnetHelper - El objeto DotNetHelper para invocar métodos de .NET.
+ * @param {string} placement - Posición del Drawer ("right", "bottom", "left", "top").
  * @param {...string} idCloseBtn - IDs de los botones que cierran el Drawer.
  */
-function showDrawer(id, dotnetHelper, ...idCloseBtn) {
+function showCustomDrawer(id, dotnetHelper, placement = "right", ...idCloseBtn) {
     const control = document.getElementById(id);
+    if (!control) {
+        console.error(`Drawer con id '${id}' no encontrado.`);
+        return;
+    }
 
     const options = {
-        placement: "right",
-        backdropClasses: 'bg-zinc-700 bg-opacity-40 fixed inset-0 z-30 dark:bg-zinc-900/40',
+        placement,
+        backdropClasses: 'bg-zinc-900 bg-opacity-50 fixed inset-0 z-30',
         onHide: () => dotnetHelper?.invokeMethodAsync("OnHide"),
         onShow: () => dotnetHelper?.invokeMethodAsync("OnShow")
     };
@@ -21,8 +26,18 @@ function showDrawer(id, dotnetHelper, ...idCloseBtn) {
         const closeButton = document.getElementById(closeBtnId);
         if (closeButton) {
             closeButton.addEventListener("click", () => drawer.hide());
+        } else {
+            console.warn(`Botón con id '${closeBtnId}' no encontrado.`);
         }
     });
+}
+
+function showDrawer(id, dotnetHelper, ...idCloseBtn) {
+    showCustomDrawer(id, dotnetHelper, "right", ...idCloseBtn);
+}
+
+function showBottomDrawer(id, dotnetHelper, ...idCloseBtn) {
+    showCustomDrawer(id, dotnetHelper, "bottom", ...idCloseBtn);
 }
 
 
