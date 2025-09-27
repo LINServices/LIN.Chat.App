@@ -6,7 +6,7 @@ public partial class ChatSection : IDisposable, IMessageChanger, IConversationVi
 
     MessageModel? lastMessage = null;
 
-
+    Allo.Shared.Components.Elements.Dropdowns.Gifts GiftPanel;
 
 
     /// <summary>
@@ -124,7 +124,7 @@ public partial class ChatSection : IDisposable, IMessageChanger, IConversationVi
     /// <summary>
     /// Enviar un mensaje.
     /// </summary>
-    private async Task SendMessage(string value)
+    private async Task SendMessage(string value, MessageTypes type = MessageTypes.Text)
     {
 
         if (string.IsNullOrWhiteSpace(value) || Iam == null)
@@ -138,6 +138,7 @@ public partial class ChatSection : IDisposable, IMessageChanger, IConversationVi
         ConversationsObserver.PushMessage(Iam.Conversation.Id, new()
         {
             Contenido = value,
+            Type = type,
             Conversacion = new()
             {
                 Id = Iam.Conversation.Id
@@ -150,7 +151,7 @@ public partial class ChatSection : IDisposable, IMessageChanger, IConversationVi
 
         // Envía el mensaje al hub
 
-        var response = await Access.Communication.Controllers.Messages.Send(Iam.Conversation.Id, guid, value, LIN.Access.Communication.Session.Instance.Token);
+        var response = await Access.Communication.Controllers.Messages.Send(Iam.Conversation.Id, guid, value, LIN.Access.Communication.Session.Instance.Token, type);
 
         if (response.Response == Responses.Success)
         {
@@ -270,6 +271,16 @@ public partial class ChatSection : IDisposable, IMessageChanger, IConversationVi
         StateHasChanged();
     }
 
+    void OpenGift()
+    {
+        GiftPanel.Show("gift-panel");
+    }
+
+
+    async void GiftSelect(string url)
+    {
+        await SendMessage(url, MessageTypes.Gif);
+    }
 
 
 
