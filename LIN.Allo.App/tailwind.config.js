@@ -12,7 +12,6 @@ module.exports = {
         },
         extend: {
             colors: {
-
                 light: "#FFFFFF",
                 primaryDark: "#121B22",
 
@@ -29,8 +28,13 @@ module.exports = {
                     '900': '#303a70',
                     '950': '#232748'
                 }
+            },
+            keyframes: {
+                progress: { "0%": { transform: "translateX(-100%)" }, "100%": { transform: "translateX(100%)" } }
+            },
+            animation: {
+                progress: "progress 2s linear infinite"
             }
-
         }
     },
     plugins: [],
