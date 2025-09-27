@@ -88,7 +88,7 @@
 
         @* Recomendación *@
         <div class="mb-4 flex justify-center">
-            <div class="rounded-lg bg-yellow-100 px-4 py-2">
+            <div class="rounded-2xl bg-yellow-100 px-4 py-2">
                 <p class="text-xs">
                     Tus mensajes están protegidos y cifrados, sin embargo LIN IA puede analizarlos para mostrarte recomendaciones.
                 </p>
@@ -109,8 +109,8 @@
 
 
                 <div class="mb-2 mt-5 flex justify-center">
-                    <div class="rounded-lg bg-current-100 px-4 py-2 dark:bg-current-500/30 dark:text-zinc-200">
-                        <p class="text-sm uppercase">
+                    <div class="rounded-2xl bg-current-100 px-4 py-2 dark:bg-current-500/30 dark:text-zinc-200">
+                        <p class="text-sm">
                             @if (isToday)
                             {
                                 @("Hoy")
@@ -133,7 +133,7 @@
             @if (message.Type == MessageTypes.Call)
             {
                 <div class="mb-4 flex justify-center">
-                    <div class="rounded-lg bg-current-100 px-4 py-2">
+                    <div class="rounded-2xl bg-current-100 px-4 py-2">
                         <p class="text-xs">
                             @message.Contenido
                         </p>

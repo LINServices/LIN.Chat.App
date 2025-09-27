@@ -75,4 +75,23 @@
 		<ProjectReference Include="..\..\LIN\LIN.LocalDataBase\LIN.LocalDataBase.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<!-- Saca package.json y package-lock.json de los ítems del proyecto -->
+		<None Remove="package.json;package-lock.json" />
+		<Content Remove="package.json;package-lock.json" />
+
+		<!-- Por si algún Include previo los metió igual, anula copias y empaquetado -->
+		<None Update="package.json">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+			<CopyToPublishDirectory>Never</CopyToPublishDirectory>
+			<Pack>false</Pack>
+		</None>
+		<None Update="package-lock.json">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+			<CopyToPublishDirectory>Never</CopyToPublishDirectory>
+			<Pack>false</Pack>
+		</None>
+	</ItemGroup>
+
+
 </Project>
