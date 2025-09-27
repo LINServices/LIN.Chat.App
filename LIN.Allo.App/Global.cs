@@ -1,6 +1,5 @@
 ﻿global using LIN.Access.Auth.Hubs;
 global using LIN.Allo.Shared.Components.Elements.Drawers;
-global using LIN.Allo.Shared.Components.Elements.Popups;
 global using LIN.Allo.Shared.Services;
 global using LIN.Types.Cloud.Identity.Abstracts;
 global using LIN.Types.Cloud.Identity.Enumerations;

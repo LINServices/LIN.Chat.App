@@ -81,9 +81,9 @@ public partial class Login
 
 
 
-   /// <summary>
-   /// Evento.
-   /// </summary>
+    /// <summary>
+    /// Evento.
+    /// </summary>
     protected override async Task OnInitializedAsync()
     {
 
@@ -140,7 +140,7 @@ public partial class Login
     /// <summary>
     /// Oculta los errores
     /// </summary>
-    void HideError()
+    private void HideError()
     {
         ErrorVisible = false;
         StateHasChanged();
@@ -151,7 +151,7 @@ public partial class Login
     /// <summary>
     /// Oculta los errores
     /// </summary>
-    void GoToForget()
+    private void GoToForget()
     {
         NavigationManager?.NavigateTo("/login/forgetPassword");
     }
@@ -161,7 +161,7 @@ public partial class Login
     /// <summary>
     /// Muestra un mensaje
     /// </summary>
-    void ShowError(string message)
+    private void ShowError(string message)
     {
         InvokeAsync(() =>
         {
@@ -177,7 +177,7 @@ public partial class Login
     /// <summary>
     /// Muestra un mensaje
     /// </summary>
-    void GotoLoginKey()
+    private void GotoLoginKey()
     {
         IsWithKey = !IsWithKey;
         StateHasChanged();
@@ -261,7 +261,7 @@ public partial class Login
     /// <summary>
     /// Inicia sesión
     /// </summary>
-    async void StartKey()
+    private async void StartKey()
     {
         // Id único.
         string localUnique = Guid.NewGuid().ToString();
@@ -388,7 +388,7 @@ public partial class Login
     /// <summary>
     /// Cancelar passkey.
     /// </summary>
-    void CancelPasskey()
+    private void CancelPasskey()
     {
         hub?.Disconnect();
         hub = null;
@@ -402,7 +402,7 @@ public partial class Login
     /// Mostrar error.
     /// </summary>
     /// <param name="message">Mensaje de error.</param>
-    void Show(string message)
+    private void Show(string message)
     {
         InvokeAsync(async () =>
          {

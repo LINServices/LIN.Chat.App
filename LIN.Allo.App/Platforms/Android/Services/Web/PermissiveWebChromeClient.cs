@@ -1,10 +1,5 @@
 ﻿using Android.OS;
 using Android.Webkit;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LIN.Allo.App.Platforms.Android.Services.Web
 {

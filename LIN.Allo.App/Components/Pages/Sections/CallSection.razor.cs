@@ -16,12 +16,17 @@ public partial class CallSection
     /// <summary>
     /// Estado del micrófono.
     /// </summary>
-    bool MicroState { get; set; } = true;
+    private bool MicroState { get; set; } = true;
 
     /// <summary>
     /// Estado de la cámara.
     /// </summary>
-    bool CamState { get; set; } = true;
+    private bool CamState { get; set; } = true;
+
+    /// <summary>
+    /// Soporta compartir campaña.
+    /// </summary>
+    private bool SupportShareScreen = false;
 
     /// <summary>
     /// Obtener o establecer si el dispositivo esta en una llamada.
@@ -62,10 +67,12 @@ public partial class CallSection
 
         if (first)
         {
+            SupportShareScreen = await JSRuntime.InvokeAsync<bool>("supportShareScreen");
             await JSRuntime.InvokeVoidAsync("webrtc.init", "https://api.linplatform.com/Communication/hub/calls", Access.Communication.Session.Instance.Account.Name);
             await JSRuntime.InvokeVoidAsync("webrtc.join", int.Parse(RoomId), LIN.Access.Communication.Session.Instance.Token); // asegura que RoomId está seteado
         }
         IsThisDeviceOnCall = true;
+        StateHasChanged();
     }
 
     /// <summary>

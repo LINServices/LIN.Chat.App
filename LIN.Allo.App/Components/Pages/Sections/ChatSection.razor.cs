@@ -4,9 +4,11 @@
 public partial class ChatSection : IDisposable, IMessageChanger, IConversationViewer
 {
 
-    MessageModel? lastMessage = null;
+    private string[] emojis = "🙌;👍;😁;👌;😍;❤️;😂;😊".Split(';');
 
-    Allo.Shared.Components.Elements.Dropdowns.Gifts GiftPanel;
+    private MessageModel? lastMessage = null;
+
+    private Allo.Shared.Components.Elements.Dropdowns.Gifts GiftPanel;
 
 
     /// <summary>
@@ -89,15 +91,8 @@ public partial class ChatSection : IDisposable, IMessageChanger, IConversationVi
 
 
 
-    /// <summary>
-    /// Panel de emojis.
-    /// </summary>
-    private EmojiPanel? EmojiPanel { get; set; }
 
-
-
-
-    void GetValue(dynamic e)
+    private void GetValue(dynamic e)
     {
         Message = e.Value;
     }
@@ -271,13 +266,13 @@ public partial class ChatSection : IDisposable, IMessageChanger, IConversationVi
         StateHasChanged();
     }
 
-    void OpenGift()
+    private void OpenGift()
     {
         GiftPanel.Show("gift-panel");
     }
 
 
-    async void GiftSelect(string url)
+    private async void GiftSelect(string url)
     {
         await SendMessage(url, MessageTypes.Gif);
     }

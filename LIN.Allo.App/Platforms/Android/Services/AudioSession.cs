@@ -6,8 +6,8 @@ namespace LIN.Allo.App.Services
 
     public static class AudioSession
     {
-        static AudioManager? am;
-        static AudioFocusRequestClass? afr;
+        private static AudioManager? am;
+        private static AudioFocusRequestClass? afr;
 
         public static void Begin()
         {
@@ -54,7 +54,7 @@ namespace LIN.Allo.App.Services
             try { if (am != null) { am.Mode = Mode.Normal; /* opcional: am.SpeakerphoneOn = false; */ } } catch { }
         }
 
-        class FocusChange : Java.Lang.Object, AudioManager.IOnAudioFocusChangeListener
+        private class FocusChange : Java.Lang.Object, AudioManager.IOnAudioFocusChangeListener
         { public void OnAudioFocusChange([Android.Runtime.GeneratedEnum] AudioFocus focusChange) { } }
     }
 }
