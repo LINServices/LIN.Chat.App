@@ -70,9 +70,9 @@ public partial class CallSection
             SupportShareScreen = await JSRuntime.InvokeAsync<bool>("supportShareScreen");
             await JSRuntime.InvokeVoidAsync("webrtc.init", "https://api.linplatform.com/Communication/hub/calls", Access.Communication.Session.Instance.Account.Name);
             await JSRuntime.InvokeVoidAsync("webrtc.join", int.Parse(RoomId), LIN.Access.Communication.Session.Instance.Token); // asegura que RoomId está seteado
+            IsThisDeviceOnCall = true;
+            StateHasChanged();
         }
-        IsThisDeviceOnCall = true;
-        StateHasChanged();
     }
 
     /// <summary>
