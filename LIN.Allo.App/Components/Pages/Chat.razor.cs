@@ -515,25 +515,32 @@ public partial class Chat : IChatViewer
 
 
 
-    public async void OnReceiveCall(string s)
+    public async void OnReceiveCall(Types.Communication.DTO.ReceiveCallDTO receiveCall)
     {
-        try
-        {
-            if (notif == null)
-                return;
+        await InvokeAsync(async () =>
+         {
+             try
+             {
+                 if (notif == null)
+                     return;
 
-            if (CallSection.IsThisDeviceOnCall)
-                return;
+                 if (CallSection.IsThisDeviceOnCall)
+                     return;
 
-            notif.OnAccept = () =>
-            {
-                navigationManager.NavigateTo("/room/" + s);
-            };
-            await notif.Open();
-        }
-        catch
-        {
-        }
+                 // Si es la persona la que esta llamando.
+                 if (receiveCall.CallerProfileId == Access.Communication.Session.Instance.Profile.Id)
+                     return;
+
+                 notif.OnAccept = () =>
+                {
+                    navigationManager.NavigateTo("/room/" + receiveCall.RoomId);
+                };
+                 await notif.Open(receiveCall.Caller);
+             }
+             catch
+             {
+             }
+         });
     }
 
     public async void OnCommand(string s)
